@@ -28,9 +28,29 @@
                 <div class="bouton-pro">
                     <a href="pro.html">Professionnel</a>
                 </div>
-                <div class="bouton-co">
-                    <a href="connexion.php">Connexion</a>
-                </div>
+
+                <?php
+
+                session_start();
+
+                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                $estConnecte = isset($_SESSION['identifiant']);
+
+                // Sélectionnez le bouton de connexion en PHP
+                $boutonConnexion = '<div class="bouton-co">';
+                if ($estConnecte) {
+                    $identif = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' <i class="fas fa-user"></i></a>';
+                } else {
+                    // Si non connecté, affichez le bouton de connexion normal
+                    $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
+                }
+                $boutonConnexion .= '</div>';
+
+                // Affichez le bouton de connexion généré
+                echo $boutonConnexion;
+                ?>
+                
             </div>
         </nav>
     </header>
