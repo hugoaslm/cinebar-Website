@@ -1,0 +1,71 @@
+.titre
+{
+	color: #FFF;
+	text-align: center;
+	font-family: 'Manrope', sans-serif;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: normal;
+	margin-bottom: 50px;
+}
+
+.cinebar{
+	color: #89404F;
+	font-family: 'Manrope', sans-serif;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: normal;
+}
+
+.contenant
+{
+	font-family: 'Manrope', sans-serif;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.text
+{
+	color: #FFF;
+	font-family: 'Manrope', sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.mot_cle
+{
+	color: #89404F;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	font-family: 'Manrope', sans-serif;
+}
+
+.illu img
+{
+
+	
+	width : 250px;
+	height : 250px;
+	
+	margin-bottom: 20px;
+	border-radius: 10px;
+	
+	border-radius: 15%;
+	
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.sep {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}

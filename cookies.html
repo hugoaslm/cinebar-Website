@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/cookies.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+    <header>
+        <nav>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div class="pages">
+                <a href="accueil.php">Accueil</a>
+                <a href="cinema.html">Le Cinéma</a>
+                <a href="rooftop.html">La Cafétéria</a>
+                <a href="films.html">Films</a>
+                <a href="events.html">Évènements</a>
+                <a href="billet.html">Billetterie</a>
+                <a href="forum.html">Forum</a>
+            </div>
+            <div class="bouton-access">
+                <div class="bouton-pro">
+                    <a href="pro.html">Professionnel</a>
+                </div>
+                <div class="bouton-co">
+                    <a href="connexion.php">Connexion</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main class='cookies'>
+            <form action="php/login.php" method="post" class="co">
+                    <div class="form-text" id="sugg">
+	                <p><span style="color: black;">
+                        Le respect de votre vie privée est notre priorité !
+                    </p><br/>
+                    </span>
+                    <label>
+                        <input class="mui-switch mui-switch-anim" type="checkbox" name="mostPopular"> Recevoir des recommandations pour les films les plus consultés.
+                    </label><br/>
+                    <label>
+                        <input class="mui-switch mui-switch-anim" type="checkbox" name="newReleases"> Être informé des dernières sorties de films.
+                    </label><br/>
+                    <label>
+                        <input class="mui-switch mui-switch-anim" type="checkbox" name="exclusiveContent"> Accéder à du contenu exclusif et des offres spéciales.
+                    </label><br/>
+                    <label>
+                        <input class="mui-switch mui-switch-anim" type="checkbox" name="personalizedSuggestions"> Recevoir des suggestions de films personnalisées en fonction de vos préférences.
+                    </label><br/>
+                    </div>
+            </form>
+    </main>
+
+
+    <footer>
+        <section class='logo-adresse'>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div>
+                <h3>Adresse :</h3>
+                Place Darcy <br>
+                <a>21000 - Dijon</a>
+            </div>
+        </section>
+        <div class="donnees">
+            <a href="cookies.html">Gestion des cookies</a> - 
+            <a href="cgu.html">CGU</a> - 
+            <a href="faq.html">FAQ</a>
+        </div>        
+    </footer>
+</body>
+</html>

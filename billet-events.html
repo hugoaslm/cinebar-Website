@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/billet-events.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div class="pages">
+                <a href="accueil.php">Accueil</a>
+                <a href="cinema.html">Le Cinéma</a>
+                <a href="rooftop.html">La Cafétéria</a>
+                <a href="films.html">Films</a>
+                <a href="events.html">Évènements</a>
+                <a href="billet.html">Billetterie</a>
+                <a href="forum.html">Forum</a>
+            </div>
+            <div class="bouton-access">
+                <div class="bouton-pro">
+                    <a href="pro.html">Professionnel</a>
+                </div>
+                <div class="bouton-co">
+                    <a href="connexion.php">Connexion</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="billet">
+        <section class='form_billet'>
+            <form action="traitement_billet.php" method="post" class="reserv-billet">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom">
+                <label for="nom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom">
+                <label for="mail">E-mail :</label>
+                <input type="mail" id="mail" name="mail">
+                <label> Évènement :</label>
+                <select id="movie" name="film">
+                    <option value="Oppenheimer">Oppenheimer</option>
+                    <option value="Indiana Jones">Indiana Jones</option>
+                    <option value="Avatar">Avatar</option>
+                    <option value="Napoléon">Napoléon</option>
+                </select>
+                <label for="places">Nombre de places :</label>
+                <input type="places" id="places" name="places">
+                <label for="date">Date :</label>
+                <input type="date" id="date" name="date">
+                <label for="horaire">Horaire :</label>
+                <select id="horaire" name="horaire">
+                    <option value="13h45">13h45</option>
+                    <option value="17h00">17h00</option>
+                    <option value="19h30">19h30</option>
+                </select>
+                <p>
+                    <button name="send" type="submit">Réserver</button>
+                </p>
+                <p>
+                    <button type="reset">Annuler</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <section class='logo-adresse'>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div>
+                <h3>Adresse :</h3>
+                Place Darcy <br>
+                <a>21000 - Dijon</a>
+            </div>
+        </section>
+        <div class="donnees">
+            <a href="cookies.html">Gestion des cookies</a> - 
+            <a href="cgu.html">CGU</a> - 
+            <a href="faq.html">FAQ</a>
+        </div>        
+    </footer>
+
+</body>
+</html>

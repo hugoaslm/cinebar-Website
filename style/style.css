@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+body {
+    background-color: #1E1E1E;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1em;
+    color: white;
+}
+
+header,
+footer {
+  padding: 20px 50px;
+}
+
+header img {
+    width: 80px;
+    height: 50px;
+}
+
+footer img {
+    width: 90px;
+    height: 60px;
+    margin-right: 70px;
+}
+
+footer{
+  padding: 20px;
+  background-color: #1E1E1E;
+}
+
+.donnees {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.donnees a{
+  font-size: 0.5em;
+  color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #1E1E1E;
+}
+
+nav a {
+  margin-left: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+nav .pages a:hover {
+color: #89404F;
+}
+
+.bouton-pro {
+  background-color: #89404F;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.bouton-pro a, .bouton-co a {
+  margin: auto;
+}
+
+.bouton-co {
+  background-color: #414089;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.bouton-pro:hover{
+  background-color: #ad5164;
+}
+
+.bouton-co:hover{
+  background-color: #4f4da4;
+}
+
+.bouton-access {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.logo-adresse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+p,
+li {
+  font-size: 1.1em;
+  color: #f9f8ff;
+}

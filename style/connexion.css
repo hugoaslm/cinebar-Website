@@ -1,0 +1,87 @@
+.connexion {
+  background-color: white;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.inscription {
+  width: 600px;
+  height: 600px;
+  padding: 20px;
+  background-color: #1E1E1E;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.30);
+  display: grid;
+  gap: 40px;
+  padding: 50px;
+}
+
+.co {
+  width: 550px;
+  height: 550px;
+  padding: 20px;
+  background-color: #1E1E1E;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.30);
+  display: grid;
+  gap: 40px;
+  padding: 50px;
+}
+
+
+form input {
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  width: 400px;
+  height: 30px;
+}
+
+form button {
+  background-color: #89404F;
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+form button:hover {
+  background-color: #69313c;
+}
+
+.form-text label, input {
+  display: block;
+}
+
+.form-text label {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.form-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-bouton {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.form-text p {
+  margin-bottom: 30px;
+}
+
+.co-bouton a {
+  color:#89404F;
+}

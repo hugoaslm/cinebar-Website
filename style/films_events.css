@@ -1,0 +1,157 @@
+/* Reset de quelques propriétés par défaut du navigateur */
+body, h1, h2, h3, h4, p, figure, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Utilisation d'une boîte de modèle plus prévisible et cohérente */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Réinitialisation des styles de liste */
+ul {
+  list-style: none;
+}
+
+/* Réinitialisation des styles de lien */
+a {
+  text-decoration: none;
+}
+
+/* Styles pour la section vedette */
+.vedette-section {
+  margin-top: 50px;
+}
+
+.vedette {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  overflow: hidden;
+  background-color: #89404F;
+  border-radius: 50px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.illu {
+  float: left;
+  margin-left: 20px;
+}
+
+.illu img {
+  width: 500px;
+  height: 350px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.details {
+  overflow: hidden;
+}
+
+.details div {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.details h2, h4, div, p {
+  margin-left: 20px;
+}
+
+.details h4 {
+  margin-bottom: 20px;
+}
+
+.details p {
+  margin-bottom: 20px;
+}
+
+.cast {
+  margin-top: 20px;
+  clear: both;
+}
+
+/* Styles pour la section films-en-salle */
+.films-en-salle {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.film img {
+  width: 200px;
+  height: 300px;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.film p {
+  margin: 0;
+}
+
+.films-title h1 {
+  margin-top: 50px;
+}
+
+.film-1 {
+  margin-bottom: 100px;
+}
+
+.film-2 {
+  margin-bottom: 200px;
+}
+
+.film-1, .film-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+/* Styles pour la section events */
+.events-title h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.events-1, .events-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.ev {
+  flex: 0 0 calc(25% - 50px);
+  margin: 25px;
+  text-align: center;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ev img {
+  width: 350px;
+  height: 250px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 5px;
+  align-self: center;
+}
+
+.event p {
+  margin: 0;
+}

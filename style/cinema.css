@@ -1,0 +1,68 @@
+.description-bar-cine, .sav-plus, .menu-bar {
+  margin-left: 30px;
+}
+
+.haut-cine img {
+    width: 100%;
+}
+  
+.haut-cine {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+  
+.haut-cine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+  
+.haut-cine img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+.desc-bar-cine {
+  margin-top: 50px;
+}
+
+.menu-bar {
+  margin-top: 50px;
+}
+  
+.bouton-cinebar {
+  background-color: #89404F;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 30px;
+}
+  
+.bouton-cinebar a {
+  margin: auto;
+  text-decoration: none;
+  color: white;
+}
+  
+.sav-plus {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 200px;
+}
+  
+.menu ul {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+main img {
+  width: 500px;
+}

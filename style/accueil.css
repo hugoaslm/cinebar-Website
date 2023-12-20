@@ -1,0 +1,326 @@
+* {
+    margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 1em;
+  color: white;
+}
+
+footer img {
+    width: 70px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+main img {
+    width: 500px;
+}
+
+.haut-cine img {
+  width: 100%;
+}
+
+.haut-cine {
+  position: relative;
+  display: inline-block;
+}
+
+.haut-cine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.haut-cine img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+.img1 img {
+  width: 100%;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+#backToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #000000;
+  opacity: 0.5;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 10px;
+  border: none;
+}
+
+#backToTopBtn:hover {
+  background-color: #89404F;
+}
+.donnees a {
+  font-size: 7px;
+  
+}
+footer {
+  text-align: center; 
+}
+
+.reseaux-sociaux {
+  margin-top: 10px;
+}
+
+.reseaux-sociaux a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 25px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.reseaux-sociaux a:hover {
+  color: #89404F; /* Couleur au survol */
+}
+
+.facebook { color: #1877f2; }
+.x { color: #1da1f2; }
+.instagram { color: #c13584; }
+.tiktok { color: #69c9d0; }
+.linkedin { color: #0077b5; }
+.youtube { color: #ac0e38; }
+
+
+
+
+.accueil-cine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  
+  
+}
+
+.accueil-cine {
+  background-color: black;
+}
+
+.desc-bar-cine {
+  flex: 1;
+  max-width: 60%;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.img-container {
+  max-width: 45%;
+  margin: 10px
+}
+
+.accueil-cine img {
+  width: 100%;
+  height: 600px;
+  width: 500px;
+}
+
+.acc-cine h1 {
+  margin: 0; /* Supprimer toutes les marges par défaut */
+  position: absolute; /* Activer le positionnement absolu */
+  top: -120px; /* Ajuster la position verticale selon vos besoins */
+}
+
+.acc-cine p {
+  
+  top: -150px; /* Ajuster la position verticale selon vos besoins */
+}
+
+
+.accueil-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin-top: 10px;
+  background-color: #000000;
+  position: relative; /* Activer le positionnement relatif pour positionner les éléments enfants */
+}
+
+.img-bar {
+  max-width: 40%;
+}
+
+.acc-bar {
+  flex: 1;
+  max-width: 60%;
+}
+
+.accueil-bar img {
+  margin: 10px;
+  width: 600px; /* Ajustez la largeur selon vos besoins */
+  height: 600px; /* Ajustez la hauteur selon vos besoins */
+}
+
+.accueil-bar h1 {
+  margin: 0px;
+  position: absolute;
+  top: 120px; /* Ajustez la position verticale selon vos besoins */
+  left: 620px; /* Ajustez la position horizontale selon vos besoins */
+}
+
+.accueil-bar p {
+  margin-top: 150px; /* Ajustez la marge supérieure du paragraphe selon vos besoins */
+  position: absolute;
+  top: 100px; /* Ajustez la position verticale selon vos besoins */
+  left: 620px; /* Ajustez la position horizontale selon vos besoins */
+}
+
+
+
+
+
+.boite3 {
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  margin-top: 10px;
+}
+
+.titre-boite3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.boite3 img {
+  width: 300px;
+  height: 350px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 30px;
+  margin-left: 30px;
+  border-radius: 3px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  
+}
+
+.boite3 img:hover {
+  transform: scale(1.05); /* Zoom de 20% sur survol */
+}
+.titre-boite3 h1 {
+  position: absolute;
+  top: 50px;
+  left: 175px;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 20px;
+  
+}
+
+.bouton-voir {
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #89404F;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bouton-voir:hover {
+  background-color: #ad5164; /* Légèrement plus sombre au survol */
+}
+
+
+
+
+
+
+
+
+
+.carousel-container h1 {
+  position: absolute;
+  text-align: left;
+  margin:0px;
+  top: 15px; /* Ajustez la position verticale selon vos besoins */
+  left: 20px; /* Ajustez la position horizontale selon vos besoins */
+  font-size: 17px;
+
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: #000;
+
+}
+
+.img-carrousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.img-carrousel img {
+  width: 150px; /* Ajustez la taille des images selon vos besoins */
+  height: 200px;
+  margin: 50px 5px; /* Espace entre les images */
+  transition: transform 0.3s ease-in-out;
+  border-radius: 3px;
+  
+}
+
+.img-carrousel img:hover {
+  transform: scale(1.05); /* Zoom de 5% sur survol */
+}
+
+.arrow {
+  font-size: 24px;
+  color: #000;
+  opacity: 0.5;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.arrow-prev {
+  left: 10px;
+}
+
+.arrow-next {
+  right: 10px;
+}
+
+/* Ajoutez ces styles pour positionner la nouvelle flèche de navigation vers la gauche */
+.arrow-prev-second {
+  left: 40px;
+}
+
+
+
+
+

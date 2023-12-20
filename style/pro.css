@@ -1,0 +1,136 @@
+.salles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.salles-title h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.salles div {
+  display: block;
+  padding: 100px 30px;
+  border-radius: 24px;
+  border: 1px solid #FFF;
+  background: rgb(46, 46, 46);
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.salles ul {
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.salles a {
+  background-color: #89404F;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  margin-right: 20px;
+}
+
+.salles a:hover {
+  background-color: #4c232b;
+}
+
+.salles p {
+  display: flex;
+  justify-content: center;
+}
+
+.salles div:hover {
+  background-color: #2C1D1D;
+}
+
+.salles h2 {
+  margin-left: 65px;
+  margin-bottom: 50px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 70px;
+  max-width: 1250px;
+  margin: auto;
+}
+
+form input[type="text"],
+form input[type="mail"],
+form input[type="date"],
+form input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  background-color: #D9D9D9;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.form h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+form h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.type-event div,
+.choix-salles div,
+.equip div {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.comm textarea {
+  width: 100%;
+  height: 200px;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.comm {
+  margin-top: 100px;
+  grid-column: span 2;
+}
+
+.reserv button {
+  background-color: #89404F;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  border: none;
+}
+
+.reserv button:hover {
+  background-color: #4c232b;
+}
+
+.reserv {
+  display: flex;
+  justify-content: center;
+  margin-top: 65px;
+  margin-bottom: 200px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}

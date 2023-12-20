@@ -1,0 +1,59 @@
+.billet {
+  background-color: white;
+  height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form_billet form {
+  width: 550px;
+  height: 750px;
+  padding: 20px;
+  background-color: #1E1E1E;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.30);
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  padding: 50px;
+}
+
+.reserv-billet select,
+.reserv-billet input {
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 30px;
+}
+
+.form_billet button {
+  background-color: #89404F;
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  grid-column: span 2;
+}
+
+.form_billet button:hover {
+  background-color: #69313c;
+}
+
+.billet-confirm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 700px;
+}
+
+.billet-confirm h1, .billet-confirm h3 {
+  color: black;
+}

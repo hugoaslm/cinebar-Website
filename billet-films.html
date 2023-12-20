@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/billet-films.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div class="pages">
+                <a href="cinema.html">Le Cinéma</a>
+                <a href="rooftop.html">Le Rooftop</a>
+                <a href="films.html">Films</a>
+                <a href="events.html">Évènements</a>
+                <a href="billet.html">Billetterie</a>
+                <a href="forum.html">Forum</a>
+            </div>
+            <div class="bouton-access">
+                <div class="bouton-pro">
+                    <a href="pro.html">Professionnel</a>
+                </div>
+                <div class="bouton-co">
+                    <a href="connexion.php">Connexion</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="ticket">
+        <div class="movie-container">
+            <label> Sélectionner un film :</label>
+            <select id="movie">
+              <option value="220">Oppenheimer</option>
+              <option value="320">Indiana Jones</option>
+              <option value="250">Avatar</option>
+              <option value="260">Napoléon</option>
+            </select>
+          </div>
+
+          <div class = "showtime">
+            <label for="showtime">Sélectionner une séance :</label>
+            <select id="showtime">
+                <!-- Options seront ajoutées dynamiquement avec JavaScript -->
+            </select>
+          </div>
+      
+          <ul class="showcase">
+            <li>
+              <div class="seat"></div>
+              <small>Disponible</small>
+            </li>
+            <li>
+              <div class="seat selected"></div>
+              <small>Sélectionné</small>
+            </li>
+            <li>
+              <div class="seat sold"></div>
+              <small>Vendu</small>
+            </li>
+          </ul>
+          <div class="container">
+            <div class="screen"></div>
+      
+            <div class="row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+      
+            <div class="row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat sold"></div>
+              <div class="seat sold"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat sold"></div>
+              <div class="seat sold"></div>
+            </div>
+            <div class="row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat sold"></div>
+              <div class="seat sold"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat sold"></div>
+              <div class="seat sold"></div>
+              <div class="seat sold"></div>
+              <div class="seat"></div>
+            </div>
+          </div>
+      
+          <p class="text">
+            Vous avez sélectionné <span id="count">0</span> place pour un prix de <span id="total">0</span>€.
+          </p>
+
+          <script src="showtimes.js"></script>
+    </main>
+
+    <footer>
+        <section class='logo-adresse'>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div>
+                <h3>Adresse :</h3>
+                Place Darcy <br>
+                <a>21000 - Dijon</a>
+            </div>
+        </section>
+        <div class="donnees">
+            <a href="cookies.html">Gestion des cookies</a> - 
+            <a href="cgu.html">CGU</a> - 
+            <a href="faq.html">FAQ</a>
+        </div>  
+    </footer>
+
+</body>
+</html>
