@@ -48,8 +48,7 @@ if (isset($_SESSION['identifiant'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/profil.css">
-    <!-- Ajoutez les liens vers d'autres fichiers CSS si nécessaire -->
+    <link rel="stylesheet" href="style/user.css">
 </head>
 
 <body>
@@ -59,16 +58,16 @@ if (isset($_SESSION['identifiant'])) {
         <img src="images/logo-cinebar.png" alt="Logo Cinébar">
         <div class="pages">
             <a href="accueil.php">Accueil</a>
-            <a href="cinema.html">Le Cinéma</a>
-            <a href="rooftop.html">La Cafétéria</a>
-            <a href="films.html">Films</a>
-            <a href="events.html">Évènements</a>
-            <a href="billet.html">Billetterie</a>
-            <a href="forum.html">Forum</a>
+            <a href="cinema.php">Le Cinéma</a>
+            <a href="rooftop.php">La Cafétéria</a>
+            <a href="films.php">Films</a>
+            <a href="events.php">Évènements</a>
+            <a href="billet.php">Billetterie</a>
+            <a href="forum.php">Forum</a>
         </div>
         <div class="bouton-access">
             <div class="bouton-pro">
-                <a href="pro.html">Professionnel</a>
+                <a href="pro.php">Professionnel</a>
             </div>
             <?php
             // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
@@ -92,29 +91,26 @@ if (isset($_SESSION['identifiant'])) {
     </nav>
 </header>
 
-<main>
-    <h1>Bienvenue, <?php echo $identifiant; ?>!</h1>
+<main class="profil">
+    <h1>Bienvenue <span class="mot_cle"><?php echo $identifiant; ?> </span> !</h1>
 
-    <?php if ($estAdmin): ?>
-        <!-- Section spécifique pour les administrateurs -->
-        <section>
-            <h2>Options d'administration</h2>
+    <?php
+    if ($estAdmin) :
+    ?>
+        <section class="profil-options">
+            <h2>Options d'administration :</h2>
             <p>Choisissez une option :</p>
             <ul>
-                <li><a href="dashboard_user.php">Gestion du Compte</a></li>
-                <li><a href="dashboard_admin.php">Interface d'Administration</a></li>
+                <li><a class="profil-link" href="dashboard_user.php">Gestion du Compte</a></li>
+                <li><a class="profil-link" href="dashboard_admin.php">Interface d'Administration</a></li>
             </ul>
         </section>
-    <?php else: ?>
-        <!-- Inclure le tableau de bord de l'utilisateur non administrateur -->
-        <?php include("dashboard_user.php"); ?>
-    <?php endif; ?>
-
-    <!-- Ajoutez d'autres sections en fonction de vos besoins -->
-
-    <div class="bouton-deco">
-        <a href="logout.php">Se déconnecter</a>
-    </div>
+    <?php
+    else:
+        header("Location: dashboard_user.php");
+        exit;
+    endif;
+    ?>
 
 </main>
 
@@ -128,9 +124,9 @@ if (isset($_SESSION['identifiant'])) {
         </div>
     </section>
     <div class="donnees">
-        <a href="cookies.html">Gestion des cookies</a> -
-        <a href="cgu.html">CGU</a> -
-        <a href="faq.html">FAQ</a>
+        <a href="cookies.php">Gestion des cookies</a> -
+        <a href="cgu.php">CGU</a> -
+        <a href="faq.php">FAQ</a>
     </div>
 </footer>
 

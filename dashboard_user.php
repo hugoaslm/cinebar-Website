@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/profil.css">
+    <link rel="stylesheet" href="style/user.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -17,16 +17,16 @@
             <img src="images/logo-cinebar.png" alt="Logo Cinébar">
             <div class="pages">
                 <a href="accueil.php">Accueil</a>
-                <a href="cinema.html">Le Cinéma</a>
-                <a href="rooftop.html">La Cafétéria</a>
-                <a href="films.html">Films</a>
-                <a href="events.html">Évènements</a>
-                <a href="billet.html">Billetterie</a>
-                <a href="forum.html">Forum</a>
+                <a href="cinema.php">Le Cinéma</a>
+                <a href="rooftop.php">La Cafétéria</a>
+                <a href="films.php">Films</a>
+                <a href="events.php">Évènements</a>
+                <a href="billet.php">Billetterie</a>
+                <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.html">Professionnel</a>
+                    <a href="pro.php">Professionnel</a>
                 </div>
 
                 <?php
@@ -39,8 +39,8 @@
                 // Sélectionnez le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
-                    $identif = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' <i class="fas fa-user"></i></a>';
+                    $identifiant = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php">' . $identifiant . ' <i class="fas fa-user"></i></a>';
                 } else {
                     // Si non connecté, affichez le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
@@ -56,6 +56,7 @@
     </header>
 
     <main>
+    <h1>Modifier le profil de <span class="mot_cle"><?php echo $identifiant; ?></span> : </h1>
         <form action="modifier_compte.php" method="post">
             <label for="prenom">Prénom :</label>
             <input type="text" id="prenom" name="prenom" required>
@@ -63,34 +64,45 @@
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" required>
 
-            <label for="langue">Préférence de Langue :</label>
-            <select id="langue" name="langue" required>
-                <option value="francais">Français</option>
-                <option value="anglais">Anglais</option>
-            </select>
-
-            <label for="theme">Thème :</label>
-            <div id="themeToggle" class="toggle-theme">
-                <button type="button" onclick="toggleTheme()">Sombre</button>
+            <div class="lang">
+                <label for="langue">Préférence de Langue :</label>
+                <select id="langue" name="langue" required>
+                    <option value="francais">Français</option>
+                    <option value="anglais">Anglais</option>
+                </select>
             </div>
 
-            <button type="submit">Modifier Compte</button>
+            <div class="theme-container">
+                <span class="theme-label">Thème:</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                    <span class="slider round"></span>
+                </label>
+                <span id="themeText">clair</span>
+            </div>
+
+
+            <button type="submit">Sauvegarder les modifications</button>
         </form>
 
+        <div class="bouton-deco">
+        <a href="logout.php">Se déconnecter</a>
+        </div>
+
         <script>
-            // Script JavaScript pour basculer entre les thèmes
+            // Ajoutez cette fonction pour changer le texte en fonction de l'état du toggle
             function toggleTheme() {
                 var themeToggle = document.getElementById("themeToggle");
-                var themeButton = themeToggle.querySelector("button");
+                var themeText = document.getElementById("themeText");
 
-                if (document.body.classList.contains("theme-sombre")) {
-                    // Passer au thème clair
-                    document.body.classList.remove("theme-sombre");
-                    themeButton.textContent = "Sombre";
-                } else {
-                    // Passer au thème sombre
+                if (themeToggle.checked) {
+                    // Thème sombre
                     document.body.classList.add("theme-sombre");
-                    themeButton.textContent = "Clair";
+                    themeText.textContent = "sombre";
+                } else {
+                    // Thème clair
+                    document.body.classList.remove("theme-sombre");
+                    themeText.textContent = "clair";
                 }
             }
         </script>
@@ -106,9 +118,9 @@
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.html">Gestion des cookies</a> -
-            <a href="cgu.html">CGU</a> -
-            <a href="faq.html">FAQ</a>
+            <a href="cookies.php">Gestion des cookies</a> -
+            <a href="cgu.php">CGU</a> -
+            <a href="faq.php">FAQ</a>
         </div>
     </footer>
 

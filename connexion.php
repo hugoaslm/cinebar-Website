@@ -67,26 +67,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <header>
+        
         <nav>
+            
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
                 <a href="accueil.php">Accueil</a>
-                <a href="cinema.html">Le Cinéma</a>
-                <a href="rooftop.html">La Cafétéria</a>
-                <a href="films.html">Films</a>
-                <a href="events.html">Évènements</a>
-                <a href="billet.html">Billetterie</a>
-                <a href="forum.html">Forum</a>
+                <a href="cinema.php">Le Cinéma</a>
+                <a href="rooftop.php">La Cafétéria</a>
+                <a href="films.php">Films</a>
+                <a href="events.php">Évènements</a>
+                <a href="billet.php">Billetterie</a>
+                <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.html">Professionnel</a>
+                    <a href="pro.php">Professionnel</a>
                 </div>
-                <div class="bouton-co">
-                    <a href="connexion.php">Connexion</a>
-                </div>
+
+                <?php
+
+                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                $estConnecte = isset($_SESSION['identifiant']);
+
+                // Sélectionnez le bouton de connexion en PHP
+                $boutonConnexion = '<div class="bouton-co">';
+                if ($estConnecte) {
+                    $identif = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' <i class="fas fa-user"></i></a>';
+                } else {
+                    // Si non connecté, affichez le bouton de connexion normal
+                    $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
+                }
+                $boutonConnexion .= '</div>';
+
+                // Affichez le bouton de connexion généré
+                echo $boutonConnexion;
+                ?>
+                
             </div>
         </nav>
+        
     </header>
 
     <main class='connexion'>
@@ -118,9 +139,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.html">Gestion des cookies</a> - 
-            <a href="cgu.html">CGU</a> - 
-            <a href="faq.html">FAQ</a>
+            <a href="cookies.php">Gestion des cookies</a> - 
+            <a href="cgu.php">CGU</a> - 
+            <a href="faq.php">FAQ</a>
         </div>        
     </footer>
 

@@ -19,16 +19,16 @@
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
                 <a href="accueil.php">Accueil</a>
-                <a href="cinema.html">Le Cinéma</a>
-                <a href="rooftop.html">La Cafétéria</a>
-                <a href="films.html">Films</a>
-                <a href="events.html">Évènements</a>
-                <a href="billet.html">Billetterie</a>
-                <a href="forum.html">Forum</a>
+                <a href="cinema.php">Le Cinéma</a>
+                <a href="rooftop.php">La Cafétéria</a>
+                <a href="films.php">Films</a>
+                <a href="events.php">Évènements</a>
+                <a href="billet.php">Billetterie</a>
+                <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.html">Professionnel</a>
+                    <a href="pro.php">Professionnel</a>
                 </div>
 
                 <?php
@@ -150,9 +150,9 @@
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.html">Gestion des cookies</a> - 
-            <a href="cgu.html">CGU</a> - 
-            <a href="faq.html">FAQ</a>
+            <a href="cookies.php">Gestion des cookies</a> - 
+            <a href="cgu.php">CGU</a> - 
+            <a href="faq.php">FAQ</a>
         </div>        
     </footer>
     

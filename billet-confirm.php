@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/forum.css">
+    <link rel="stylesheet" href="style/billet-events.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -13,11 +13,14 @@
 <body>
 
     <header>
+        
         <nav>
+            
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
+                <a href="accueil.php">Accueil</a>
                 <a href="cinema.php">Le Cinéma</a>
-                <a href="rooftop.php">Le Rooftop</a>
+                <a href="rooftop.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
                 <a href="billet.php">Billetterie</a>
@@ -27,66 +30,41 @@
                 <div class="bouton-pro">
                     <a href="pro.php">Professionnel</a>
                 </div>
-                <div class="bouton-co">
-                    <a href="connexion.php">Connexion</a>
-                </div>
+
+                <?php
+
+                session_start();
+
+                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                $estConnecte = isset($_SESSION['identifiant']);
+
+                // Sélectionnez le bouton de connexion en PHP
+                $boutonConnexion = '<div class="bouton-co">';
+                if ($estConnecte) {
+                    $identif = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' <i class="fas fa-user"></i></a>';
+                } else {
+                    // Si non connecté, affichez le bouton de connexion normal
+                    $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
+                }
+                $boutonConnexion .= '</div>';
+
+                // Affichez le bouton de connexion généré
+                echo $boutonConnexion;
+                ?>
+                
             </div>
         </nav>
+        
     </header>
 
-    <main>
-        <h1>Forum :</h1>
-			<h2>Meilleurs sujets :</h2>
-			<br>
-		<section class='a-la-une'>
-				<div class="sujet">
-					<h3>Film 1</h3>
-					<h4>Trending content 1</H4>
-					<div class="bouton-co">
-						<a href="films.php">Acceder au forum</a>
-					</div>
-				</div>
-
-				<div class="sujet">
-					<h3>Film 2</h3>
-					<br>
-					<h4>Trending content 2</H4>
-					<div class="bouton-co">
-						<a href="films.php">Acceder au forum</a>
-					</div>
-				</div>
-
-				<div class="sujet">
-					<h3>Film 3</h3>
-					<h4>Trending content 3</H4>
-					<div class="bouton-co">
-						<a href="films.php">Acceder au forum</a>
-					</div>
-				</div>
-            
-			</section>
-		
-	<section class='ligne'>
-		<h2>Tous les sujets :</h2>
-					
-			<div>
-                <p>Premier sujet</p>
-            </div>
-			
-            <div>
-                <p>Deuxième sujet</p>
-            </div>
-			
-            <div>
-                <p>Troisième sujet</p>
-            </div>
-			
-	</section>
-
-    <section class='forum'>
-        <?php include('forum.php'); ?>
-    </section>
-		
+    <main class="billet-confirm">
+        <p>
+            <h1>Votre réservation a bien été prise en compte !</h1>
+        </p>
+        <p>
+            <h3>Vous allez bientôt recevoir un mail de confirmation.</h3>
+        </p>
     </main>
 
     <footer>
@@ -102,7 +80,7 @@
             <a href="cookies.php">Gestion des cookies</a> - 
             <a href="cgu.php">CGU</a> - 
             <a href="faq.php">FAQ</a>
-        </div>
+        </div>        
     </footer>
 
 </body>

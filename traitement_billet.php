@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mail($to, $subject, $body, $headers);
 
     // Redirection après l'envoi de l'e-mail
-    header("Location: billet-confirm.html");
+    header("Location: billet-confirm.php");
     exit();
 }
 ?>
