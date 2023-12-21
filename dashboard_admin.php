@@ -130,11 +130,17 @@
                 <label for="titre_event">Titre de l'Événement :</label>
                 <input type="text" id="titre_event" name="titre_event" required>
 
-                <label for="date_event">Date de l'Événement :</label>
+                <label for="desc_event">Description :</label>
+                <input type="text" id="desc_event" name="desc_event" required>
+
+                <label for="date_event">Date :</label>
                 <input type="date" id="date_event" name="date_event" required>
 
-                <label for="lieu_event">Lieu de l'Événement :</label>
-                <input type="text" id="lieu_event" name="lieu_event" required>
+                <label for="orga_event">Organisateur :</label>
+                <input type="text" id="orga_event" name="orga_event" required>
+
+                <label for="affiche_event">Affiche :</label>
+                <input type="text" id="affiche_event" name="affiche_event" required>
 
                 <div class="ajouter">
                     <button type="submit">Ajouter Événement</button>
