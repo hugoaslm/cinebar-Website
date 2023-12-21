@@ -1,8 +1,6 @@
 <?php
-// Vérifie si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Récupère les valeurs du formulaire
     $nom = $_POST["nom"];
     $prenom = $_POST["prenom"];
     $email = $_POST["mail"];
@@ -10,33 +8,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nb = $_POST["places"];
     $horaire = $_POST["horaire"];
 
-    // Construction de l'e-mail
+    $body = "
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    background-color: #f4f4f4;
+                    padding: 20px;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                h2 {
+                    color: #89404F;
+                }
+                p {
+                    margin-bottom: 15px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <h2>Merci pour votre réservation au Cinébar !</h2>
+                <p><strong>Nom:</strong> $nom</p>
+                <p><strong>Prénom:</strong> $prenom</p>
+                <p><strong>Email:</strong> $email</p>
+                <p><strong>Film:</strong> $film</p>
+                <p><strong>Nombre de places:</strong> $nb</p>
+                <p><strong>Horaire:</strong> $horaire</p>
+                <p>Votre réservation a bien été enregistrée. Nous sommes impatients de vous accueillir !</p>
+            </div>
+        </body>
+        </html>
+    ";
 
-    // Adresse e-mail à laquelle l'e-mail sera envoyé
-    $to = "$email";
-
-    // Sujet de l'e-mail
-    $subject = "Réservation pour $film";
-
-    // En-têtes de l'e-mail
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     
-    // Adresse e-mail de l'expéditeur (vous pouvez personnaliser cela)
-    $headers .= "From: cinebar@gmail.com\r\n";
+    $headers .= "From: Cinébar <cinebar@gmail.com>\r\n";
 
-    // Corps de l'e-mail au format HTML
-    $body = "<p><strong>Nom:</strong> $nom</p>";
-    $body .= "<p><strong>Prénom:</strong> $prenom</p>";
-    $body .= "<p><strong>Email:</strong> $email</p>";
-    $body .= "<p><strong>Film:</strong> $film</p>";
-    $body .= "<p><strong>Nombre de places:</strong> $nb</p>";
-    $body .= "<p><strong>Horaire:</strong> $horaire</p>";
+    $subject = "Confirmation de réservation pour $film";
 
-    // Envoi de l'e-mail
-    mail($to, $subject, $body, $headers);
+    mail($email, $subject, $body, $headers);
 
-    // Redirection après l'envoi de l'e-mail
     header("Location: billet-confirm.php");
     exit();
 }

@@ -72,19 +72,19 @@
             </p><br/>
             </span>
             <p><span style="color: black;">
-                2. **Utilisation du site :** Vous vous engagez à utiliser ce site conformément aux lois applicables et aux présentes conditions. Toute utilisation abusive, frauduleuse ou contraire aux CGU pourra entraîner la résiliation de votre compte.
+                Utilisation du site : Vous vous engagez à utiliser ce site conformément aux lois applicables et aux présentes conditions. Toute utilisation abusive, frauduleuse ou contraire aux CGU pourra entraîner la résiliation de votre compte.
             </p><br/>
             </span>
             <p><span style="color: black;">
-                3. **Protection des données :** Cinébar s'engage à protéger vos données personnelles conformément à sa politique de confidentialité. En utilisant ce site, vous consentez à la collecte, au traitement et à l'utilisation de vos données conformément à cette politique.
+                Protection des données : Cinébar s'engage à protéger vos données personnelles conformément à sa politique de confidentialité. En utilisant ce site, vous consentez à la collecte, au traitement et à l'utilisation de vos données conformément à cette politique.
             </p><br/>
             </span>
             <p><span style="color: black;">
-                4. **Cookies :** Nous utilisons des cookies pour améliorer votre expérience sur Cinébar. En acceptant notre utilisation des cookies, vous consentez à notre politique en matière de cookies. Vous pouvez ajuster vos préférences à tout moment.
+                Cookies : Nous utilisons des cookies pour améliorer votre expérience sur Cinébar. En acceptant notre utilisation des cookies, vous consentez à notre politique en matière de cookies. Vous pouvez ajuster vos préférences à tout moment.
             </p><br/>
             </span>
             <p><span style="color: black;">
-                5. **Responsabilités :** Cinébar ne peut être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site. Nous vous encourageons à utiliser nos services de manière responsable.
+                Responsabilités : Cinébar ne peut être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site. Nous vous encourageons à utiliser nos services de manière responsable.
             </p><br/>
             </span>
             <p><span style="color: black;">

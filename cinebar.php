@@ -105,7 +105,7 @@
         </section>
 		
         <section class='sav-plus'>
-            <h2>Si vous souhaitez en apprendre plus sur la solution :</h2>
+            <h2>Si vous souhaitez réserver une salle :</h2>
             <div class="bouton-cinebar">
                 <a href="pro.php">Réservation de salles</a>
             </div>

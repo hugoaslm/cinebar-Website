@@ -85,7 +85,9 @@
             <div class="acc-bar">
                 <h1>La cafétéria</h1>
                 <p>
-                    Les discussions animées sur la séance précédente ajoutent une dimension sociale unique, créant un lieu où les cinéphiles se retrouvent pour partager leurs réactions et prolonger l'expérience au-delà de l'écran
+                    Les discussions animées sur la séance précédente ajoutent une dimension sociale unique, 
+                    créant un lieu où les cinéphiles se retrouvent pour partager leurs réactions et prolonger 
+                    l'expérience au-delà de l'écran.
                 </p>
             </div>
         </section>

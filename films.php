@@ -60,22 +60,24 @@
 
     <main>
         <?php
-        // Vérifier si le formulaire a été soumis
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Récupérer l'ID du film sélectionné
-            $film_id = $_POST["film_id"];
+        // Connexion à la base de données
+        $serveur = 'localhost';
+        $utilisateur_db = 'root';
+        $mot_de_passe_db = 'bddisep19';
+        $nom_base_de_donnees = 'cinebar';
 
-            // Connexion à la base de données
-            $serveur = 'localhost';
-            $utilisateur_db = 'root';
-            $mot_de_passe_db = 'bddisep19';
-            $nom_base_de_donnees = 'cinebar';
+        try {
+            $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            try {
-                $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // Récupérer l'ID du film sélectionné depuis la table film_moment
+            $sql = "SELECT film_id_F FROM film_moment";
+            $stmt = $conn->query($sql);
 
-                // Récupérer les détails du film sélectionné
+            if ($stmt->rowCount() > 0) {
+                $film_id = $stmt->fetch(PDO::FETCH_ASSOC)['film_id_F'];
+
+                // Récupérer les détails du film associé à l'ID
                 $sql = "SELECT * FROM films WHERE id_F = :film_id";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(":film_id", $film_id);
@@ -90,7 +92,7 @@
                     echo '<section class="vedette">';
                     echo '<div class="film-vedette">';
                     echo '<div class="illu">';
-                    echo '<img src="' . $film['affiche'] . '" alt="' . $film['nom'] . '">';
+                    echo '<img src="' . $film['affiche_large'] . '" alt="' . $film['nom'] . '">';
                     echo '</div>';
                     echo '<div class="details">';
                     echo '<h2>' . $film['nom'] . '</h2>';
@@ -106,13 +108,16 @@
                     echo '</div>';
                     echo '</section>';
                 } else {
-                    echo 'Film non trouvé.';
+                    echo 'Film du moment non trouvé.';
                 }
-            } catch (PDOException $e) {
-                echo "Erreur de connexion à la base de données : " . $e->getMessage();
+            } else {
+                echo 'Film du moment non trouvé dans film_moment.';
             }
+        } catch (PDOException $e) {
+            echo "Erreur de connexion à la base de données : " . $e->getMessage();
         }
         ?>
+
 
         <section class="films-en-salle">
             <div class="films-title">

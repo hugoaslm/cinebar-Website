@@ -94,7 +94,7 @@
             </form>
 
             <h2>Sélection du film du moment :</h2>
-            <form action="films.php" method="post" class="form-container">
+            <form action="film_moment.php" method="post" class="form-container">
                 <select name="film_id" id="film_id">
                     <?php
                     // Connexion à la base de données
