@@ -49,11 +49,12 @@ try {
 <body>
 
     <header>
-        <nav>
-            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+    <nav>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar">
             <div class="pages">
+                <a href="accueil.php">Accueil</a>
                 <a href="cinema.php">Le Cinéma</a>
-                <a href="rooftop.php">Le Rooftop</a>
+                <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
                 <a href="billet.php">Billetterie</a>
@@ -63,9 +64,29 @@ try {
                 <div class="bouton-pro">
                     <a href="pro.php">Professionnel</a>
                 </div>
-                <div class="bouton-co">
-                    <a href="connexion.php">Connexion</a>
-                </div>
+
+                <?php
+
+                session_start();
+
+                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                $estConnecte = isset($_SESSION['identifiant']);
+
+                // Sélectionnez le bouton de connexion en PHP
+                $boutonConnexion = '<div class="bouton-co">';
+                if ($estConnecte) {
+                    $identifiant = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php">' . $identifiant . ' <i class="fas fa-user"></i></a>';
+                } else {
+                    // Si non connecté, affichez le bouton de connexion normal
+                    $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
+                }
+                $boutonConnexion .= '</div>';
+
+                // Affichez le bouton de connexion généré
+                echo $boutonConnexion;
+                ?>
+
             </div>
         </nav>
     </header>
@@ -88,8 +109,8 @@ try {
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                Place Darcy <br>
-                <a>21000 - Dijon</a>
+                Rue ...<br>
+                <a>Code postal - Ville</a>
             </div>
         </section>
         <div class="donnees">

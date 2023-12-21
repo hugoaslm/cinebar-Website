@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="pages">
                 <a href="accueil.php">Accueil</a>
                 <a href="cinema.php">Le Cinéma</a>
-                <a href="rooftop.php">La Cafétéria</a>
+                <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
                 <a href="billet.php">Billetterie</a>
@@ -134,8 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                Place Darcy <br>
-                <a>21000 - Dijon</a>
+                Rue ...<br>
+                <a>Code postal - Ville</a>
             </div>
         </section>
         <div class="donnees">

@@ -59,7 +59,7 @@ if (isset($_SESSION['identifiant'])) {
         <div class="pages">
             <a href="accueil.php">Accueil</a>
             <a href="cinema.php">Le Cinéma</a>
-            <a href="rooftop.php">La Cafétéria</a>
+            <a href="cafet.php">La Cafétéria</a>
             <a href="films.php">Films</a>
             <a href="events.php">Évènements</a>
             <a href="billet.php">Billetterie</a>

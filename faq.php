@@ -25,7 +25,7 @@
         <div class="pages">
             <a href="accueil.php">Accueil</a>
             <a href="cinema.php">Le Cinéma</a>
-            <a href="rooftop.php">La Cafétéria</a>
+            <a href="cafet.php">La Cafétéria</a>
             <a href="films.php">Films</a>
             <a href="events.php">Évènements</a>
             <a href="billet.php">Billetterie</a>
@@ -77,7 +77,7 @@
             </div>
             <div class="faq">
                 <button class="accordion">
-                  Cinébar, c'est quoi ?
+                  Comment puis-je acheter des billets en ligne ?
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="pannel">
@@ -92,7 +92,7 @@
         
               <div class="faq">
                 <button class="accordion">
-                  Comment ça marche ?
+                  Y a-t-il des réductions pour les étudiants, les seniors ou les enfants ?
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="pannel">
@@ -106,7 +106,7 @@
               </div>
               <div class="faq">
                 <button class="accordion">
-                  Cinébar, c'est quoi ?
+                  Y a-t-il un parking disponible près du cinéma ?
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="pannel">
@@ -121,7 +121,7 @@
         
               <div class="faq">
                 <button class="accordion">
-                  Comment ça marche ?
+                  Quelles sont les installations pour les personnes à mobilité réduite ?
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="pannel">
@@ -161,8 +161,8 @@
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                Place Darcy <br>
-                <a>21000 - Dijon</a>
+                Rue ...<br>
+                <a>Code postal - Ville</a>
             </div>
         </section>
         <div class="donnees">
