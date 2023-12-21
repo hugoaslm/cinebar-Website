@@ -59,85 +59,108 @@
     </header>
 
     <main>
-        <h1>FILM DU MOMENT</h1>
-        <section class='vedette'>
-            <div class="film-vedette">
-                <div class="illu">
-                  <img src="images/spiderman.jpg" alt="Spider-Man: Across the Spider-Verse">
-                </div>
-            
-                <div class="details">
-                  <h2>Titre du film</h2>
-                  <h4>Genre</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-                    aliquip ex ea commodo consequat.</p>
-                  <div>Date de sortie: 01 janvier 2023</div>
-                  <div>Durée: 2h30min</div>
-                </div>
+        <?php
+        // Vérifier si le formulaire a été soumis
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Récupérer l'ID du film sélectionné
+            $film_id = $_POST["film_id"];
 
-                <div class="cast">
-                    <p>Réalisateur: Nom du réalisateur</p>
-                    <p>Acteurs: Acteur 1, Acteur 2, Acteur 3</p>
-                </div>
-            </div>
-        </section>
+            // Connexion à la base de données
+            $serveur = 'localhost';
+            $utilisateur_db = 'root';
+            $mot_de_passe_db = 'bddisep19';
+            $nom_base_de_donnees = 'cinebar';
+
+            try {
+                $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Récupérer les détails du film sélectionné
+                $sql = "SELECT * FROM films WHERE id_F = :film_id";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(":film_id", $film_id);
+                $stmt->execute();
+
+                // Vérifier s'il y a des résultats
+                if ($stmt->rowCount() > 0) {
+                    $film = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    // Afficher les détails du film
+                    echo '<h1>FILM DU MOMENT</h1>';
+                    echo '<section class="vedette">';
+                    echo '<div class="film-vedette">';
+                    echo '<div class="illu">';
+                    echo '<img src="' . $film['affiche'] . '" alt="' . $film['nom'] . '">';
+                    echo '</div>';
+                    echo '<div class="details">';
+                    echo '<h2>' . $film['nom'] . '</h2>';
+                    echo '<h4>' . $film['genre'] . '</h4>';
+                    echo '<p>' . $film['description'] . '</p>';
+                    echo '<div>Date de sortie: ' . $film['DateDeSortie'] . '</div>';
+                    echo '<div>Durée: ' . $film['duree'] . ' minutes</div>';
+                    echo '</div>';
+                    echo '<div class="cast">';
+                    echo '<p>Réalisateur: ' . $film['realisateur'] . '</p>';
+                    echo '<p>Acteurs: ' . $film['acteurs'] . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</section>';
+                } else {
+                    echo 'Film non trouvé.';
+                }
+            } catch (PDOException $e) {
+                echo "Erreur de connexion à la base de données : " . $e->getMessage();
+            }
+        }
+        ?>
 
         <section class="films-en-salle">
             <div class="films-title">
                 <h1>FILM EN SALLES</h1>
             </div>
-            <div class="film-1">
-                <div class="film">
-                    <a href="details.php?id_F=1">
-                        <img src="images/avatar.jpg" alt="Avatar">
-                        <p>Avatar</p>
-                    </a>
-                </div>
-                <div class="film">
-                    <a href="details.php?id_F=2">
-                        <img src="images/gt.jpg" alt="Gran Turismo">
-                        <p>Gran Turismo</p>
-                    </a>
-                </div>
-                <div class="film">
-                    <a href="details.php?id_F=3">
-                        <img src="images/hunger-games.jpg" alt="Hunger Games">
-                        <p>Hunger Games</p>
-                    </a>
-                </div>
-                <div class="film">
-                    <a href="details.php?id_F=4">
-                        <img src="images/indiana.jpg" alt="Indiana Jones">
-                        <p>Indiana Jones</p>
-                    </a>
-                </div>
-            </div>
-            <div class="film-2">
-                <div class="film">
-                    <a href="details.php?id_F=5">
-                        <img src="images/mario.jpg" alt="Super Mario Bros">
-                        <p>Super Mario Bros</p>
-                    </a>
-                </div>
-                <div class="film">
-                    <a href="details.php?id_F=6">
-                        <img src="images/napoleon.jpg" alt="Napoléon">
-                        <p>Napoléon</p>
-                    </a>
-                </div>
-                <div class="film">
-                    <a href="details.php?id_F=7">
-                        <img src="images/oppenheimer.jpg" alt="Oppenheimer">
-                        <p>Oppenheimer</p>
-                    </a>
-                </div>
-                <div class="film">
-                    <a href="details.php?id_F=8">
-                        <img src="images/mission-impo.jpg" alt="Mission-Impossible">
-                        <p>Mission-Impossible</p>
-                    </a>
-                </div>
+            <div class="films-container">
+
+                <?php
+                try {
+                    $serveur = 'localhost'; 
+                    $utilisateur_db = 'root'; 
+                    $mot_de_passe_db = 'bddisep19'; 
+                    $nom_base_de_donnees = 'cinebar'; 
+
+                    // Créer une connexion PDO
+                    $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                    // Définir le mode d'erreur PDO à exception
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    // Préparer la requête SQL
+                    $stmt = $conn->prepare("SELECT * FROM films");
+                    
+                    // Exécuter la requête
+                    $stmt->execute();
+
+                    // Récupérer toutes les lignes résultantes
+                    $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                } catch (PDOException $e) {
+                    echo "Erreur de connexion à la base de données : " . $e->getMessage();
+                }
+                ?>
+
+                <?php foreach ($films as $film) : ?>
+                    <div class="film">
+                        <a href="details.php?id_F=<?= $film['id_F'] ?>">
+                            <img src="<?= $film['affiche'] ?>" alt="<?= $film['nom'] ?>">
+                            <p class="film-info">
+                                <span><?= $film['nom'] ?></span><br>
+                                <span class="small-text"><?= $film['genre'] ?></span>
+                            </p>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+
+
             </div>
         </section>
     </main>

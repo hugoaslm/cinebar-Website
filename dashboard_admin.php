@@ -59,18 +59,25 @@
     <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films, 
         événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
         Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
-        <!-- Section pour ajouter des films -->
+
         <section class="admin-section">
             <h1>Gestion des Films</h1>
+            <h2>Ajout de film :</h2>
             <form action="ajouter_film.php" method="post" class="form-container">
                 <label for="titre_film">Titre du Film :</label>
                 <input type="text" id="titre_film" name="titre_film" required>
 
+                <label for="desc_film">Description :</label>
+                <input type="text" id="desc_film" name="desc_film" required>
+
                 <label for="realisateur_film">Réalisateur :</label>
                 <input type="text" id="realisateur_film" name="realisateur_film" required>
+                
+                <label for="acteurs_film">Acteurs :</label>
+                <input type="text" id="acteurs_film" name="acteurs_film" required>
 
-                <label for="annee_film">Année de Sortie :</label>
-                <input type="number" id="annee_film" name="annee_film" required>
+                <label for="date_film">Date de Sortie :</label>
+                <input type="date" id="date_film" name="date_film" required>
 
                 <label for="duree_film">Durée (en minutes) :</label>
                 <input type="number" id="duree_film" name="duree_film" required>
@@ -78,14 +85,45 @@
                 <label for="genre_film">Genre :</label>
                 <input type="text" id="genre_film" name="genre_film" required>
 
+                <label for="affiche_film">Chemin vers l'affiche :</label>
+                <input type="text" id="affiche_film" name="affiche_film" required>
+
                 <div class="ajouter">
                     <button type="submit">Ajouter Film</button>
                 </div>
             </form>
+
+            <h2>Sélection du film du moment :</h2>
+            <form action="films.php" method="post" class="form-container">
+                <select name="film_id" id="film_id">
+                    <?php
+                    // Connexion à la base de données
+                    $serveur = 'localhost';
+                    $utilisateur_db = 'root';
+                    $mot_de_passe_db = 'bddisep19';
+                    $nom_base_de_donnees = 'cinebar';
+
+                    try {
+                        $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        // Récupérer les films depuis la base de données
+                        $sql = "SELECT id_F, nom FROM films";
+                        $resultat = $conn->query($sql);
+
+                        // Générer les options de la liste déroulante
+                        while ($film = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Erreur de connexion à la base de données : " . $e->getMessage();
+                    }
+                    ?>
+                </select>
+                <button class="sele-moment" type="submit">Sélectionner</button>
+            </form>
         </section>
 
-
-        <!-- Section pour ajouter des événements -->
         <section class="admin-section">
             <h1>Gestion des Événements</h1>
             <form action="ajouter_evenement.php" method="post" class="form-container">
@@ -104,8 +142,6 @@
             </form>
         </section>
 
-
-        <!-- Section pour ajouter des salles -->
         <section class="admin-section">
             <h1>Gestion des Salles</h1>
             <form action="ajouter_salle.php" method="post" class="form-container">
@@ -117,9 +153,6 @@
 
                 <label for="equipement_salle">Équipements de la Salle :</label>
                 <input type="text" id="equipement_salle" name="equipement_salle" required>
-
-                <label for="adresse_salle">Adresse de la Salle :</label>
-                <input type="text" id="adresse_salle" name="adresse_salle" required>
 
                 <div class="ajouter">
                     <button type="submit">Ajouter Salle</button>

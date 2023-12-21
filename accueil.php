@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-bi+2BIvPHs5peU+5wDTrAYu9fEF+j4uANCBF8bXaSv1ap4SC1vY+gJEAY6npa9vm4tft9NxLXR+rWn5eknjOXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
@@ -42,10 +43,10 @@
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' <i class="fas fa-user"></i></a>';
+                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' </a>';
                 } else {
                     // Si non connecté, affichez le bouton de connexion normal
-                    $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
+                    $boutonConnexion .= '<a href="connexion.php">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
@@ -59,9 +60,11 @@
     </header>
 
     <main>
-        <div class="haut-cine">
-            <img src="images/darcy.jpg" alt="Cinéma Darcy" >
-        </div>
+        <section class="acc-img">
+            <div class="haut-cine">
+                <img src="images/darcy.jpg" alt="Cinéma Darcy" >
+            </div>
+        </section>
         <section class='accueil-cine'>
             <div class="acc-cine">
                 <h1>Une Expérience Unique </h1>
@@ -97,14 +100,8 @@
             </div>
             
             <div class="titre-boite3">
-                <h1>À Venir</h1>
+                <h1>La dernière sortie</h1>
                 <img src="images/aquaman.jpg" alt="aquaman">
-                <button class="bouton-voir">Aller voir</button>
-            </div>
-        
-            <div class="titre-boite3">
-                <h1>Film Français</h1>
-                <img src="images/L-affiche-des-Trois-Mousquetaires-Milady-1706429.jpg" alt="3mousquetaires">
                 <button class="bouton-voir">Aller voir</button>
             </div>
         </section>

@@ -59,52 +59,57 @@
         <div class="salles-title">
             <h1>NOS SALLES</h1>
         </div>
+        <?php
+        // Assurez-vous d'avoir une connexion à la base de données active ici
+
+        // Supposons que vous ayez une table 'salles' avec les colonnes : id, nom, capacite, equipement, adresse
+        // Assurez-vous d'ajuster ces noms de colonnes en fonction de votre base de données
+
+        try {
+            $serveur = 'localhost'; 
+            $utilisateur_db = 'root'; 
+            $mot_de_passe_db = 'bddisep19'; 
+            $nom_base_de_donnees = 'cinebar'; 
+
+            // Créer une connexion PDO
+            $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            // Définir le mode d'erreur PDO à exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Préparer la requête SQL
+            $stmt = $conn->prepare("SELECT * FROM salle");
+            
+            // Exécuter la requête
+            $stmt->execute();
+
+            // Récupérer toutes les lignes résultantes
+            $salles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            echo "Erreur de connexion à la base de données : " . $e->getMessage();
+        }
+        ?>
+
         <section class='salles'>
-            <div>
-                <h2>Salle 1</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                <ul>
-                    <li>X places</li>
-                    <li>Tous types d'équipements</li>
-                </ul>
-                <p>
-                    <a href="#form">Réserver</a>
-                </p>
-            </div>
-            <div>
-                <h2>Salle 2</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                <ul>
-                    <li>X places</li>
-                    <li>Tous types d'équipements</li>
-                </ul>
-                <p>
-                    <a href="#form">Réserver</a>
-                </p>
-            </div>
-            <div>
-                <h2>Salle 3</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                <ul>
-                    <li>X places</li>
-                    <li>Tous types d'équipements</li>
-                </ul>
-                <p>
-                    <a href="#form">Réserver</a>
-                </p>
-            </div>
-            <div>
-                <h2>Salle 4</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                <ul>
-                    <li>X places</li>
-                    <li>Tous types d'équipements</li>
-                </ul>
-                <p>
-                    <a href="#form">Réserver</a>
-                </p>
-            </div>
+            <?php foreach ($salles as $salle) : ?>
+                <div>
+                    <h2><?php echo htmlspecialchars($salle['nom_salle']); ?></h2>
+                    <ul>
+                        <li><?php echo htmlspecialchars($salle['capacite_salle']); ?> places</li>
+                        <li><?php echo htmlspecialchars($salle['equipement_salle']); ?></li>
+                    </ul>
+                    <p>
+                        <a href="#form">Réserver</a>
+                    </p>
+                </div>
+            <?php endforeach; ?>
         </section>
+
+        <?php
+        $conn = null;
+        ?>
 
         <section id="form" class='form'>
             <h1>FORMULAIRE DE RESERVATION DE SALLES</h1>

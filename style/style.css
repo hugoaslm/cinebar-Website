@@ -10,6 +10,10 @@ body {
     color: white;
 }
 
+.user-icon {
+  font-size: 24px;
+}
+
 header,
 footer {
   padding: 20px 50px;
@@ -29,6 +33,7 @@ footer img {
 footer{
   padding: 20px;
   background-color: #1E1E1E;
+  text-align: center; 
 }
 
 .donnees {
