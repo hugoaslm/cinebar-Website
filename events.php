@@ -28,7 +28,7 @@
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -89,19 +89,19 @@
             </div>
             <div class="events-1">
                 <div class="event">
-                    <a href="desc.php?id_FE=1" class="ev">
+                    <a href="desc.php?id_E=1" class="ev">
                         <img src="images/opera.jpg" alt="Spectacle">
                         <p>Spectacle</p>
                     </a>
                 </div>
                 <div class="event">
-                    <a href="desc.php?id_FE=2" class="ev">
+                    <a href="desc.php?id_E=2" class="ev">
                         <img src="images/opera.jpg" alt="Conférence">
                         <p>Conférence</p>
                     </a>
                 </div>
                 <div class="event">
-                    <a href="desc.php?id_FE=3" class="ev">
+                    <a href="desc.php?id_E=3" class="ev">
                         <img src="images/opera.jpg" alt="Théâtre">
                         <p>Théâtre</p>
                     </a>
@@ -109,19 +109,19 @@
             </div>
             <div class="events-2">
                 <div class="event">
-                    <a href="desc.php?id_FE=4" class="ev">
+                    <a href="desc.php?id_E=4" class="ev">
                         <img src="images/opera.jpg" alt="Exposition">
                         <p>Exposition</p>
                     </a>
                 </div>
                 <div class="event">
-                    <a href="desc.php?id_FE=5" class="ev">
+                    <a href="desc.php?id_E=5" class="ev">
                         <img src="images/opera.jpg" alt="Stand-up">
                         <p>Stand-up</p>
                     </a>
                 </div>
                 <div class="event">
-                    <a href="desc.php?id_FE=6" class="ev">
+                    <a href="desc.php?id_E=6" class="ev">
                         <img src="images/opera.jpg" alt="Workshop">
                         <p>Workshop</p>
                     </a>

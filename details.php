@@ -12,7 +12,7 @@ try {
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Récupérez l'ID du film depuis l'URL
-    $film_id = isset($_GET['id_FE']) ? $_GET['id_FE'] : null;
+    $film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
 
     // Vérifiez si l'ID du film est défini
     if ($film_id !== null) {
@@ -20,7 +20,7 @@ try {
         $film_id = $connexion->quote($film_id);
 
         // Récupérez les détails du film de la base de données
-        $result = $connexion->query("SELECT * FROM film_event WHERE id_FE = $film_id");
+        $result = $connexion->query("SELECT * FROM films WHERE id_F = $film_id");
         $row = $result->fetch(PDO::FETCH_ASSOC);
     } else {
         echo "ID du film non spécifié.";
@@ -62,7 +62,7 @@ try {
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -97,7 +97,7 @@ try {
             <img src="<?= htmlspecialchars($row['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
             <h2><?= htmlspecialchars($row['genre'], ENT_QUOTES, 'UTF-8'); ?></h2>
             <p><?= htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8'); ?></p>
-            <div>Date de sortie: <?= htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'); ?></div>
+            <div>Date de sortie: <?= htmlspecialchars($row['DateDeSortie'], ENT_QUOTES, 'UTF-8'); ?></div>
             <div>Durée: <?= htmlspecialchars($row['duree'], ENT_QUOTES, 'UTF-8'); ?> minutes</div>
             <div>Réalisateur: <?= htmlspecialchars($row['realisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
             <div>Acteurs: <?= htmlspecialchars($row['acteurs'], ENT_QUOTES, 'UTF-8'); ?></div>

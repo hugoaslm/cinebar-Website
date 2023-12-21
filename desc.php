@@ -12,7 +12,7 @@ try {
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Récupérez l'ID du film depuis l'URL
-    $event_id = isset($_GET['id_FE']) ? $_GET['id_FE'] : null;
+    $event_id = isset($_GET['id_E']) ? $_GET['id_E'] : null;
 
     // Vérifiez si l'ID du film est défini
     if ($event_id !== null) {
@@ -20,7 +20,7 @@ try {
         $event_id = $connexion->quote($event_id);
 
         // Récupérez les détails du film de la base de données
-        $result = $connexion->query("SELECT * FROM film_event WHERE id_FE = $event_id");
+        $result = $connexion->query("SELECT * FROM events WHERE id_E = $event_id");
         $row = $result->fetch(PDO::FETCH_ASSOC);
     } else {
         echo "ID du film non spécifié.";
@@ -62,7 +62,7 @@ try {
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php

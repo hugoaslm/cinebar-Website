@@ -29,7 +29,7 @@
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -107,7 +107,7 @@
         <section class='sav-plus'>
             <h2>Si vous souhaitez en apprendre plus sur la solution :</h2>
             <div class="bouton-cinebar">
-                <a href="pro.php">Professionnel</a>
+                <a href="pro.php">Réservation de salles</a>
             </div>
         </section>
 		

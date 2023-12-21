@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -20,26 +24,45 @@
 <body>
 
   <header>
-    <nav>
-        <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
-        <div class="pages">
-            <a href="accueil.php">Accueil</a>
-            <a href="cinema.php">Le Cinéma</a>
-            <a href="cafet.php">La Cafétéria</a>
-            <a href="films.php">Films</a>
-            <a href="events.php">Évènements</a>
-            <a href="billet.php">Billetterie</a>
-            <a href="forum.php">Forum</a>
-        </div>
-        <div class="bouton-access">
-            <div class="bouton-pro">
-                <a href="pro.php">Professionnel</a>
+  <nav>
+            
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div class="pages">
+                <a href="accueil.php">Accueil</a>
+                <a href="cinema.php">Le Cinéma</a>
+                <a href="cafet.php">La Cafétéria</a>
+                <a href="films.php">Films</a>
+                <a href="events.php">Évènements</a>
+                <a href="billet.php">Billetterie</a>
+                <a href="forum.php">Forum</a>
             </div>
-            <div class="bouton-co">
-                <a href="connexion.php">Connexion</a>
+            <div class="bouton-access">
+                <div class="bouton-pro">
+                    <a href="pro.php">Réservation de salles</a>
+                </div>
+
+                <?php
+
+                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                $estConnecte = isset($_SESSION['identifiant']);
+
+                // Sélectionnez le bouton de connexion en PHP
+                $boutonConnexion = '<div class="bouton-co">';
+                if ($estConnecte) {
+                    $identifiant = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php">' . $identifiant . '</a>';
+                } else {
+                    // Si non connecté, affichez le bouton de connexion normal
+                    $boutonConnexion .= '<a href="connexion.php">Connexion </a>';
+                }
+                $boutonConnexion .= '</div>';
+
+                // Affichez le bouton de connexion généré
+                echo $boutonConnexion;
+                ?>
+
             </div>
-        </div>
-    </nav>
+        </nav>
   </header>
 
     <main>

@@ -30,7 +30,7 @@
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -61,7 +61,7 @@
     </header>
     
     <main class='cookies'>
-            <form action="php/login.php" method="post" class="co">
+            <form action="php/login.php" method="post" class="cgu">
                     <div class="form-text" id="sugg">
 	                <p><span style="color: black;">
                         Le respect de votre vie privée est notre priorité !

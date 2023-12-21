@@ -30,7 +30,7 @@
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -68,7 +68,7 @@
             </p><br/>
             </span>
             <p><span style="color: black;">
-                1. **Droits d'exploitation :** Cinébar se réserve tous les droits d'exploitation du contenu présent sur ce site, y compris, mais sans s'y limiter, les textes, les images, les vidéos et les fonctionnalités interactives.
+                <strong>Droits d'exploitation :</strong> Cinébar se réserve tous les droits d'exploitation du contenu présent sur ce site, y compris, mais sans s'y limiter, les textes, les images, les vidéos et les fonctionnalités interactives.
             </p><br/>
             </span>
             <p><span style="color: black;">

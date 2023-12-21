@@ -26,7 +26,7 @@
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -58,11 +58,11 @@
     <main>
     <h1>Modifier le profil de <span class="mot_cle"><?php echo $identifiant; ?></span> : </h1>
         <form action="modifier_compte.php" method="post">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required>
+            <label for="mail">E-mail :</label>
+            <input type="mail" id="mail" name="mail" required>
 
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
+            <label for="pseudo">Pseudo :</label>
+            <input type="text" id="pseudo" name="pseudo" required>
 
             <div class="lang">
                 <label for="langue">Préférence de Langue :</label>
@@ -78,7 +78,7 @@
                     <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
                     <span class="slider round"></span>
                 </label>
-                <span id="themeText">clair</span>
+                <span id="themeText">sombre</span>
             </div>
 
 
@@ -97,12 +97,12 @@
 
                 if (themeToggle.checked) {
                     // Thème sombre
-                    document.body.classList.add("theme-sombre");
-                    themeText.textContent = "sombre";
+                    document.body.classList.add("theme-clair");
+                    themeText.textContent = "clair";
                 } else {
                     // Thème clair
                     document.body.classList.remove("theme-sombre");
-                    themeText.textContent = "clair";
+                    themeText.textContent = "sombre";
                 }
             }
         </script>

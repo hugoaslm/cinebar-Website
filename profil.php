@@ -67,7 +67,7 @@ if (isset($_SESSION['identifiant'])) {
         </div>
         <div class="bouton-access">
             <div class="bouton-pro">
-                <a href="pro.php">Professionnel</a>
+                <a href="pro.php">Réservation de salles</a>
             </div>
             <?php
             // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session

@@ -28,7 +28,7 @@
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -89,25 +89,25 @@
             </div>
             <div class="film-1">
                 <div class="film">
-                    <a href="details.php?id_FE=1">
+                    <a href="details.php?id_F=1">
                         <img src="images/avatar.jpg" alt="Avatar">
                         <p>Avatar</p>
                     </a>
                 </div>
                 <div class="film">
-                    <a href="details.php?id_FE=2">
+                    <a href="details.php?id_F=2">
                         <img src="images/gt.jpg" alt="Gran Turismo">
                         <p>Gran Turismo</p>
                     </a>
                 </div>
                 <div class="film">
-                    <a href="details.php?id_FE=3">
+                    <a href="details.php?id_F=3">
                         <img src="images/hunger-games.jpg" alt="Hunger Games">
                         <p>Hunger Games</p>
                     </a>
                 </div>
                 <div class="film">
-                    <a href="details.php?id_FE=4">
+                    <a href="details.php?id_F=4">
                         <img src="images/indiana.jpg" alt="Indiana Jones">
                         <p>Indiana Jones</p>
                     </a>
@@ -115,25 +115,25 @@
             </div>
             <div class="film-2">
                 <div class="film">
-                    <a href="details.php?id_FE=5">
+                    <a href="details.php?id_F=5">
                         <img src="images/mario.jpg" alt="Super Mario Bros">
                         <p>Super Mario Bros</p>
                     </a>
                 </div>
                 <div class="film">
-                    <a href="details.php?id_FE=6">
+                    <a href="details.php?id_F=6">
                         <img src="images/napoleon.jpg" alt="Napoléon">
                         <p>Napoléon</p>
                     </a>
                 </div>
                 <div class="film">
-                    <a href="details.php?id_FE=7">
+                    <a href="details.php?id_F=7">
                         <img src="images/oppenheimer.jpg" alt="Oppenheimer">
                         <p>Oppenheimer</p>
                     </a>
                 </div>
                 <div class="film">
-                    <a href="details.php?id_FE=8">
+                    <a href="details.php?id_F=8">
                         <img src="images/mission-impo.jpg" alt="Mission-Impossible">
                         <p>Mission-Impossible</p>
                     </a>

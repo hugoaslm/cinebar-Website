@@ -7,24 +7,17 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum de Questions-Réponses</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-bi+2BIvPHs5peU+5wDTrAYu9fEF+j4uANCBF8bXaSv1ap4SC1vY+gJEAY6npa9vm4tft9NxLXR+rWn5eknjOXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
-            font-family: 'Myriad Pro Semibold', sans-serif;
             font-size: 16px;
             margin: 0;
             padding: 0;
             background-color: #1E1E1E;
             color: white;
-        }
-
-        header {
-            background-color: #312f2f;
-            color: white;
-            padding: 10px;
-            text-align: center;
         }
 
         section {
@@ -101,74 +94,6 @@ session_start();
 
             
     }
-    header {
-            background-color: #1E1E1E; 
-            color: white;
-            padding: 20px 15px; 
-            text-align: center;
-            font-size: 14px;
-        }
-
-        header img {
-            width: 80px;
-            height: 60px;
-            padding: 0px;
-    }
-        
-        nav {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            height: 17px;
-  
-  
-    }
-
-        .bouton-pro {
-            padding: 10px;
-    }
-
-        .bouton-pro a, .bouton-co a {
-            margin: auto;
-    }
-
-        .bouton-pro :hover , .bouton-co :hover{
-            color: #89404F; 
-    }
-
-        .bouton-co {
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-    }
-
-
-        .bouton-co a {
-            color: white;
-            text-decoration: none;
-    }
-
-        .bouton-access {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-    }
-        nav a {
-            margin-left: 30px;
-            color: white;
-            text-decoration: none;
-    }
-
-        nav .pages a:hover {
-            color: #89404F; 
-    }
-
-        li {
-            font-size: 1.1em;
-            color: #f9f8ff;
-    }
 
     </style>
 </head>
@@ -179,7 +104,7 @@ session_start();
     <header>
         <nav>
             
-            <img src="images/logo-cinebar-grey.png" alt="Logo Cinébar" >
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
                 <a href="accueil.php">Accueil</a>
                 <a href="cinema.php">Le Cinéma</a>
@@ -191,7 +116,7 @@ session_start();
             </div>
             <div class="bouton-access">
                 <div class="bouton-pro">
-                    <a href="pro.php">Professionnel</a>
+                    <a href="pro.php">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -307,6 +232,22 @@ session_start();
             });
         });
     </script>
+
+    <footer>
+        <section class='logo-adresse'>
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
+            <div>
+                <h3>Adresse :</h3>
+                Rue ...<br>
+                <a>Code postal - Ville</a>
+            </div>
+        </section>
+        <div class="donnees">
+            <a href="cookies.php">Gestion des cookies</a> - 
+            <a href="cgu.php">CGU</a> - 
+            <a href="faq.php">FAQ</a>
+        </div>  
+    </footer>
 
 </body>
 
