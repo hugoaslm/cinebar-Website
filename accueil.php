@@ -1,3 +1,5 @@
+<?php include 'bdd.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -95,17 +97,69 @@
 
 
         <section class="boite3">
-            <div class="titre-boite3">
-                <h1>Le film du moment</h1>
-                <img src="images/wonka.jpg" alt="wonka">
-                <button class="bouton-voir">Aller voir</button>
-            </div>
-            
-            <div class="titre-boite3">
-                <h1>La dernière sortie</h1>
-                <img src="images/aquaman.jpg" alt="aquaman">
-                <button class="bouton-voir">Aller voir</button>
-            </div>
+
+            <?php
+            // Récupérer l'ID du film du moment depuis la table film_moment
+            $sql_select = "SELECT film_id_F FROM film_moment";
+            $stmt_select = $conn->query($sql_select);
+
+            if ($stmt_select->rowCount() > 0) {
+                $film_id = $stmt_select->fetchColumn();
+
+                // Récupérer les détails du film du moment depuis la table films
+                $sql_details = "SELECT affiche FROM films WHERE id_F = :film_id";
+                $stmt_details = $conn->prepare($sql_details);
+                $stmt_details->bindParam(":film_id", $film_id);
+                $stmt_details->execute();
+
+                if ($stmt_details->rowCount() > 0) {
+                    $affiche = $stmt_details->fetchColumn();
+
+                    // Afficher l'image du film du moment
+                    echo '<div class="titre-boite3">';
+                    echo '<h1>Le film du moment</h1>';
+                    echo '<img src="' . $affiche . '" alt="new_film">';
+                    echo '<a href="films.php">Aller voir</a>';
+                    echo '</div>';
+                } else {
+                    echo 'Détails du film du moment non trouvés.';
+                }
+            } else {
+                echo 'Film du moment non trouvée.';
+            }
+            ?>
+
+            <?php
+            // Récupérer l'ID du film avec la date de sortie la plus récente
+            $sql_select_order = "SELECT id_F FROM films ORDER BY DateDeSortie DESC LIMIT 1";
+            $stmt_select_order = $conn->query($sql_select_order);
+
+            if ($stmt_select_order->rowCount() > 0) {
+                $film_id = $stmt_select_order->fetchColumn();
+
+                // Récupérer les détails du film avec la date de sortie la plus récente
+                $sql_details_order = "SELECT affiche FROM films WHERE id_F = :film_id";
+                $stmt_details_order = $conn->prepare($sql_details_order);
+                $stmt_details_order->bindParam(":film_id", $film_id);
+                $stmt_details_order->execute();
+
+                if ($stmt_details_order->rowCount() > 0) {
+                    $affiche_order = $stmt_details_order->fetchColumn();
+
+                    // Afficher l'image du dernier film sorti
+                    echo '<div class="titre-boite3">';
+                    echo '<h1>La dernière sortie</h1>';
+                    echo '<img src="' . $affiche_order . '" alt="new_film">';
+                    echo '<a href="films.php">Aller voir</a>';
+                    echo '</div>';
+                } else {
+                    echo 'Détails de la dernière sortie non trouvés.';
+                }
+            } else {
+                echo 'Dernière sortie non trouvée.';
+            }
+            ?>
+
         </section>
         
         

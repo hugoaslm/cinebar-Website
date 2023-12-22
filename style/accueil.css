@@ -96,7 +96,7 @@ main img {
 }
 
 .boite3 img {
-  width: 300px;
+  width: 265px;
   height: 350px;
   margin-top: 100px;
   margin-bottom: 100px;
@@ -113,8 +113,8 @@ main img {
 
 .titre-boite3 h1 {
   position: absolute;
-  top: 50px;
-  left: 175px;
+  top: 40px;
+  left: 156px;
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
@@ -122,20 +122,21 @@ main img {
   font-size: 20px;
 }
 
-.bouton-voir {
+.titre-boite3 a {
   position: absolute;
   bottom: 55px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #89404F;
   color: white;
-  padding: 10px 20px;
+  padding: 7px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.bouton-voir:hover {
+.titre-boite3 a:hover {
   background-color: #ad5164;
 }
 

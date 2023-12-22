@@ -97,7 +97,7 @@
             <form action="film_moment.php" method="post" class="form-container">
                 <select name="film_id" id="film_id">
                     <?php
-                    // Connexion à la base de données
+
                     $serveur = 'localhost';
                     $utilisateur_db = 'root';
                     $mot_de_passe_db = 'bddisep19';
@@ -107,7 +107,7 @@
                         $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        // Récupérer les films depuis la base de données
+
                         $sql = "SELECT id_F, nom FROM films";
                         $resultat = $conn->query($sql);
 

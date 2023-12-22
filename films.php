@@ -1,3 +1,5 @@
+<?php include 'bdd.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -60,61 +62,49 @@
 
     <main>
         <?php
-        // Connexion à la base de données
-        $serveur = 'localhost';
-        $utilisateur_db = 'root';
-        $mot_de_passe_db = 'bddisep19';
-        $nom_base_de_donnees = 'cinebar';
 
-        try {
-            $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Récupérer l'ID du film sélectionné depuis la table film_moment
+        $sql = "SELECT film_id_F FROM film_moment";
+        $stmt = $conn->query($sql);
 
-            // Récupérer l'ID du film sélectionné depuis la table film_moment
-            $sql = "SELECT film_id_F FROM film_moment";
-            $stmt = $conn->query($sql);
+        if ($stmt->rowCount() > 0) {
+            $film_id = $stmt->fetch(PDO::FETCH_ASSOC)['film_id_F'];
 
+            // Récupérer les détails du film associé à l'ID
+            $sql = "SELECT * FROM films WHERE id_F = :film_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(":film_id", $film_id);
+            $stmt->execute();
+
+            // Vérifier s'il y a des résultats
             if ($stmt->rowCount() > 0) {
-                $film_id = $stmt->fetch(PDO::FETCH_ASSOC)['film_id_F'];
+                $film = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                // Récupérer les détails du film associé à l'ID
-                $sql = "SELECT * FROM films WHERE id_F = :film_id";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(":film_id", $film_id);
-                $stmt->execute();
-
-                // Vérifier s'il y a des résultats
-                if ($stmt->rowCount() > 0) {
-                    $film = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                    // Afficher les détails du film
-                    echo '<h1>FILM DU MOMENT</h1>';
-                    echo '<section class="vedette">';
-                    echo '<div class="film-vedette">';
-                    echo '<div class="illu">';
-                    echo '<img src="' . $film['affiche_large'] . '" alt="' . $film['nom'] . '">';
-                    echo '</div>';
-                    echo '<div class="details">';
-                    echo '<h2>' . $film['nom'] . '</h2>';
-                    echo '<h4>' . $film['genre'] . '</h4>';
-                    echo '<p>' . $film['description'] . '</p>';
-                    echo '<div>Date de sortie: ' . $film['DateDeSortie'] . '</div>';
-                    echo '<div>Durée: ' . $film['duree'] . ' minutes</div>';
-                    echo '</div>';
-                    echo '<div class="cast">';
-                    echo '<p>Réalisateur: ' . $film['realisateur'] . '</p>';
-                    echo '<p>Acteurs: ' . $film['acteurs'] . '</p>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</section>';
-                } else {
-                    echo 'Film du moment non trouvé.';
-                }
+                // Afficher les détails du film
+                echo '<h1>FILM DU MOMENT</h1>';
+                echo '<section class="vedette">';
+                echo '<div class="film-vedette">';
+                echo '<div class="illu">';
+                echo '<img src="' . $film['affiche_large'] . '" alt="' . $film['nom'] . '">';
+                echo '</div>';
+                echo '<div class="details">';
+                echo '<h2>' . $film['nom'] . '</h2>';
+                echo '<h4>' . $film['genre'] . '</h4>';
+                echo '<p>' . $film['description'] . '</p>';
+                echo '<div>Date de sortie: ' . $film['DateDeSortie'] . '</div>';
+                echo '<div>Durée: ' . $film['duree'] . ' minutes</div>';
+                echo '</div>';
+                echo '<div class="cast">';
+                echo '<p>Réalisateur: ' . $film['realisateur'] . '</p>';
+                echo '<p>Acteurs: ' . $film['acteurs'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+                echo '</section>';
             } else {
-                echo 'Film du moment non trouvé dans film_moment.';
+                echo 'Film du moment non trouvé.';
             }
-        } catch (PDOException $e) {
-            echo "Erreur de connexion à la base de données : " . $e->getMessage();
+        } else {
+            echo 'Film du moment non trouvé dans film_moment.';
         }
         ?>
 
@@ -127,29 +117,16 @@
 
                 <?php
                 try {
-                    $serveur = 'localhost'; 
-                    $utilisateur_db = 'root'; 
-                    $mot_de_passe_db = 'bddisep19'; 
-                    $nom_base_de_donnees = 'cinebar'; 
-
-                    // Créer une connexion PDO
-                    $conn = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    
-                    // Définir le mode d'erreur PDO à exception
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
                     // Préparer la requête SQL
                     $stmt = $conn->prepare("SELECT * FROM films");
                     
                     // Exécuter la requête
                     $stmt->execute();
-
+                
                     // Récupérer toutes les lignes résultantes
                     $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
                 } catch (PDOException $e) {
-                    echo "Erreur de connexion à la base de données : " . $e->getMessage();
+                    echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
                 }
                 ?>
 
