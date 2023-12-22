@@ -209,7 +209,6 @@
         </div>        
     </footer>
     
-    <button id="backToTopBtn">&#9650;</button>
     <script src="js/carousel.js"></script>
 
 </body>
