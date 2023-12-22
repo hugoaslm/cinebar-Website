@@ -210,7 +210,7 @@
     </footer>
     
     <button id="backToTopBtn">&#9650;</button>
-    <script src="script.js"></script>
+    <script src="js/carousel.js"></script>
 
 </body>
 </html>
