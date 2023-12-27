@@ -1,0 +1,31 @@
+.choix {
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 500px;
+}
+
+.admin-buttons {
+  text-align: center;
+  margin-top: 20px;
+  border: solid 1px #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 900px;
+  height: auto;
+  margin: auto;
+}
+  
+.admin-buttons a {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #89404F; 
+  color: #fff; 
+  border: none;
+  border-radius: 8px;
+  margin: 0 10px;
+  text-decoration: none;
+}
+  
+.admin-buttons a:hover {
+  background-color: #66303a;
+}

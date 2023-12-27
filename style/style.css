@@ -10,10 +10,6 @@ body {
     color: white;
 }
 
-.user-icon {
-  font-size: 24px;
-}
-
 header,
 footer {
   padding: 20px 50px;
@@ -31,9 +27,10 @@ footer img {
 }
 
 footer{
+  margin-top: 200px;
   padding: 20px;
   background-color: #1E1E1E;
-  text-align: center; 
+  text-align: center;
 }
 
 .donnees {
@@ -44,7 +41,7 @@ footer{
 }
 
 .donnees a{
-  font-size: 0.5em;
+  font-size: 1em;
   color: white;
   margin-left: 2px;
   margin-right: 2px;
@@ -80,6 +77,8 @@ color: #89404F;
 }
 
 .bouton-co {
+  position: relative;
+  display: inline-block;
   background-color: #414089;
   padding: 10px;
   border-radius: 10px;
@@ -99,6 +98,125 @@ color: #89404F;
   gap: 30px;
 }
 
+/* search bar */
+
+.container {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  width: 150px;
+  height: 30px;
+  .search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: #89404F;
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+    &:hover {
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: 12px;
+      right: 0;
+      bottom: 0;
+      left: 12px;
+      width: 6px;
+      height: 2px;
+      background: white;
+      transform: rotate(45deg);
+      transition: all .5s;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: -5px;
+      right: 0;
+      bottom: 0;
+      left: -5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid white;
+      transition: all .5s;
+    }
+  }
+  input[name = "recherche"] {
+    font-family: 'Manrope', sans-serif;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 30px;
+    outline: none;
+    border: none;
+    background: #89404F;
+    color: white;
+    padding: 0 20px 0 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 25px 0 #89404F,
+                0 20px 25px 0 rgba(0, 0, 0, 0.1);
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      width: 150px;
+      opacity: 1;
+      cursor: text;
+    }
+    &:focus ~ .search {
+      right: -150px;
+      background: #151515;
+      z-index: 6;
+      &::before {
+        top: 0;
+        left: 0;
+        width: 25px;
+      }
+      &::after {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 2px;
+        border: none;
+        background: white;
+        border-radius: 0%;
+        transform: rotate(-45deg);
+      }
+    }
+    &::placeholder {
+      color: white;
+      opacity: 0.5;
+      font-weight: bolder;
+    }
+  }
+}
+
+/* */
+
+header svg {
+  fill: white;
+}
+
 .logo-adresse {
   display: flex;
   flex-direction: row;
@@ -111,4 +229,33 @@ p,
 li {
   font-size: 1.1em;
   color: #f9f8ff;
+}
+
+.menu-deroulant {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  background-color: #414089;
+  min-width: 140px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  border-radius: 10px;
+  transform: translateX(-50%);
+}
+
+.bouton-co:hover .menu-deroulant {
+  display: block;
+}
+
+.menu-deroulant a {
+  display: block;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.menu-deroulant a:hover {
+  background-color: #4f4da4;
+  border-radius: 10px;
 }

@@ -67,3 +67,106 @@
 main img {
   width: 500px;
 }
+
+.description-bar-cine {
+  max-width: 1000px;
+  padding: 10px;
+  text-align: center;
+}
+
+.description-bar-cine h1 {
+  border-bottom: 3px solid #89404F;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.desc-bar-cine {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.desc-bar-cine p {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.illu img {
+	width : 500px;
+	height : 325px;
+	
+	margin-bottom: 20px;
+	border-radius: 10px;
+	
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+ul {
+  list-style: none;
+  column-count: 2;
+  column-gap: 20px;
+}
+
+.menu {
+  margin-top: 100px;
+  display: block;
+  text-align: center;
+  max-width: 100%;
+  height: 325px;
+}
+
+.menu-list {
+  margin: 0 auto;
+}
+
+.menu h1 {
+  display: inline-flex;
+  border-bottom: 3px solid #89404F;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* aside */ 
+
+.aside-droite {
+  display: block;
+  float: right; /* Ajoutez la propriété float: right; */
+  width: 30%; /* Définissez la largeur souhaitée */
+  margin-left: 20px; /* Ajoutez une marge à gauche pour l'espacement */
+}
+
+.aside-list {
+  text-decoration: underline;
+  text-decoration-color: #89404F;
+  text-decoration-thickness: 2px;
+  color: white;
+}
+
+.icon {
+  display: inline-flex;
+  height: 15px;
+  width: 15px;
+  justify-content: center;
+  margin-right: 15px;
+  fill: white;
+}
+
+.block-aside h2 {
+  margin-bottom: 20px;
+  border-left: 2px solid #89404F;
+  letter-spacing: 1.5px;
+  padding: 10px 20px;
+}
+
+.block-aside {
+  margin-bottom: 50px;
+}
