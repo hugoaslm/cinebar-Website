@@ -1,37 +1,26 @@
 <?php
-// Vérification si la méthode POST est utilisée pour envoyer des données
-// Connexion à la base de données
-$serveur = 'localhost'; 
-$utilisateur_db = 'root'; 
-$mot_de_passe_db = 'bddisep19'; 
-$nom_base_de_donnees = 'cinebar'; 
 
-try {
-    // Connexion à la base de données via PDO
-    $connexion = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
-    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+session_start();
 
-    // Récupérez l'ID du film depuis l'URL
-    $film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
+include '../Modèle/bdd.php';
+include '../Modèle/themeClair.php';
 
-    // Vérifiez si l'ID du film est défini
-    if ($film_id !== null) {
-        // Échappez l'ID pour éviter les attaques par injection SQL
-        $film_id = $connexion->quote($film_id);
+// Récupérez l'ID du film depuis l'URL
+$film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
 
-        // Récupérez les détails du film de la base de données
-        $result = $connexion->query("SELECT * FROM films WHERE id_F = $film_id");
-        $row = $result->fetch(PDO::FETCH_ASSOC);
-    } else {
+// Vérifiez si l'ID du film est défini
+if ($film_id !== null) {
+    // Échappez l'ID pour éviter les attaques par injection SQL
+    $film_id = $connexion->quote($film_id);
+
+    // Récupérez les détails du film de la base de données
+    $result = $connexion->query("SELECT * FROM films WHERE id_F = $film_id");
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+} else {
         echo "ID du film non spécifié.";
-        exit; // Arrête l'exécution si l'ID n'est pas spécifié
-    }
-
-} catch (PDOException $e) {
-    // En cas d'erreur de connexion ou d'exécution de requête
-    echo "Erreur : " . $e->getMessage();
-    exit; // Arrête l'exécution en cas d'erreur
+        exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +31,7 @@ try {
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/details.css">
     <link rel="stylesheet" href="../style/billet-events.css">
+    <link rel="stylesheet" href="../style/note.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -73,8 +63,6 @@ try {
 
                 <?php
 
-                session_start();
-
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
@@ -105,6 +93,12 @@ try {
     </header>
 
     <main>
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+        ?>
+
         <section>
             <div class="container-films">
                 <img src="<?= htmlspecialchars($row['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
@@ -133,26 +127,31 @@ try {
                 
                     <div class="real"><h3>De :</h3> <?= htmlspecialchars($row['realisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
                     <div class="act"><h3>Avec :</h3> <?= htmlspecialchars($row['acteurs'], ENT_QUOTES, 'UTF-8'); ?></div>
-
-                    <h2>Note du public :</h2>
-                    <div class="rating">
-                        <input type="radio" id="star5" name="rating" value="5">
-                        <label for="star5"></label>
-                        <input type="radio" id="star4" name="rating" value="4">
-                        <label for="star4"></label>
-                        <input type="radio" id="star3" name="rating" value="3">
-                        <label for="star3"></label>
-                        <input type="radio" id="star2" name="rating" value="2">
-                        <label for="star2"></label>
-                        <input type="radio" id="star1" name="rating" value="1">
-                        <label for="star1"></label>
-                    </div>
                 </div>
             </div>
         </section>
 
+        <section class="note">
+            <h1>Note du public :</h1>
+
+            <?php
+
+            // Inclusion de la fonction PHP qui génère le curseur de volume
+            include '../Modèle/note.php';
+
+            ?>
+
+            <div class="note-cursor">
+                <h2><?php echo $note; ?>/5</h2>
+                <span class="valeur-volume"><?php echo $valeurEnDB; ?> dB</span>
+                <input type="range" min="0" max="100" value="<?php echo $valeurCurseur; ?>" class="curseur-volume" disabled>
+            </div>
+
+        </section>
+
         <section class='form_billet'>
-            <form action="traitement_billet.php" method="post" class="reserv-billet">
+            <h1>Réservation :</h1>
+            <form action="../Contrôleur/traitement_billet.php" method="post" class="reserv-billet">
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom">
                 <label for="nom">Prénom :</label>

@@ -270,3 +270,9 @@ h1 {
   padding: 8px; /* Espacement interne du champ de recherche en mode "tags" */
   background-color: #D9D9D9; /* Couleur de fond du champ de recherche en mode "tags" */
 }
+
+/* theme */ 
+
+.light-mode .salles h2 {
+  color: white !important;
+}

@@ -80,7 +80,6 @@ main img {
   font-family: 'Montserrat', sans-serif;
   font-size: 2.5em;
   margin-bottom: 20px;
-  color: white;
 }
 
 .desc-bar-cine {
@@ -170,3 +169,70 @@ ul {
 .block-aside {
   margin-bottom: 50px;
 }
+
+/* theme */
+
+.light-mode .desc-bar-cine p {
+  color: black;
+}
+
+.light-mode .sav-plus h2 {
+  color: black;
+}
+
+.light-mode .block-aside h2 {
+  color: black;
+}
+
+.light-mode .menu-list li {
+  color: black;
+}
+
+.light-mode .menu h1 {
+  color: black;
+}
+
+/* responsive */
+
+/* Tablettes en mode portrait et paysage */
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  .menu-bar,
+  .desc-bar-cine,
+  .sav-plus {
+      margin-left: 10px;
+  }
+
+  .haut-cine img {
+      margin-bottom: 20px;
+  }
+
+  main img {
+      width: 100%;
+  }
+
+  aside {
+      display: none !important;
+  }
+}
+
+/* Smartphones en mode portrait et paysage */
+@media screen and (max-width: 600px) {
+  .menu-bar,
+  .desc-bar-cine,
+  .sav-plus {
+      margin-left: 5px;
+  }
+
+  .haut-cine img {
+      margin-bottom: 10px;
+  }
+
+  main img {
+      width: 100%;
+  }
+
+  aside {
+      display: none !important;
+  }
+}
+

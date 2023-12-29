@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+session_start();
+include '../Modèle/themeClair.php'; ?>
     
 <head>
     <meta charset="UTF-8">
@@ -38,8 +42,6 @@
 
                 <?php
 
-                session_start();
-
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
@@ -71,6 +73,12 @@
     </header>
 
     <main>
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : '';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+        ?>
+
         <div class="haut-cine">
             <img src="../images/darcy.jpg" alt="Cinéma Darcy" >
         </div>
@@ -114,6 +122,11 @@
                     <span class="title">
                     8 Prom. Coeur de Ville, 92130- Issy-les-Moulineaux</span> <br>
                 </a>
+            </div>
+
+            <div class = "block-aside">
+                <h2>Volume ambiant</h2>
+                <input type="range" min="0" max="100" value="90" class="curseur-volume-bar">
             </div>
         </aside>
 

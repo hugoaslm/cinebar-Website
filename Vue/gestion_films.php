@@ -117,12 +117,31 @@ if (!$estAdmin) {
                 </label>
 
                 <div class="ajouter">
-                    <button type="submit">Ajouter Film</button>
+                    <button type="submit">Ajouter un film</button>
                 </div>
             </form>
 
+            <h2>Supprimer un film :</h2>
+            <form action="../Contrôleur/supprimer_film.php" method="post" class="form-container">
+                <select name="film_id" id="film_id">
+                    <?php
+
+                    include '../Modèle/bdd.php';
+
+                    $sql = "SELECT id_F, nom FROM films";
+                    $resultat = $connexion->query($sql);
+
+                    // Générer les options de la liste déroulante
+                    while ($film = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <button class="sele-moment" type="submit">Supprimer</button>
+            </form>
+
             <h2>Sélection du film du moment :</h2>
-            <form action="../Contrôleur/film_moment.php" method="post" class="form-container">
+            <form action="../Contrôleur/film_moment_admin.php" method="post" class="form-container">
                 <select name="film_id" id="film_id">
                     <?php
 

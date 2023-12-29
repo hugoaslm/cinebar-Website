@@ -7,22 +7,9 @@ if (!$estConnecte) {
     header("Location: accueil.php");
     exit();
 }
-?>
 
-<?php
-// Connexion à la base de données
-$serveur = 'localhost'; 
-$utilisateur_db = 'root'; 
-$mot_de_passe_db = 'bddisep19'; 
-$nom_base_de_donnees = 'cinebar';
-
-try {
-    $connexion = new PDO("mysql:host=$serveur;dbname=$nom_base_de_donnees", $utilisateur_db, $mot_de_passe_db);
-    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die('Erreur de connexion à la base de données : ' . $e->getMessage());
-}
-
+include '../Modèle/bdd.php';
+include '../Modèle/themeClair.php';
 include '../Modèle/estAdmin.php';
 
 ?>
@@ -92,6 +79,12 @@ include '../Modèle/estAdmin.php';
 </header>
 
 <main class="profil">
+
+    <?php 
+    $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
+    echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+    ?>
+
     <h1>Bienvenue <span class="mot_cle"><?php echo $identifiant; ?> </span> !</h1>
 
     <?php

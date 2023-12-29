@@ -1,8 +1,9 @@
 <?php 
 
-include '../Modèle/bdd.php';
-
 session_start();
+
+include '../Modèle/bdd.php';
+include '../Modèle/themeClair.php';
 
 $sql = "SELECT film_id_F FROM film_moment";
 $stmt = $connexion->query($sql);
@@ -17,29 +18,7 @@ $stmt->execute();
 
 $film = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Vérifier si l'admin n'a pas sélectionné un autre film
-if (!isset($_SESSION['film_moment_executed'])) {
-    $sql_delete = "DELETE FROM film_moment";
-    $connexion->exec($sql_delete);
-
-    $sql_req = "SELECT reservation.Projection_id_Projection AS id_F, SUM(reservation.nb_reservation) AS total_reservations
-    FROM reservation
-    GROUP BY reservation.Projection_id_Projection
-    ORDER BY total_reservations DESC
-    LIMIT 1;    
-    ";
-
-    $stmt_req = $connexion->query($sql_req);
-    $film_row = $stmt_req->fetch(PDO::FETCH_ASSOC);
-
-    // Insérer le nouveau film du moment dans film_moment
-    $sql_insert = "INSERT INTO film_moment (film_id_F) VALUES (:film_id)";
-    $stmt_insert = $connexion->prepare($sql_insert);
-    $stmt_insert->bindParam(":film_id", $film_row['id_F'], PDO::PARAM_INT);
-    $stmt_insert->execute();
-
-    $_SESSION['film_moment_executed'] = true;
-}
+include "../Contrôleur/film_moment_default.php"
 
 ?>
 
@@ -48,6 +27,7 @@ if (!isset($_SESSION['film_moment_executed'])) {
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/accueil.css">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,6 +95,12 @@ if (!isset($_SESSION['film_moment_executed'])) {
     </header>
 
     <main>
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+        ?>
+
         <section class="acc-img">
             <div class="haut-cine">
                 <div class="vignette-film">
@@ -257,7 +243,7 @@ if (!isset($_SESSION['film_moment_executed'])) {
         <section class="carrousel">
             
             <div class="carousel-container">
-                <h1> À l'affiche au cinéma</h1>
+                <h1> À l'affiche au cinéma :</h1>
                 <div class="arrow arrow-prev" onclick="prevSlide()">&#9664;</div>
                 <div class="img-carrousel">
                     

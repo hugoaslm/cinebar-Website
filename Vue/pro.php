@@ -1,3 +1,11 @@
+<?php 
+
+session_start();
+
+include '../Modèle/themeClair.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -36,8 +44,6 @@
 
                 <?php
 
-                session_start();
-
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
@@ -68,6 +74,12 @@
     </header>
 
     <main>
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+        ?>
+                
         <div class="salles-title">
             <h1>NOS SALLES</h1>
         </div>
@@ -107,73 +119,60 @@
 
         <section id="form" class='form'>
             <h1>FORMULAIRE DE RESERVATION DE SALLES</h1>
-            <form action="traitement_formulaire.php" method="post" class="form-container">
+            <form action="../Contrôleur/traitement_formulaire.php" method="post" class="form-container">
                 <div class="form-column">
                     <label for="nom">Nom :</label>
-                    <input type="text" id="nom" name="nom">
+                    <input type="text" id="nom" name="nom" required>
                     <label for="mail">E-mail :</label>
-                    <input type="mail" id="mail" name="mail">
+                    <input type="mail" id="mail" name="mail" required>
 
 
                     <h3>Types d'évènements :</h3>
                     <div class="type-event">
                         <div>
-                            <input type="radio" id="conf" name="salle" value="conf">
+                            <input type="radio" id="conf" name="type_event" value="Conférence">
                             <label for="conf">Conférence</label>
                         </div>
                     
                         <div>
-                            <input type="radio" id="proj" name="salle" value="proj">
+                            <input type="radio" id="proj" name="type_event" value="Projection de film">
                             <label for="proj">Projection de film</label>
                         </div>
                     
                         <div>
-                            <input type="radio" id="humour" name="salle" value="humour">
+                            <input type="radio" id="humour" name="type_event" value="Spectacle Humoristique">
                             <label for="humour">Spectacle Humoristique</label>
                         </div>
                     
                         <div>
-                            <input type="radio" id="theatre" name="salle" value="theatre">
+                            <input type="radio" id="theatre" name="type_event" value="Pièce de théâtre">
                             <label for="theatre">Pièce de théâtre</label>
                         </div>
                     </div>
                     
                     <h3>Choix de la salle :</h3>
                     <div class="choix-salles">
-                        <div>
-                            <input type="radio" id="1" name="salle" value="1">
-                            <label for="1">Salle 1</label>
-                        </div>
-                    
-                        <div>
-                            <input type="radio" id="2" name="salle" value="2">
-                            <label for="2">Salle 2</label>
-                        </div>
-                    
-                        <div>
-                            <input type="radio" id="3" name="salle" value="3">
-                            <label for="3">Salle 3</label>
-                        </div>
-                    
-                        <div>
-                            <input type="radio" id="4" name="salle" value="4">
-                            <label for="4">Salle 4</label>
-                        </div>
+                        <?php foreach ($salles as $salle) : ?>
+                            <div>
+                                <input type="radio" id="<?php echo htmlspecialchars($salle['id_Salle']); ?>" name="salle" value="<?php echo htmlspecialchars($salle['id_Salle']); ?>">
+                                <label for="<?php echo htmlspecialchars($salle['id_Salle']); ?>"><?php echo htmlspecialchars($salle['nom_salle']); ?></label>
+                            </div>
+                        <?php endforeach; ?>
                     </div>  
 
                 </div>
                 <div class="form-column">
                     <label for="text">Prénom :</label>
-                    <input type="text" id="prenom" name="prenom">
+                    <input type="text" id="prenom" name="prenom" required>
                     <label for="num">Numéro de téléphone :</label>
-                    <input type="text" id="num" name="num">
+                    <input type="text" id="num" name="num" required>
 
                     <label for="date">Date de l'évènement :</label>
-                    <input type="date" id="date" name="date">
+                    <input type="date" id="date" name="date" required>
                     <label for="text">Horaires :</label>
-                    <input type="text" id="text" name="horaires">
+                    <input type="text" id="text" name="horaires" required>
                     <label for="number">Nombre d'invités :</label>
-                    <input type="number" id="number" name="number">
+                    <input type="number" id="number" name="number" required>
 
                     <h3>Equipements nécessaires si besoin :</h3>
                     <div class="equip">

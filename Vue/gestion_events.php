@@ -107,6 +107,25 @@ if (!$estAdmin) {
                 </div>
             </form>
 
+            <h2>Supprimer un évènement :</h2>
+            <form action="../Contrôleur/supprimer_event.php" method="post" class="form-container">
+                <select name="event_id" id="event_id">
+                    <?php
+
+                    include '../Modèle/bdd.php';
+
+                    $sql = "SELECT id_E, nom FROM events";
+                    $resultat = $connexion->query($sql);
+
+                    // Générer les options de la liste déroulante
+                    while ($event = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $event['id_E'] . '">' . $event['nom'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <button class="sele-moment" type="submit">Supprimer</button>
+            </form>
+
             <h2>Sélection de l'évènement du moment :</h2>
             <form action="../Contrôleur/event_moment.php" method="post" class="form-container">
                 <select name="event_id" id="event_id">

@@ -3,6 +3,7 @@
 session_start();
 
 include '../Modèle/bdd.php';
+include '../Modèle/themeClair.php';
 
 ?>
 
@@ -78,7 +79,10 @@ include '../Modèle/bdd.php';
     </header>
 
     <main>
-        <?php
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : '';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
 
         // Récupérer l'ID du film sélectionné depuis la table film_moment
         $sql = "SELECT film_id_F FROM film_moment";

@@ -71,6 +71,11 @@ h1 {
   clear: both;
 }
 
+h1 {
+  text-decoration: underline;
+  text-decoration-color: #89404F;
+}
+
 /* Styles pour la section films-container */
 .films-container {
   display: flex;
@@ -170,4 +175,10 @@ h1 {
 
 .event a {
   text-decoration: none;
+}
+
+/* theme */
+
+.light-mode .details h2, h4, p {
+  color: white !important;
 }

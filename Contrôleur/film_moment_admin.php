@@ -6,12 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     include '../Modèle/bdd.php';
 
-    // Supprimer l'ancien film du moment s'il existe
-    $sql_delete = "DELETE FROM film_moment";
-    $connexion->exec($sql_delete);
-
     // Insérer le nouveau film du moment
-    $sql_insert = "INSERT INTO film_moment (film_id_F) VALUES (:film_id)";
+    $sql_insert = "UPDATE film_moment SET film_id_F = :film_id, selection_manuelle = 1";
     $stmt_insert = $connexion->prepare($sql_insert);
     $stmt_insert->bindParam(":film_id", $film_id);
     $stmt_insert->execute();

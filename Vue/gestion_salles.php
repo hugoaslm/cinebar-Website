@@ -97,7 +97,28 @@ if (!$estAdmin) {
                     <button type="submit">Ajouter Salle</button>
                 </div>
             </form>
+
+            <h2>Supprimer une salle :</h2>
+            <form action="../Contrôleur/supprimer_salle.php" method="post" class="form-container">
+                <select name="salle_id" id="salle_id">
+                    <?php
+
+                    include '../Modèle/bdd.php';
+
+                    $sql = "SELECT id_Salle, nom_salle FROM salle";
+                    $resultat = $connexion->query($sql);
+
+                    // Générer les options de la liste déroulante
+                    while ($salles = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $salles['id_Salle'] . '">' . $salles['nom_salle'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <button class="sele-moment" type="submit">Supprimer</button>
+            </form>
         </section>
+
+        
 
     </main>
 

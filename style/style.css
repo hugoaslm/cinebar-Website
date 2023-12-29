@@ -259,3 +259,80 @@ li {
   background-color: #4f4da4;
   border-radius: 10px;
 }
+
+/* Thème */
+
+body.light-mode {
+    background-color: white;
+}
+
+.light-mode nav {
+  background-color: white;
+}
+
+.light-mode footer {
+  background-color: white;
+}
+
+.light-mode footer div {
+  color: black;
+}
+
+.light-mode a {
+  color: black;
+}
+
+.light-mode h1, h2, h3, p {
+  color: black !important;
+}
+
+.darker-mode h1, h2, h3, p {
+  color: white !important;
+}
+
+.light-mode svg {
+  fill: black;
+}
+
+.light-mode form {
+  color: black;
+}
+
+.light-mode .bouton-pro a{
+  color: white !important;
+}
+
+.light-mode .bouton-co a{
+  color: white !important;
+}
+
+.light-mode .bouton-co svg {
+  fill: white;
+}
+
+/* responsive */
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    padding: 10px;
+  }
+
+  nav a {
+    margin: 5px 0;
+    font-size: 0.9em; /* Adjust font size for smaller screens */
+  }
+  
+}

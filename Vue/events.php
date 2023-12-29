@@ -1,4 +1,11 @@
-<?php include '../Modèle/bdd.php'; ?>
+<?php
+
+session_start();
+
+include '../Modèle/bdd.php';
+include '../Modèle/themeClair.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,8 +47,6 @@
 
                 <?php
 
-                session_start();
-
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
@@ -73,6 +78,12 @@
     </header>
 
     <main>
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : '';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+        ?>
+
         <h1>ÉVÈNEMENT DU MOMENT</h1>
         <section class='vedette-section'>
             <?php

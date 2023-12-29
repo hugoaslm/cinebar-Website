@@ -68,6 +68,7 @@ main img {
   height: 550px;
   display: block;
   object-fit: cover;
+  filter: grayscale(100%);
 }
 
 .vignette-film {
@@ -251,4 +252,34 @@ main img {
 /* Ajoutez ces styles pour positionner la nouvelle flèche de navigation vers la gauche */
 .arrow-prev-second {
   left: 40px;
+}
+
+/* theme */
+
+.light-mode .vignette-film h1 {
+  color: white;
+}
+
+.light-mode .accueil-cine {
+  background-color: rgba(218, 218, 218, 0.888);
+}
+
+.light-mode .accueil-bar {
+  background-color: rgba(218, 218, 218, 0.888);
+}
+
+.light-mode .carousel-container {
+  background-color: rgba(218, 218, 218, 0.888);
+}
+
+.light-mode .boite3 {
+  background-color: rgba(218, 218, 218, 0.888);
+}
+
+.light-mode .acc-bar p, .acc-cine p {
+  color: black;
+}
+
+.light-mode .vignette-film h1, p{
+  color: white;
 }

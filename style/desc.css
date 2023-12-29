@@ -67,36 +67,43 @@ svg {
     margin-top: 20px;
 }
 
-h2 {
-    margin-top: 20px;
-}
-
 div h3 {
     display: inline-flex;
 }
 
 /* note */
 
-.rating {
-    display: inline-block;
-    font-size: 24px;
-  }
+.note-cursor {
+    width: 800px;
+    height: auto;
+    margin: auto;
+    padding: 50px;
+}
 
-  .rating input {
-    display: none;
-  }
-
-  .rating label {
-    float: right;
-    cursor: pointer;
-  }
-
-  .rating label::before {
-    content: '\2605'; /* étoile pleine en unicode */
-    color: #ddd;
-    font-size: 24px;
-  }
-
-  .rating input:checked ~ label::before {
+.note-cursor h2 {
+    float: left;
     color: gold;
-  }
+}
+
+.note-cursor input, .note-cursor span {
+    float: right;
+}
+
+/* theme */
+
+.light-mode .real {
+    color: black;
+}
+
+.light-mode form input {
+    border: solid 2px black;
+}
+
+.light-mode form select {
+    height: auto;
+    border: solid 2px black;
+}
+
+.light-mode .valeur-volume {
+    color: black;
+}

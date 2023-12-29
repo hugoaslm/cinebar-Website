@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+session_start();
+include '../Modèle/themeClair.php'; ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/cinema.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,8 +43,6 @@
 
                 <?php
 
-                session_start();
-
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
@@ -71,6 +74,12 @@
     </header>
 
     <main>
+
+        <?php 
+        $bodyClass = ($theme == 0) ? 'light-mode' : '';
+        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+        ?>
+        
         <div class="haut-cine">
             <img src="../images/darcy.jpg" alt="Cinéma Darcy" >
         </div>

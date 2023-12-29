@@ -7,6 +7,9 @@ if (!$estConnecte) {
     header("Location: accueil.php");
     exit();
 }
+
+include '../Modèle/themeClair.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -77,29 +80,27 @@ if (!$estConnecte) {
     </header>
 
     <main>
+
+    <?php 
+    $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
+    echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
+    ?>
+
     <h1>Modifier le profil de <span class="mot_cle"><?php echo $identif; ?></span> : </h1>
-        <form action="modifier_compte.php" method="post" class="compte">
+        <form action="../Contrôleur/modifier_compte.php" method="post" class="compte">
             <label for="mail">E-mail :</label>
-            <input type="mail" id="mail" name="mail" required>
+            <input type="mail" id="mail" name="mail">
 
             <label for="pseudo">Pseudo :</label>
-            <input type="text" id="pseudo" name="pseudo" required>
-
-            <div class="lang">
-                <label for="langue">Préférence de Langue :</label>
-                <select id="langue" name="langue" required>
-                    <option value="francais">Français</option>
-                    <option value="anglais">Anglais</option>
-                </select>
-            </div>
+            <input type="text" id="pseudo" name="pseudo">
 
             <div class="theme-container">
-                <span class="theme-label">Thème:</span>
+                <span class="theme-label">Thème :</span>
                 <label class="switch">
-                    <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                    <input type="checkbox" id="themeToggle" name="themeToggle" onchange="toggleTheme()" value="1">
                     <span class="slider round"></span>
                 </label>
-                <span id="themeText">sombre</span>
+                <span id="themeText"></span>
             </div>
 
 
@@ -107,20 +108,32 @@ if (!$estConnecte) {
         </form>
 
         <script>
-            // Ajoutez cette fonction pour changer le texte en fonction de l'état du toggle
+            // Ajoutez cette fonction pour changer le thème en fonction de l'état du toggle
             function toggleTheme() {
                 var themeToggle = document.getElementById("themeToggle");
                 var themeText = document.getElementById("themeText");
+                var body = document.body;
 
                 if (themeToggle.checked) {
+                    themeToggle.value = 1;
                     // Thème sombre
-                    document.body.classList.add("theme-clair");
-                    themeText.textContent = "clair";
-                } else {
-                    // Thème clair
-                    document.body.classList.remove("theme-sombre");
+                    body.classList.add("dark-mode");
+                    body.classList.remove("light-mode");
                     themeText.textContent = "sombre";
+                } else {
+                    themeToggle.value = 0;
+                    // Thème clair
+                    body.classList.remove("dark-mode");
+                    body.classList.add("light-mode");
+                    themeText.textContent = "clair";
                 }
+            }
+
+            // Chargez le mode précédemment sélectionné lors du rechargement de la page
+            const storedDarkMode = localStorage.getItem('darkMode');
+            if (storedDarkMode === 'true') {
+                document.getElementById("themeToggle").checked = true;
+                toggleTheme();
             }
         </script>
     </main>

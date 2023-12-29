@@ -1,10 +1,6 @@
 .form_billet form {
-  width: 550px;
+  width: 800px;
   height: 750px;
-  padding: 20px;
-  background-color: #1E1E1E;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.30);
   display: grid;
   gap: 40px;
   grid-template-columns: 1fr 1fr;
@@ -48,4 +44,28 @@
 
 .billet-confirm h1, .billet-confirm h3 {
   color: black;
+}
+
+.form_billet h1 {
+  text-decoration: underline;
+  text-decoration-color: #89404F;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.note h1 {
+  text-decoration: underline;
+  text-decoration-color: #89404F;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.note {
+  text-align: center;
+  margin-bottom: 50px;
 }

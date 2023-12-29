@@ -104,11 +104,15 @@ li {
     margin-bottom: 300px;
 }
 
-.lang, .theme {
+.theme {
     display: block;
     text-align: left;
     margin-bottom: 30px;
     margin-top: 10px;
+}
+
+.compte button {
+    border-radius: 10px;
 }
 
 /* toggle */
@@ -186,4 +190,21 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* Styles par défaut ou pour le mode clair */
+body.light-mode {
+    background-color: white;
+    color: black;
+    /* ... autres styles clairs selon vos besoins */
+}
+
+/* theme */
+
+.light-mode li a {
+    color: white;
+}
+
+.light-mode .profil-options {
+    border: 1px solid black;
 }
