@@ -89,6 +89,55 @@ div h3 {
     float: right;
 }
 
+.note h1, .reservation h1 {
+    text-decoration: underline;
+    text-decoration-color: #89404F;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+.note {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* reservation */
+
+.reservation {
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+}
+
+.projections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 100px;
+    max-width: 1325px;
+    margin: auto;
+    margin-top: 50px;
+}
+  
+.proj {
+    flex-wrap: wrap;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #89404F;
+    margin-bottom: 50px;
+    overflow: hidden;
+    width: 375px;
+    padding: 20px;
+}
+
+.proj a {
+    text-decoration: none;
+    color: white;
+}
+
 /* theme */
 
 .light-mode .real {
@@ -110,4 +159,8 @@ div h3 {
 
 .light-mode .valeur-volume {
     color: black;
+}
+
+body.dark-mode h3 {
+    color: white;
 }

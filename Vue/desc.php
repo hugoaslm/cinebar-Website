@@ -5,21 +5,48 @@ session_start();
 include '../Modèle/bdd.php';
 include '../Modèle/themeClair.php';
 
-// Récupérez l'ID du film depuis l'URL
+// Vérifiez si l'utilisateur est connecté
+$estConnecte = isset($_SESSION['identifiant']);
+
 $event_id = isset($_GET['id_E']) ? $_GET['id_E'] : null;
 
-// Vérifiez si l'ID du film est défini
-if ($event_id !== null) {
-    // Échappez l'ID pour éviter les attaques par injection SQL
-    $event_id = $connexion->quote($event_id);
+// Initialisation les valeurs par défaut
+$nom = '';
+$prenom = '';
+$email = '';
+$event = '';
+$places = '';
+$date = '';
+$horaires = '';
 
-    // Récupérez les détails du film de la base de données
-    $result = $connexion->query("SELECT * FROM events WHERE id_E = $event_id");
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-} else {
-        echo "ID de l'event non spécifié.";
-        exit; // Arrête l'exécution si l'ID n'est pas spécifié
+// Vérifiez si l'ID de l'event est défini
+if ($event_id !== null) {
+    $stmt_event = $connexion->prepare("SELECT * FROM events WHERE id_E = :event_id");
+    $stmt_event->bindParam(':event_id', $event_id);
+    $stmt_event->execute();
+    $event_details = $stmt_event->fetch(PDO::FETCH_ASSOC);
+
+    // Si l'event est trouvé, mettez à jour les valeurs par défaut
+    if ($event_details) {
+        $date = $event_details['date'];
+        $horaires = $event_details['horaires'];
+        $event = $event_details['nom'];
+    }
 }
+
+include "../Modèle/infos_utilisateur.php";
+
+// Si l'utilisateur est connecté, récupérez son email
+if ($estConnecte) {
+    $email = $resultat['mail'];
+}
+
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +73,6 @@ if ($event_id !== null) {
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -99,11 +125,11 @@ if ($event_id !== null) {
                 
         <section>
             <div class="container-films">
-                <img src="<?= htmlspecialchars($row['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
+                <img src="<?= htmlspecialchars($event_details['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($event_details['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
                 <div class="info">
-                    <h1><?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
-                    <div class="real"><h3>De :</h3> <?= htmlspecialchars($row['organisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
-                    <p><?= htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <h1><?= htmlspecialchars($event_details['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                    <div class="real"><h3>De :</h3> <?= htmlspecialchars($event_details['organisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
+                    <p><?= htmlspecialchars($event_details['description'], ENT_QUOTES, 'UTF-8'); ?></p>
 
                 </div>
             </div>
@@ -129,29 +155,24 @@ if ($event_id !== null) {
 
         <section class='form_billet'>
             <h1>Réservation :</h1>
-            <form action="../Contrôleur/traitement_billet.php" method="post" class="reserv-billet">
+            <form action="../Contrôleur/traitement_billet_events.php" method="post" class="reserv-billet">
                 <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom">
+                <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>" >
                 <label for="nom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom">
+                <input type="text" id="prenom" name="prenom" value="<?php echo $prenom; ?>">
                 <label for="mail">E-mail :</label>
-                <input type="mail" id="mail" name="mail">
+                <input type="mail" id="mail" name="mail" value="<?php echo $email; ?>" readonly>
                 <label> Évènement :</label>
-                <select id="movie" name="film">
-                    <option value="Oppenheimer">Oppenheimer</option>
-                    <option value="Indiana Jones">Indiana Jones</option>
-                    <option value="Avatar">Avatar</option>
-                    <option value="Napoléon">Napoléon</option>
+                <select id="movie" name="event" readonly>
+                    <option value="<?php echo $event; ?>"><?php echo $event; ?></option>
                 </select>
                 <label for="places">Nombre de places :</label>
-                <input type="places" id="places" name="places">
+                <input type="places" id="places" name="places" value="<?php echo $places; ?>">
                 <label for="date">Date :</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" value="<?php echo $date; ?>" readonly>
                 <label for="horaire">Horaire :</label>
-                <select id="horaire" name="horaire">
-                    <option value="13h45">13h45</option>
-                    <option value="17h00">17h00</option>
-                    <option value="19h30">19h30</option>
+                <select id="horaire" name="horaires" readonly>
+                    <option value="<?php echo $horaires; ?>"><?php echo $horaires; ?></option>
                 </select>
                 <p>
                     <button name="send" type="submit">Réserver</button>
@@ -168,7 +189,7 @@ if ($event_id !== null) {
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>

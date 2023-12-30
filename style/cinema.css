@@ -172,24 +172,28 @@ ul {
 
 /* theme */
 
-.light-mode .desc-bar-cine p {
+body.light-mode .desc-bar-cine p {
   color: black;
 }
 
-.light-mode .sav-plus h2 {
+body.light-mode .sav-plus h2 {
   color: black;
 }
 
-.light-mode .block-aside h2 {
+body.light-mode .block-aside h2 {
   color: black;
 }
 
-.light-mode .menu-list li {
+body.light-mode .menu-list li {
   color: black;
 }
 
-.light-mode .menu h1 {
+body.light-mode .menu h1 {
   color: black;
+}
+
+body.dark-mode .block-aside h2 {
+  color: white;
 }
 
 /* responsive */

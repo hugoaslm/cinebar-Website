@@ -28,7 +28,6 @@ include '../Modèle/themeClair.php'; ?>
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -159,7 +158,7 @@ include '../Modèle/themeClair.php'; ?>
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>

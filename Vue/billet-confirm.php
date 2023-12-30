@@ -3,8 +3,8 @@
     
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/billet-events.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/billet-events.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -23,7 +23,6 @@
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -84,7 +83,7 @@
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>

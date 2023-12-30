@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $nom = $_POST["nom"];
@@ -7,6 +10,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $film = $_POST["film"];
     $nb = $_POST["places"];
     $horaire = $_POST["horaire"];
+    $date = $_POST['date'];
+
+    include "../Modèle/infos_utilisateur.php";
+    include "../Modèle/bdd.php";
+
+    // Récupération de l'id de projection
+
+    $stmt_projection = $connexion->prepare("SELECT id_Projection FROM projection WHERE date = :date AND heure = :horaire");
+    $stmt_projection->bindParam(':date', $date);
+    $stmt_projection->bindParam(':horaire', $horaire);
+    $stmt_projection->execute();
+    $projection_id = $stmt_projection->fetchColumn();
+
+    $utilisateur_id = $resultat['id_Utilisateur'];
+
+    if ($projection_id !== null) {
+        // Insertion des données dans la table reservation_film
+        $stmt = $connexion->prepare("INSERT INTO reservation_film (nb_reservation, Projection_id_Projection, Utilisateur_id_Utilisateur) VALUES (:places, :projection_id, :utilisateur_id)");
+        $stmt->bindParam(':places', $nb);
+        $stmt->bindParam(':projection_id', $projection_id);
+        $stmt->bindParam(':utilisateur_id', $utilisateur_id);
+
+        // Vérifier les erreurs SQL
+        if (!$stmt->execute()) {
+            die("Erreur d'exécution de la requête : " . $stmt->errorInfo()[2]);
+        }
+    }
 
     $body = "
         <html>
@@ -50,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
-    
+
     $headers .= "From: Cinébar <cinebar@gmail.com>\r\n";
 
     $subject = "Confirmation de réservation pour $film";
@@ -59,5 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     header("Location: ../Vue/billet-confirm.php");
     exit();
+
+    // Fermer la connexion
+    $connexion = null;
 }
 ?>

@@ -273,6 +273,10 @@ h1 {
 
 /* theme */ 
 
-.light-mode .salles h2 {
+body.light-mode .salles h2 {
   color: white !important;
+}
+
+body.dark-mode h3 {
+  color: white;
 }

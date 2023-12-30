@@ -3,9 +3,9 @@
 $sql_manuelle = "SELECT selection_manuelle FROM film_moment";
 
 // Sélectionner l'id du film avec le plus de réservations
-$sql_req = "SELECT reservation.Projection_id_Projection AS id_F, SUM(reservation.nb_reservation) AS total_reservations
-FROM reservation
-GROUP BY reservation.Projection_id_Projection
+$sql_req = "SELECT reservation_film.Projection_id_Projection AS id_F, SUM(reservation_film.nb_reservation) AS total_reservations
+FROM reservation_film
+GROUP BY reservation_film.Projection_id_Projection
 ORDER BY total_reservations DESC
 LIMIT 1;";
 

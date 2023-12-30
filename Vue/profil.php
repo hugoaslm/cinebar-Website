@@ -36,7 +36,6 @@ include '../Modèle/estAdmin.php';
             <a href="cafet.php">La Cafétéria</a>
             <a href="films.php">Films</a>
             <a href="events.php">Évènements</a>
-            <a href="billet.php">Billetterie</a>
             <a href="forum.php">Forum</a>
         </div>
         <div class="bouton-access">

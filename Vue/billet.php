@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+include "../Modèle/bdd.php";
+
+// Vérifiez si l'utilisateur est connecté
+$estConnecte = isset($_SESSION['identifiant']);
+
+// Récupération de l'ID de la projection à partir de l'URL
+$projection_id = isset($_GET['id_Projection']) ? $_GET['id_Projection'] : null;
+
+// Initialisation les valeurs par défaut
+$nom = '';
+$prenom = '';
+$email = '';
+$film = '';
+$places = '';
+$date = '';
+$horaire = '';
+
+// Vérifiez si l'ID de la projection est défini
+if ($projection_id !== null) {
+    $stmt_projection = $connexion->prepare("SELECT films_salle_films_id_F, date, heure FROM projection WHERE id_Projection = :id_Projection");
+    $stmt_projection->bindParam(':id_Projection', $projection_id);
+    $stmt_projection->execute();
+    $projection_details = $stmt_projection->fetch(PDO::FETCH_ASSOC);
+
+    $film = $projection_details['films_salle_films_id_F'];
+
+    $stmt_film = $connexion->prepare("SELECT nom FROM films WHERE id_F = :id_Film");
+    $stmt_film->bindParam(':id_Film', $film);
+    $stmt_film->execute();
+    $nom_film = $stmt_film->fetchColumn();
+
+    // Si la projection est trouvée, mettez à jour les valeurs par défaut
+    if ($projection_details) {
+        $date = $projection_details['date'];
+        $horaire = $projection_details['heure'];
+    }
+}
+
+include "../Modèle/infos_utilisateur.php";
+
+// Si l'utilisateur est connecté, récupérez son email
+if ($estConnecte) {
+    $email = $resultat['mail'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -23,7 +72,6 @@
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -37,8 +85,6 @@
                 </div>
 
                 <?php
-
-                session_start();
 
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
@@ -72,29 +118,25 @@
 
     <main class="billet">
         <section class='form_billet'>
-            <form action="traitement_billet.php" method="post" class="reserv-billet">
+            <h1>Réservation :</h1>
+            <form action="../Contrôleur/traitement_billet_films.php" method="post" class="reserv-billet">
                 <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom">
+                <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>" >
                 <label for="nom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom">
+                <input type="text" id="prenom" name="prenom" value="<?php echo $prenom; ?>">
                 <label for="mail">E-mail :</label>
-                <input type="mail" id="mail" name="mail">
+                <input type="mail" id="mail" name="mail" value="<?php echo $email; ?>" readonly>
                 <label> Évènement :</label>
-                <select id="movie" name="film">
-                    <option value="Oppenheimer">Oppenheimer</option>
-                    <option value="Indiana Jones">Indiana Jones</option>
-                    <option value="Avatar">Avatar</option>
-                    <option value="Napoléon">Napoléon</option>
+                <select id="movie" name="film" readonly>
+                    <option value="<?php echo $nom_film; ?>"><?php echo $nom_film; ?></option>
                 </select>
                 <label for="places">Nombre de places :</label>
-                <input type="places" id="places" name="places">
+                <input type="places" id="places" name="places" value="<?php echo $places; ?>">
                 <label for="date">Date :</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" value="<?php echo $date; ?>" readonly>
                 <label for="horaire">Horaire :</label>
-                <select id="horaire" name="horaire">
-                    <option value="13h45">13h45</option>
-                    <option value="17h00">17h00</option>
-                    <option value="19h30">19h30</option>
+                <select id="horaire" name="horaire" readonly>
+                    <option value="<?php echo $horaire; ?>"><?php echo $horaire; ?></option>
                 </select>
                 <p>
                     <button name="send" type="submit">Réserver</button>
@@ -111,7 +153,7 @@
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>

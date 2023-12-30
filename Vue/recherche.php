@@ -31,7 +31,6 @@ include '../Modèle/bdd.php';
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -78,37 +77,42 @@ include '../Modèle/bdd.php';
     </header>
 
     <main>
+        
         <?php
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Récupérer le terme de recherche
-            $terme_recherche = $_POST['recherche'];
+        include "../Contrôleur/traitement_recherche.php";
 
-            $sql = "SELECT * FROM films WHERE nom LIKE :terme_recherche";
-            $stmt = $connexion->prepare($sql);
-            
-            // Ajouter des jokers pour permettre une correspondance partielle
-            $terme_recherche = "%" . $terme_recherche . "%";
-            $stmt->bindParam(':terme_recherche', $terme_recherche, PDO::PARAM_STR);
-            
-            $stmt->execute();
+        echo '<h1>Résultat de votre recherche :</h1>';
+        echo '<div class="films-container">';
 
-            echo '<h1>Résultat de votre recherche :</h1>';
-            echo '<div class="films-container">';
-
-            // Afficher les résultats
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="film">';
-                echo '<a href="details.php?id_F=' . $row['id_F'] . '">';
-                echo '<img src="' . $row['affiche'] . '" alt="' . $row['nom'] . '">';
-                echo '<p class="film-info">';
-                echo '<span>' . $row['nom'] . '</span><br>';
-                echo '<span class="small-text">' . $row['genre'] . '</span>';
-                echo '</p>';
-                echo '</a>';
-                echo '</div>';
-            } 
+        // Afficher les résultats des films
+        while ($row = $stmt_films->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="film">';
+            echo '<a href="details.php?id_F=' . $row['id_F'] . '">';
+            echo '<img src="' . $row['affiche'] . '" alt="' . $row['nom'] . '">';
+            echo '<p class="film-info">';
+            echo '<span>' . $row['nom'] . '</span><br>';
+            echo '<span class="small-text">' . $row['genre'] . '</span>';
+            echo '</p>';
+            echo '</a>';
+            echo '</div>';
         }
+
+        echo '</div>';
+
+        echo '<div class="events-container">';
+
+        // Afficher les résultats des événements
+        while ($row = $stmt_events->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="event">';
+            echo '<a href="desc.php?id_E=' . $row['id_E'] . '" class="ev">';
+            echo '<img src="' . $row['affiche'] . '" alt="' . $row['nom'] . '">';
+            echo '<p>' . $row['organisateur'] . '</p>';
+            echo '</a>';
+            echo '</div>';
+        }
+        
+        echo '</div>';
 
         ?>
     </main>
@@ -118,7 +122,7 @@ include '../Modèle/bdd.php';
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>

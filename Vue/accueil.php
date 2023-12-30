@@ -49,7 +49,6 @@ include "../Contrôleur/film_moment_default.php"
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -242,28 +241,35 @@ include "../Contrôleur/film_moment_default.php"
         
         <section class="carrousel">
             
-            <div class="carousel-container">
-                <h1> À l'affiche au cinéma :</h1>
+            <?php
+            try {
+                // Préparer la requête SQL
+                $stmt = $connexion->prepare("SELECT * FROM films");
+                    
+                // Exécuter la requête
+                $stmt->execute();
+                
+                // Récupérer toutes les lignes résultantes
+                $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+            }
+            ?>
+
+            <<div class="carousel-container">
+                <h1>À l'affiche au cinéma :</h1>
                 <div class="arrow arrow-prev" onclick="prevSlide()">&#9664;</div>
                 <div class="img-carrousel">
-                    
-                    <img src="../images/avatar.jpg" alt="avatar">
-                    <img src="../images/oppenheimer.jpg" alt="oppenheimer">
-                    <img src="../images/napoleon.jpg" alt="napoleon">
-                    <img src="../images/mario.jpg" alt="mario">
-                    <img src="../images/hunger-games.jpg" alt="hunger-games">
-                    <img src="../images/L-affiche-des-Trois-Mousquetaires-Milady-1706429.jpg" alt="3mosquetaires">
-                    <img src="../images/5607521.jpg-r_1920_1080-f_jpg-q_x-xxyxx.jpg" alt="wish">
-                    <img src="../images/migration.jpg" alt="migration">
-                    <img src="../images/wonka.jpg" alt="wonka">
-                    <img src="../images/follow_daed.jpg" alt="followdead">
-                    <img src="../images/soudain_seuls.jpg" alt="soudainseuls">
-                    <img src="../images/Batiment5.jpg" alt="bat5">
-                </div>
-                <div class="arrow arrow-next" onclick="nextSlide()">&#9654;</div>
-                <div class="arrow arrow-prev" onclick="prevSlide()">&#9664;</div>
-                
+                    <?php
+                    // Boucle à travers les films pour afficher chaque image
+                    foreach ($films as $film) {
+                        echo '<img src="' . $film['affiche'] . '" alt="' . $film['nom'] . '">';
+                    }
+                    ?>
             </div>
+            <div class="arrow arrow-next" onclick="nextSlide()">&#9654;</div>
+            <div class="arrow arrow-prev" onclick="prevSlide()">&#9664;</div>
+                
         </section>
 
 
@@ -275,7 +281,7 @@ include "../Contrôleur/film_moment_default.php"
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>

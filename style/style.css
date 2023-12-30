@@ -266,28 +266,28 @@ body.light-mode {
     background-color: white;
 }
 
-.light-mode nav {
+body.light-mode nav {
   background-color: white;
 }
 
-.light-mode footer {
+body.light-mode footer {
   background-color: white;
 }
 
-.light-mode footer div {
+body.dark-mode footer div {
+  color: white;
+}
+
+body.light-mode a {
   color: black;
 }
 
-.light-mode a {
+body.dark-mode p {
+  color: white;
+}
+
+body.light-mode p {
   color: black;
-}
-
-.light-mode h1, h2, h3, p {
-  color: black !important;
-}
-
-.darker-mode h1, h2, h3, p {
-  color: white !important;
 }
 
 .light-mode svg {
@@ -299,16 +299,30 @@ body.light-mode {
 }
 
 .light-mode .bouton-pro a{
-  color: white !important;
+  color: white ;
 }
 
 .light-mode .bouton-co a{
-  color: white !important;
+  color: white ;
 }
 
 .light-mode .bouton-co svg {
   fill: white;
 }
+
+body.dark-mode footer h3 {
+  color: white;
+}
+
+body.dark-mode h1, h3 {
+  color: white ;
+}
+
+body.light-mode h1, h3 {
+  color: black ;
+}
+
+
 
 /* responsive */
 

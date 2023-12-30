@@ -30,8 +30,6 @@ if ($film_id !== null) {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/details.css">
-    <link rel="stylesheet" href="../style/billet-events.css">
-    <link rel="stylesheet" href="../style/note.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -48,7 +46,6 @@ if ($film_id !== null) {
                 <a href="cafet.php">La Cafétéria</a>
                 <a href="films.php">Films</a>
                 <a href="events.php">Évènements</a>
-                <a href="billet.php">Billetterie</a>
                 <a href="forum.php">Forum</a>
             </div>
             <div class="bouton-access">
@@ -149,39 +146,38 @@ if ($film_id !== null) {
 
         </section>
 
-        <section class='form_billet'>
-            <h1>Réservation :</h1>
-            <form action="../Contrôleur/traitement_billet.php" method="post" class="reserv-billet">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom">
-                <label for="nom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom">
-                <label for="mail">E-mail :</label>
-                <input type="mail" id="mail" name="mail">
-                <label> Évènement :</label>
-                <select id="movie" name="film">
-                    <option value="Oppenheimer">Oppenheimer</option>
-                    <option value="Indiana Jones">Indiana Jones</option>
-                    <option value="Avatar">Avatar</option>
-                    <option value="Napoléon">Napoléon</option>
-                </select>
-                <label for="places">Nombre de places :</label>
-                <input type="places" id="places" name="places">
-                <label for="date">Date :</label>
-                <input type="date" id="date" name="date">
-                <label for="horaire">Horaire :</label>
-                <select id="horaire" name="horaire">
-                    <option value="13h45">13h45</option>
-                    <option value="17h00">17h00</option>
-                    <option value="19h30">19h30</option>
-                </select>
-                <p>
-                    <button name="send" type="submit">Réserver</button>
-                </p>
-                <p>
-                    <button type="reset">Annuler</button>
-                </p>
-            </form>
+        <section class="reservation">
+            <?php
+            // Inclure le fichier recuperer_projection.php
+            include '../Modèle/récupérer_projection.php';
+
+            // Vérifier si l'ID du film est spécifié
+            if (isset($_GET['id_F'])) {
+                $film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
+
+                // Vérifier s'il y a des projections
+            
+                echo '<h1>Reservation :</h1>';
+                echo '<div class="projections">';
+
+                foreach ($projections as $projection) {
+                    $projection_id = $projection['id_Projection'];
+                    $horaire = $projection['heure'];
+                    $date = new DateTime($projection['date']);
+                
+                    // Définir les noms des jours et des mois en français
+                    $jours = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+                    $mois = [null, 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+                
+                    // Formatage de la date en français
+                    $formatted_date = $jours[$date->format('w')] . ' ' . $date->format('j') . ' ' . $mois[$date->format('n')] . ' ' . $date->format('Y');
+                
+                    echo '<div class="proj">';
+                    echo "<a href='billet.php?id_Projection=$projection_id'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
+                    echo '</div>';
+                }
+            }
+            ?>
         </section>
         
     </main>
@@ -191,7 +187,7 @@ if ($film_id !== null) {
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
-                8 Prom. Coeur de Ville<br>
+                <p>8 Prom. Coeur de Ville</p>
                 <a>92130- Issy-les-Moulineaux</a>
             </div>
         </section>
