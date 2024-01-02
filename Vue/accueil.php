@@ -24,6 +24,9 @@ include "../Contrôleur/film_moment_default.php"
 
 <!DOCTYPE html>
 <html lang="en">
+
+
+<?php include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
@@ -94,11 +97,6 @@ include "../Contrôleur/film_moment_default.php"
     </header>
 
     <main>
-
-        <?php 
-        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
-        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-        ?>
 
         <section class="acc-img">
             <div class="haut-cine">

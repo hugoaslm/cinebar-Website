@@ -21,7 +21,49 @@ if ($film_id !== null) {
         exit;
 }
 
-?>
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    .container-films {
+    color: black;
+    }
+
+    body {
+        color: black;
+    }
+
+    .note h1, .reservation h1 {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+    body {
+    background-color: #1E1E1E;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+
+    .container-films {
+    color: white;
+    }
+
+    body {
+        color: white;
+    }
+
+    .note h1, .reservation h1 {
+        color: white;
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,11 +133,6 @@ if ($film_id !== null) {
 
     <main>
 
-        <?php 
-        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
-        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-        ?>
-
         <section>
             <div class="container-films">
                 <img src="<?= htmlspecialchars($row['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
@@ -134,22 +171,21 @@ if ($film_id !== null) {
             <?php
 
             // Inclusion de la fonction PHP qui génère le curseur de volume
-            include '../Modèle/note.php';
+            include '../Modèle/donnees_film.php';
+            include '../Modèle/récupérer_projection.php';
 
             ?>
 
             <div class="note-cursor">
                 <h2><?php echo $note; ?>/5</h2>
-                <span class="valeur-volume"><?php echo $valeurEnDB; ?> dB</span>
-                <input type="range" min="0" max="100" value="<?php echo $valeurCurseur; ?>" class="curseur-volume" disabled>
+                <span class="valeur-volume"><?php echo $donnees_capteur['moyenne_decibel']; ?> dB</span>
+                <input type="range" min="0" max="100" value="<?php echo $donnees_capteur['moyenne_decibel']; ?>" class="curseur-volume" disabled>
             </div>
 
         </section>
 
         <section class="reservation">
             <?php
-            // Inclure le fichier recuperer_projection.php
-            include '../Modèle/récupérer_projection.php';
 
             // Vérifier si l'ID du film est spécifié
             if (isset($_GET['id_F'])) {
@@ -173,7 +209,11 @@ if ($film_id !== null) {
                     $formatted_date = $jours[$date->format('w')] . ' ' . $date->format('j') . ' ' . $mois[$date->format('n')] . ' ' . $date->format('Y');
                 
                     echo '<div class="proj">';
+                    if ($estConnecte) {
                     echo "<a href='billet.php?id_Projection=$projection_id'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
+                    } else {
+                        echo "<a href='connexion.php'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
+                    }
                     echo '</div>';
                 }
             }

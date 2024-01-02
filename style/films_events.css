@@ -116,7 +116,6 @@ h1 {
   justify-content: center;
   text-align: center;
   margin: auto;
-  color: white;
 }
 
 .films-title h1 {
@@ -170,15 +169,9 @@ h1 {
   justify-content: center;
   text-align: center;
   margin: auto;
-  color: white;
 }
 
 .event a {
   text-decoration: none;
 }
 
-/* theme */
-
-.light-mode .details h2, h4, p {
-  color: white !important;
-}

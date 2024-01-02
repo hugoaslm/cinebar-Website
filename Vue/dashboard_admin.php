@@ -7,7 +7,32 @@ if (!$estAdmin) {
     header("Location: accueil.php");
     exit();
 }
-?>
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    color: white;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,10 +104,34 @@ if (!$estAdmin) {
     </header>
 
     <main class="choix">
+        <h1>Bienvenue sur le Tableau de Bord Admin</h1>
+        <p>Gérez les films, événements, salles et projections avec facilité.</p>
+
         <div class="admin-buttons">
-            <a href="gestion_films.php">Gestions des films</a>
-            <a href="gestion_events.php">Gestions des évènements</a>
-            <a href="gestion_salles.php">Gestions des salles</a>
+            <a href="gestion_films.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion des films
+            </a>
+            <a href="gestion_events.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion des événements
+            </a>
+            <a href="gestion_salles.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion des salles
+            </a>
+            <a href="gestion_projections.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion des projections
+            </a>
         </div>
     </main>
 

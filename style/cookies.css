@@ -52,7 +52,6 @@ label, input, select{
         transition: left 0.3s; }
         
 .cookies {
-  background-color: #1E1E1E;
   height: auto;
   display: flex;
   align-items: center;

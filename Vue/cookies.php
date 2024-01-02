@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+</style>
+<?php } ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,8 +66,6 @@
                 </div>
 
                 <?php
-
-                session_start();
 
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);

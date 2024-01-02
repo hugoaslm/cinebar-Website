@@ -7,7 +7,31 @@ if (!$estAdmin) {
     header("Location: accueil.php");
     exit();
 }
-?>
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+if ($theme == 0) { ?>
+    <style>
+        body {
+            color: black;
+        }
+    </style>
+<?php } ?>
+
+<?php if ($theme == 1) { ?>
+    <style>
+        body {
+            background-color: #1E1E1E;
+            color: white;
+        }
+
+        footer,
+        header {
+            background-color: rgb(17, 17, 17);
+        }
+    </style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +43,8 @@ if (!$estAdmin) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -57,7 +83,7 @@ if (!$estAdmin) {
                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - 
                     https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> '
-                      . $identif . ' </a>';
+                        . $identif . ' </a>';
                     $boutonConnexion .= '<div class="menu-deroulant">';
                     $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
@@ -76,9 +102,9 @@ if (!$estAdmin) {
     </header>
 
     <main>
-    <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films, 
-        événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
-        Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
+        <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films,
+            événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations.
+            Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
             <h1>Gestion des Salles</h1>
@@ -91,6 +117,10 @@ if (!$estAdmin) {
 
                 <label for="equipement_salle">Équipements de la Salle :</label>
                 <input type="text" id="equipement_salle" name="equipement_salle" required>
+
+                <label for="type_salle">Peut accueillir :</label>
+                <select id="type_salle" name="type_salle[]" class="select2" multiple="multiple">
+                </select>
 
                 <div class="ajouter">
                     <button type="submit">Ajouter Salle</button>
@@ -117,8 +147,29 @@ if (!$estAdmin) {
             </form>
         </section>
 
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var type = [
+                    'Conférence',
+                    'Projection de film',
+                    'Evénement spécial',
+                    'Spectacle Humoristique',
+                    'Pièce de théâtre'
+                ];
 
+                $('#type_salle').select2({
+                    tags: true,
+                    tokenSeparators: [',', ' '],
+                    placeholder: 'Sélectionnez des types',
+                    data: type.map(function (type) {
+                        return { id: type, text: type };
+                    }),
+                });
+            });
+        </script>
+        
     </main>
 
     <footer>
@@ -136,7 +187,6 @@ if (!$estAdmin) {
             <a href="faq.php">FAQ</a>
         </div>
     </footer>
-
 </body>
 
 </html>

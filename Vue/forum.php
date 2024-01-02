@@ -1,6 +1,30 @@
 <?php
 session_start();
-?>
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,14 +40,12 @@ session_start();
             font-size: 16px;
             margin: 0;
             padding: 0;
-            background-color: #1E1E1E;
             color: white;
         }
 
         section {
             margin: 20px;
             padding: 20px;
-            background-color: #1E1E1E;
             
             
         }

@@ -46,9 +46,9 @@
 }
   
 .bouton-cinebar a {
+  color: white;
   margin: auto;
   text-decoration: none;
-  color: white;
 }
   
 .sav-plus {
@@ -91,7 +91,6 @@ main img {
   font-family: 'Manrope', sans-serif;
   font-size: 1.2em;
   line-height: 1.6;
-  color: white;
   margin-bottom: 20px;
 }
 
@@ -131,7 +130,27 @@ ul {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5em;
   margin-bottom: 20px;
-  color: white;
+}
+
+/* volume bar */
+
+.capteur_bar {
+  max-width: 1250px;
+  text-align: center;
+  margin: 100px auto;
+}
+
+.vol_bar {
+  justify-content: center;
+  align-items: center;
+}
+
+.capteur_bar h1 {
+  margin-bottom: 50px;
+  text-decoration: underline;
+  text-decoration-color: #89404F;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5em;
 }
 
 /* aside */ 
@@ -147,7 +166,6 @@ ul {
   text-decoration: underline;
   text-decoration-color: #89404F;
   text-decoration-thickness: 2px;
-  color: white;
 }
 
 .icon {
@@ -171,26 +189,6 @@ ul {
 }
 
 /* theme */
-
-body.light-mode .desc-bar-cine p {
-  color: black;
-}
-
-body.light-mode .sav-plus h2 {
-  color: black;
-}
-
-body.light-mode .block-aside h2 {
-  color: black;
-}
-
-body.light-mode .menu-list li {
-  color: black;
-}
-
-body.light-mode .menu h1 {
-  color: black;
-}
 
 body.dark-mode .block-aside h2 {
   color: white;

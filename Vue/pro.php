@@ -4,7 +4,39 @@ session_start();
 
 include '../Modèle/themeClair.php';
 
-?>
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+
+    .salles ul li {
+        color: white;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    color: white;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+
+    main a {
+        color: white;
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,11 +105,6 @@ include '../Modèle/themeClair.php';
     </header>
 
     <main>
-
-        <?php 
-        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
-        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-        ?>
                 
         <div class="salles-title">
             <h1>NOS SALLES</h1>
@@ -118,13 +145,22 @@ include '../Modèle/themeClair.php';
 
         <section id="form" class='form'>
             <h1>FORMULAIRE DE RESERVATION DE SALLES</h1>
-            <form action="../Contrôleur/traitement_formulaire.php" method="post" class="form-container">
+            <form action="../Contrôleur/ajouter_reservation.php" method="post" class="form-container">
                 <div class="form-column">
                     <label for="nom">Nom :</label>
                     <input type="text" id="nom" name="nom" required>
                     <label for="mail">E-mail :</label>
                     <input type="mail" id="mail" name="mail" required>
 
+                    <h3>Choix de la salle :</h3>
+                    <div class="choix-salles">
+                        <?php foreach ($salles as $salle) : ?>
+                            <div class="salle-option">
+                                <input type="radio" id="<?php echo htmlspecialchars($salle['id_Salle']); ?>" name="salle" value="<?php echo htmlspecialchars($salle['id_Salle']); ?>" data-types="<?php echo htmlspecialchars($salle['type']); ?>">
+                                <label for="<?php echo htmlspecialchars($salle['id_Salle']); ?>"><?php echo htmlspecialchars($salle['nom_salle']); ?></label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
 
                     <h3>Types d'évènements :</h3>
                     <div class="type-event">
@@ -147,17 +183,7 @@ include '../Modèle/themeClair.php';
                             <input type="radio" id="theatre" name="type_event" value="Pièce de théâtre">
                             <label for="theatre">Pièce de théâtre</label>
                         </div>
-                    </div>
-                    
-                    <h3>Choix de la salle :</h3>
-                    <div class="choix-salles">
-                        <?php foreach ($salles as $salle) : ?>
-                            <div>
-                                <input type="radio" id="<?php echo htmlspecialchars($salle['id_Salle']); ?>" name="salle" value="<?php echo htmlspecialchars($salle['id_Salle']); ?>">
-                                <label for="<?php echo htmlspecialchars($salle['id_Salle']); ?>"><?php echo htmlspecialchars($salle['nom_salle']); ?></label>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>  
+                    </div>                   
 
                 </div>
                 <div class="form-column">
@@ -174,21 +200,20 @@ include '../Modèle/themeClair.php';
                     <input type="number" id="number" name="number" required>
 
                     <h3>Equipements nécessaires si besoin :</h3>
-                    <div class="equip">
-                        <div>
-                            <input type="checkbox" id="micro" name="micro" value="micro">
-                            <label for="micro">Microphone</label>
-                        </div>
-                    
-                        <div>
-                            <input type="checkbox" id="projo" name="projecteur" value="projecteur">
-                            <label for="projecteur">Projecteur</label>
-                        </div>
-                    
-                        <div>
-                            <input type="checkbox" id="sono" name="sonorisation" value="sonorisation">
-                            <label for="sonorisation">Sonorisation</label>
-                        </div>
+                    <?php $equipements = [
+                        'Microphone',
+                        'Projecteur',
+                        'Pupitre',
+                        'Tableau blanc',
+                        'Podium'
+                    ]; ?>
+                    <div class="equip-checkboxes">
+                        <?php foreach ($equipements as $equipement) : ?>
+                            <div class="equipement-option">
+                                <input type="checkbox" id="<?php echo htmlspecialchars($equipement); ?>" name="equip[]" value="<?php echo htmlspecialchars($equipement); ?>">
+                                <label for="<?php echo htmlspecialchars($equipement); ?>"><?php echo htmlspecialchars($equipement); ?></label>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="comm">
@@ -204,6 +229,36 @@ include '../Modèle/themeClair.php';
             </form>
 
         </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const choixSalles = document.querySelectorAll('.choix-salles input[name="salle"]');
+                const typeEventsContainer = document.querySelector('.type-event');
+
+                choixSalles.forEach(function (salle) {
+                    salle.addEventListener('change', function () {
+                        // Récupérer les types d'événements associés à la salle sélectionnée
+                        const selectedSalleId = salle.value;
+                        const selectedSalle = document.getElementById(selectedSalleId);
+                        const typesAssocies = selectedSalle ? selectedSalle.dataset.types.split(',') : [];
+
+                        // Supprimer les anciennes options
+                        typeEventsContainer.innerHTML = '';
+
+                        // Ajouter les nouvelles options
+                        typesAssocies.forEach(function (typeAssocie) {
+                            const typeEvent = document.createElement('div');
+                            typeEvent.innerHTML = `
+                                <input type="radio" id="${typeAssocie}" name="type_event" value="${typeAssocie}">
+                                <label for="${typeAssocie}">${typeAssocie}</label>
+                            `;
+                            typeEventsContainer.appendChild(typeEvent);
+                        });
+                    });
+                });
+            });
+        </script>
+
     </main>
 
     <footer>

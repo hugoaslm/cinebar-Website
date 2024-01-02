@@ -1,7 +1,4 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1E1E1E;
-    color: #ffffff; /* Couleur du texte */
     margin: 0;
     padding: 0;
 }
@@ -11,7 +8,6 @@ body {
     max-width: 1000px;
     height: 350px;
     margin: 20px auto;
-    color: #ffffff; /* Couleur du texte */
     padding: 20px;
     border-radius: 10px;
 }
@@ -34,13 +30,8 @@ body {
     flex: 1;
 }
 
-.container-films h2 {
-    color: #ffffff; /* Couleur du texte */
-}
-
 .container-films p {
-    color: #ffffff; /* Couleur du texte */
-    line-height: 1.6; /* Espacement des lignes pour une meilleure lisibilité */
+    line-height: 1.6;
     margin-bottom: 10px;
 }
 
@@ -95,8 +86,7 @@ div h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: white;
-  }
+}
   
 .note {
     text-align: center;
@@ -138,21 +128,58 @@ div h3 {
     color: white;
 }
 
-/* theme */
+/* form */
 
-.light-mode .real {
-    color: black;
+.form_billet h1 {
+    text-decoration: underline;
+    text-decoration-color: #89404F;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: white;
 }
 
-.light-mode form input {
-    border: solid 2px black;
+.form_billet {
+    margin-top: 50px;
 }
 
-.light-mode form select {
+.form_billet form {
+    width: 800px;
+    height: 750px;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    padding: 50px;
+    margin: auto;
+}
+
+.reserv-billet input {
+    padding: 8px;
+    border-radius: 10px;
+    width: 100%;
+    height: 30px;
+}
+
+.reserv-billet select {
+    padding: 8px;
+    border-radius: 10px;
+    width: 100%;
     height: auto;
-    border: solid 2px black;
 }
 
-.light-mode .valeur-volume {
-    color: black;
+.form_billet button {
+    background-color: #89404F;
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    grid-column: span 2;
+}
+
+.form_billet button:hover {
+    background-color: #69313c;
 }

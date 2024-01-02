@@ -3,7 +3,103 @@
 
 <?php
 session_start();
-include '../Modèle/themeClair.php'; ?>
+include '../Modèle/themeClair.php'; 
+
+include '../Modèle/bdd_cafet.php'; 
+
+include "../Modèle/donnees_cafet.php";
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    .desc-bar-cine p {
+    color: black;
+    }
+
+    .sav-plus h2 {
+    color: black;
+    }
+
+    .block-aside h2 {
+    color: black;
+    }
+
+    .menu-list li {
+    color: black;
+    }
+
+    .menu h1 {
+    color: black;
+    }
+
+    svg {
+        fill: black;
+    }
+
+    .capteur_bar h1 {
+        color: black;
+    }
+
+    .vol_bar span {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+    body {
+    background-color: #1E1E1E;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+
+    .desc-bar-cine p {
+    color: white;
+    }
+
+    .sav-plus h2 {
+    color: white;
+    }
+
+    .block-aside h2 {
+    color: white;
+    }
+
+    .aside-list {
+        color: white;
+    }
+
+    .menu-list li {
+    color: white;
+    }
+
+    .menu h1 {
+    color: white;
+    }
+
+    svg {
+        fill: white;
+    }
+
+    .description-bar-cine h1 {
+        color: white;
+    }
+
+    .capteur_bar h1 {
+        color: white;
+    }
+
+    .vol_bar span {
+        color: white;
+    }
+</style>
+<?php } ?>
     
 <head>
     <meta charset="UTF-8">
@@ -73,11 +169,6 @@ include '../Modèle/themeClair.php'; ?>
 
     <main>
 
-        <?php 
-        $bodyClass = ($theme == 0) ? 'light-mode' : '';
-        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-        ?>
-
         <div class="haut-cine">
             <img src="../images/darcy.jpg" alt="Cinéma Darcy" >
         </div>
@@ -123,10 +214,6 @@ include '../Modèle/themeClair.php'; ?>
                 </a>
             </div>
 
-            <div class = "block-aside">
-                <h2>Volume ambiant</h2>
-                <input type="range" min="0" max="100" value="90" class="curseur-volume-bar">
-            </div>
         </aside>
 
         
@@ -134,21 +221,7 @@ include '../Modèle/themeClair.php'; ?>
         <section class="description-bar-cine">
             <h1>L'Atmosphère de notre cafétéria</h1>
             <div class="desc-bar-cine">
-                <p>
-                    Bienvenue dans notre cafétéria, l'endroit idéal pour prolonger l'expérience cinématographique dans une ambiance chaleureuse et conviviale. Ici, chaque tasse de café est une invitation à la détente et à la discussion.
-                </p>
-
-                <p>
-                    Notre cafétéria n'est pas simplement un lieu de restauration, c'est le cœur social de Cinébar. Les murs résonnent des rires des cinéphiles qui partagent leurs impressions sur les derniers films. Que vous veniez seul, entre amis ou en famille, vous trouverez toujours une place parmi nous.
-                </p>
-
-                <p>
-                    Imaginez-vous discutant de vos films préférés autour d'un délicieux café fraîchement préparé, ou plongé dans une conversation animée après une projection spéciale. Les tables accueillantes et l'atmosphère décontractée font de notre cafétéria un lieu de rassemblement, où les passionnés de cinéma se retrouvent pour échanger des idées et partager des expériences.
-                </p>
-
-                <p>
-                    Nous croyons que les meilleurs moments cinématographiques se poursuivent au-delà de l'écran, et notre cafétéria est le théâtre où se déroulent ces rencontres inoubliables. Venez vous joindre à nous, prenez place, commandez votre boisson préférée, et plongez dans l'univers vibrant de la cinéphilie partagée.
-                </p>
+                <?php echo $cafet['description'] ?>
             </div>
         </section>
 
@@ -160,19 +233,32 @@ include '../Modèle/themeClair.php'; ?>
             <div class="menu">
                 <h1>Ce que nous proposons</h1>
                 <ul class="menu-list">
-                    <li><span style="color: #89404F;">•</span> Popcorn salé</li>
-                    <li><span style="color: #89404F;">•</span> Popcorn sucré</li>
-                    <li><span style="color: #89404F;">•</span> Bonbons Haribo</li>
-                    <li><span style="color: #89404F;">•</span> Twix</li>
-                    <li><span style="color: #89404F;">•</span> Kit Kat</li>
-                    <li><span style="color: #89404F;">•</span> Café fraîchement moulu</li>
-                    <li><span style="color: #89404F;">•</span> Thés parfumés</li>
-                    <li><span style="color: #89404F;">•</span> Jus de fruits frais</li>
-                    <li><span style="color: #89404F;">•</span> Pâtisseries maison</li>
-                    <li><span style="color: #89404F;">•</span> Collations légères</li>
+                <?php
+                $descriptionMenu = $cafet['type'];
+
+                $menuItems = explode(', ', $descriptionMenu);
+
+                    foreach ($menuItems as $menuItem) {
+                        // trim() pour supprimer les espaces éventuels autour de chaque élément
+                        $menuItem = trim($menuItem);
+                        if (!empty($menuItem)) {
+                    ?>
+                        <li><span style="color: #89404F;">•</span> <?php echo htmlspecialchars($menuItem); ?></li>
+                    <?php
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
                 
+        </section>
+
+        <section class="capteur_bar">
+            <h1>Volume ambiant</h1>
+            <div class = "vol_bar">
+                <span class="valeur-volume"><?php echo $donnees_capteur_cafet['decibel']; ?> dB</span>
+                <input type="range" min="0" max="100" value="<?php echo $donnees_capteur_cafet['decibel']; ?>" class="curseur-volume" disabled>
+            </div>
         </section>
 
         <section class='sav-plus'>

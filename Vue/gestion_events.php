@@ -7,7 +7,32 @@ if (!$estAdmin) {
     header("Location: accueil.php");
     exit();
 }
-?>
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    color: white;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,6 +119,22 @@ if (!$estAdmin) {
 
                 <label for="orga_event">Organisateur :</label>
                 <input type="text" id="orga_event" name="orga_event" required>
+
+                <label for="salle_event">Salle :</label>
+                <select name="salle_event" id="salle_event">
+                    <?php
+
+                    include '../Modèle/bdd.php';
+
+                    $sql = "SELECT id_Salle, nom_salle FROM salle";
+                    $resultat = $connexion->query($sql);
+
+                    // Générer les options de la liste déroulante
+                    while ($salle = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $salle['id_Salle'] . '">' . $salle['nom_salle'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="affiche_event">Chemin vers l'affiche :</label>
                 <label for="affiche_event" class="file-input">

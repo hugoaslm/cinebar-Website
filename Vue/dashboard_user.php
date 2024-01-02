@@ -10,7 +10,31 @@ if (!$estConnecte) {
 
 include '../Modèle/themeClair.php';
 
-?>
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    color: white;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,11 +103,6 @@ include '../Modèle/themeClair.php';
     </header>
 
     <main>
-
-    <?php 
-    $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
-    echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-    ?>
 
     <h1>Modifier le profil de <span class="mot_cle"><?php echo $identif; ?></span> : </h1>
         <form action="../Contrôleur/modifier_compte.php" method="post" class="compte">

@@ -3,7 +3,75 @@
 
 <?php
 session_start();
-include '../Modèle/themeClair.php'; ?>
+include '../Modèle/themeClair.php';
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    .desc-bar-cine p {
+    color: black;
+    }
+
+    .sav-plus h2 {
+    color: black;
+    }
+
+    .block-aside h2 {
+    color: black;
+    }
+
+    .menu-list li {
+    color: black;
+    }
+
+    .menu h1 {
+    color: black;
+    }
+
+    svg {
+        fill: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+    body {
+    background-color: #1E1E1E;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+
+    .desc-bar-cine p {
+    color: white;
+    }
+
+    .sav-plus h2 {
+    color: white;
+    }
+
+    .block-aside h2 {
+    color: white;
+    }
+
+    .aside-list {
+        color: white;
+    }
+
+    svg {
+        fill: white;
+    }
+
+    .description-bar-cine h1 {
+        color: white;
+    }
+</style>
+<?php } ?>
     
 <head>
     <meta charset="UTF-8">
@@ -73,11 +141,6 @@ include '../Modèle/themeClair.php'; ?>
     </header>
 
     <main>
-
-        <?php 
-        $bodyClass = ($theme == 0) ? 'light-mode' : '';
-        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-        ?>
         
         <div class="haut-cine">
             <img src="../images/darcy.jpg" alt="Cinéma Darcy" >

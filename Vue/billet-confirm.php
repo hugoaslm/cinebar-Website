@@ -1,3 +1,61 @@
+<?php 
+
+session_start();
+
+include "../Modèle/bdd.php";
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+    background-color: white;
+    }
+
+    body {
+        color: black;
+    }
+
+    .contenant {
+        color: black;
+    }
+
+    .sep {
+        display: none;
+    }
+
+    .illu, .text {
+        margin-bottom: 50px;
+    }
+
+    .titre {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: white;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+
+    .sep {
+        display: flex;
+    }
+
+    .titre {
+        color: white;
+    }
+</style>
+<?php } ?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -36,8 +94,6 @@
                 </div>
 
                 <?php
-
-                session_start();
 
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);

@@ -109,79 +109,71 @@ include '../Modèle/style_theme.php' ?>
         Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
-            <h1>Gestion des Films</h1>
-            <h2>Ajout de film :</h2>
-            <form action="../Contrôleur/ajouter_film.php" method="post" class="form-container">
-                <label for="titre_film">Titre du Film :</label>
-                <input type="text" id="titre_film" name="titre_film" required>
-
-                <label for="desc_film">Description :</label>
-                <input type="text" id="desc_film" name="desc_film" required>
-
-                <label for="realisateur_film">Réalisateur :</label>
-                <input type="text" id="realisateur_film" name="realisateur_film" required>
-                
-                <label for="acteurs_film">Acteurs :</label>
-                <input type="text" id="acteurs_film" name="acteurs_film" required>
-
-                <label for="date_film">Date de Sortie :</label>
-                <input type="date" id="date_film" name="date_film" required>
-
-                <label for="duree_film">Durée (en minutes) :</label>
-                <input type="number" id="duree_film" name="duree_film" required>
-
-                <label for="genre_film">Genres :</label>
-                <select id="genre_film" name="genre_film[]" class="select2" multiple="multiple">
-                </select>
-
-                <label for="affiche_film">Chemin vers l'affiche :</label>
-                <label for="affiche_film" class="file-input">
-                    Choisir le fichier
-                <input type="file" id="affiche_film" name="affiche_film" required>
-                </label>
-
-                <div class="ajouter">
-                    <button type="submit">Ajouter un film</button>
-                </div>
-            </form>
-
-            <h2>Supprimer un film :</h2>
-            <form action="../Contrôleur/supprimer_film.php" method="post" class="form-container">
-                <select name="film_id" id="film_id">
+            <h1>Gestion des projections</h1>
+            <h2>Ajout de séances :</h2>
+            <form action="../Contrôleur/ajouter_projection.php" method="post" class="form-container">
+                <label for="salle_proj">Salle :</label>
+                <select name="salle_proj" id="salle_proj">
                     <?php
 
                     include '../Modèle/bdd.php';
 
-                    $sql = "SELECT id_F, nom FROM films";
+                    $sql_salle = "SELECT id_Salle, nom_salle FROM salle";
+                    $resultat_salle = $connexion->query($sql_salle);
+
+                    // Générer les options de la liste déroulante
+                    while ($salle = $resultat_salle->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $salle['id_Salle'] . '">' . $salle['nom_salle'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <label for="film_proj">Film :</label>
+                <select name="film_proj" id="film_proj">
+                    <?php
+
+                    include '../Modèle/bdd.php';
+
+                    $sql_film = "SELECT id_F, nom FROM films";
+                    $resultat_film = $connexion->query($sql_film);
+
+                    // Générer les options de la liste déroulante
+                    while ($film = $resultat_film->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <label for="horaire">Horaire de la séance :</label>
+                <input type="text" id="horaire" name="horaire" required>
+
+                <label for="date_proj">Date de la séance :</label>
+                <input type="date" id="date_proj" name="date_proj" required>
+
+                <div class="ajouter">
+                    <button type="submit">Ajouter la projection</button>
+                </div>
+            </form>
+
+            <h2>Supprimer une projection :</h2>
+            <form action="../Contrôleur/supprimer_projection.php" method="post" class="form-container">
+                <select name="id_proj" id="id_proj">
+                    <?php
+
+                    include '../Modèle/bdd.php';
+
+                    $sql = "SELECT * FROM projection";
                     $resultat = $connexion->query($sql);
 
                     // Générer les options de la liste déroulante
-                    while ($film = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
+                    while ($proj = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $proj['id_Projection'] . '">Salle : ' . $proj['films_salle_salle_id_Salle'] . ' le ' . $proj['date'] . ' à ' . $proj['heure'] . '</option>';
                     }
                     ?>
                 </select>
                 <button class="sele-moment" type="submit">Supprimer</button>
             </form>
 
-            <h2>Sélection du film du moment :</h2>
-            <form action="../Contrôleur/film_moment_admin.php" method="post" class="form-container">
-                <select name="film_id" id="film_id">
-                    <?php
-
-                    include '../Modèle/bdd.php';
-
-                    $sql = "SELECT id_F, nom FROM films";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($film = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
-                    }
-                    ?>
-                </select>
-                <button class="sele-moment" type="submit">Sélectionner</button>
-            </form>
         </section>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -192,28 +184,21 @@ include '../Modèle/style_theme.php' ?>
             dateInput.setAttribute('max', today);
 
             $(document).ready(function() {
-                var genres = [
-                    'Action',
-                    'Aventure',
-                    'Comédie',
-                    'Drame',
-                    'Science-fiction',
-                    'Thriller',
-                    'Horreur',
-                    'Romance',
-                    'Animation',
-                    'Documentaire',
-                    'Comédie Musicale',
-                    'Biopic'
-                    ];
-
                 $('#genre_film').select2({
                     tags: true,
                     tokenSeparators: [',', ' '],
                     placeholder: 'Sélectionnez des genres',
-                    data: genres.map(function(genre) {
-                        return { id: genre, text: genre };
-                    }),
+                    ajax: {
+                        url: 'genres.json', // Chemin vers votre fichier JSON
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: data.map(function(genre) {
+                                    return { id: genre, text: genre };
+                                }),
+                            };
+                        },
+                    },
                 });
             });
         </script>

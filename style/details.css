@@ -1,7 +1,5 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1E1E1E;
-    color: #ffffff; /* Couleur du texte */
     margin: 0;
     padding: 0;
 }
@@ -11,7 +9,6 @@ body {
     max-width: 800px;
     height: 500px;
     margin: 20px auto;
-    color: #ffffff; /* Couleur du texte */
     padding: 20px;
     border-radius: 10px;
 }
@@ -34,13 +31,8 @@ body {
     flex: 1;
 }
 
-.container-films h2 {
-    color: #ffffff; /* Couleur du texte */
-}
-
 .container-films p {
-    color: #ffffff; /* Couleur du texte */
-    line-height: 1.6; /* Espacement des lignes pour une meilleure lisibilité */
+    line-height: 1.6;
     margin-bottom: 10px;
 }
 
@@ -95,7 +87,6 @@ div h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: white;
   }
   
 .note {
@@ -135,32 +126,5 @@ div h3 {
 
 .proj a {
     text-decoration: none;
-    color: white;
-}
-
-/* theme */
-
-.light-mode .real {
-    color: black;
-}
-
-.light-mode .act {
-    color: black;
-}
-
-.light-mode form input {
-    border: solid 2px black;
-}
-
-.light-mode form select {
-    height: auto;
-    border: solid 2px black;
-}
-
-.light-mode .valeur-volume {
-    color: black;
-}
-
-body.dark-mode h3 {
     color: white;
 }

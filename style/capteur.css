@@ -1,6 +1,5 @@
 .titre
 {
-	color: #FFF;
 	text-align: center;
 	font-family: 'Manrope', sans-serif;
 	font-size: 40px;
@@ -28,7 +27,6 @@
 
 .text
 {
-	color: #FFF;
 	font-family: 'Manrope', sans-serif;
 	font-size: 1em;
 	font-style: normal;
@@ -63,7 +61,6 @@
 }
 
 .sep {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-top: 50px;

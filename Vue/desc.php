@@ -41,13 +41,59 @@ if ($estConnecte) {
     $email = $resultat['mail'];
 }
 
+include '../Modèle/style_theme.php' ?>
 
+<?php
 
+ if ($theme==0) {?>
+<style>
+    .container-films {
+    color: black;
+    }
 
+    body {
+        color: black;
+    }
 
+    .note h1, .reservation h1 {
+        color: black;
+    }
 
+    .reserv-billet select,
+    .reserv-billet input {
+    border: solid 2px black;
+    }
+</style>
+<?php } ?>
 
-?>
+<?php if ($theme==1) {?>
+<style>
+    .reserv-billet select,
+    .reserv-billet input {
+    border: none;
+    }
+
+    body {
+    background-color: #1E1E1E;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+
+    .container-films {
+    color: white;
+    }
+
+    body {
+        color: white;
+    }
+
+    .note h1, .reservation h1 {
+        color: white;
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +102,6 @@ if ($estConnecte) {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/desc.css">
-    <link rel="stylesheet" href="../style/billet-events.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -117,11 +162,6 @@ if ($estConnecte) {
     </header>
 
     <main>
-
-        <?php 
-        $bodyClass = ($theme == 0) ? 'light-mode' : 'dark-mode';
-        echo '<script>document.body.classList.add("' . $bodyClass . '");</script>';
-        ?>
                 
         <section>
             <div class="container-films">
@@ -153,35 +193,47 @@ if ($estConnecte) {
 
         </section>
 
-        <section class='form_billet'>
-            <h1>Réservation :</h1>
-            <form action="../Contrôleur/traitement_billet_events.php" method="post" class="reserv-billet">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>" >
-                <label for="nom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom" value="<?php echo $prenom; ?>">
-                <label for="mail">E-mail :</label>
-                <input type="mail" id="mail" name="mail" value="<?php echo $email; ?>" readonly>
-                <label> Évènement :</label>
-                <select id="movie" name="event" readonly>
-                    <option value="<?php echo $event; ?>"><?php echo $event; ?></option>
-                </select>
-                <label for="places">Nombre de places :</label>
-                <input type="places" id="places" name="places" value="<?php echo $places; ?>">
-                <label for="date">Date :</label>
-                <input type="date" id="date" name="date" value="<?php echo $date; ?>" readonly>
-                <label for="horaire">Horaire :</label>
-                <select id="horaire" name="horaires" readonly>
-                    <option value="<?php echo $horaires; ?>"><?php echo $horaires; ?></option>
-                </select>
-                <p>
-                    <button name="send" type="submit">Réserver</button>
-                </p>
-                <p>
-                    <button type="reset">Annuler</button>
-                </p>
-            </form>
-        </section>
+            <section class='form_billet'>
+                <h1>Réservation :</h1>
+
+                <?php
+                    if ($estConnecte) {
+                ?>
+
+                <form action="../Contrôleur/traitement_billet_events.php" method="post" class="reserv-billet">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>" >
+                    <label for="nom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" value="<?php echo $prenom; ?>">
+                    <label for="mail">E-mail :</label>
+                    <input type="mail" id="mail" name="mail" value="<?php echo $email; ?>" readonly>
+                    <label> Évènement :</label>
+                    <select id="movie" name="event" readonly>
+                        <option value="<?php echo $event; ?>"><?php echo $event; ?></option>
+                    </select>
+                    <label for="places">Nombre de places :</label>
+                    <input type="places" id="places" name="places" value="<?php echo $places; ?>">
+                    <label for="date">Date :</label>
+                    <input type="date" id="date" name="date" value="<?php echo $date; ?>" readonly>
+                    <label for="horaire">Horaire :</label>
+                    <select id="horaire" name="horaires" readonly>
+                        <option value="<?php echo $horaires; ?>"><?php echo $horaires; ?></option>
+                    </select>
+                    <p>
+                        <button name="send" type="submit">Réserver</button>
+                    </p>
+                    <p>
+                        <button type="reset">Annuler</button>
+                    </p>
+                </form>
+            </section>
+        <?php
+            }
+            else {
+                echo "<div style='text-align: center;'>Veuillez vous connecter ou vous inscrire si vous n'avez pas de compte</div>";
+            }
+        ?>
+
     </main>
 
     <footer>

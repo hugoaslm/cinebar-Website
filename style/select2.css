@@ -1,0 +1,63 @@
+/* select2 */
+
+/* Styliser le Select2 des genres avec le style fourni */
+.select2-container--default .select2-selection--single {
+  width: 100%;
+  padding: 8px;
+  background-color: #D9D9D9;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Styliser l'élément de sélection réel dans le Select2 */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #333; /* Couleur du texte */
+  line-height: 1.5; /* Hauteur de ligne */
+}
+
+/* Styliser la flèche déroulante dans le Select2 */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 50%; /* Aligner au centre verticalement */
+  transform: translateY(-50%);
+}
+
+/* Styliser la liste déroulante dans le Select2 */
+.select2-container--default .select2-dropdown {
+  border: none; /* Supprimer la bordure de la liste déroulante */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Styliser les options de la liste déroulante dans le Select2 */
+.select2-container--default .select2-results__option {
+  padding: 8px; /* Espacement interne */
+  color: #333; /* Couleur du texte */
+}
+
+/* Styliser l'option sélectionnée dans le Select2 */
+.select2-container--default .select2-results__option--highlighted {
+  background-color: #007bff; /* Couleur de surbrillance */
+  color: #fff; /* Couleur du texte en surbrillance */
+}
+
+/* Styliser les tags dans le mode "tags" du Select2 */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #007bff; /* Couleur de fond des tags */
+  color: #fff; /* Couleur du texte des tags */
+}
+
+/* Styliser le champ de recherche dans le mode "tags" du Select2 */
+.select2-container--default .select2-search__field {
+  width: 100%; /* Largeur du champ de recherche */
+  box-sizing: border-box; /* Inclure la bordure et le rembourrage dans la largeur */
+  border: none; /* Supprimer la bordure du champ de recherche */
+  border-radius: 10px; /* Coins arrondis */
+}
+
+/* Ajouter une bordure au champ de recherche pour plus de visibilité */
+.select2-container--default .select2-search--inline .select2-search__field {
+  padding: 8px; /* Espacement interne du champ de recherche en mode "tags" */
+  background-color: #D9D9D9; /* Couleur de fond du champ de recherche en mode "tags" */
+}

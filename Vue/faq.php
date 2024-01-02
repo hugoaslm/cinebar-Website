@@ -1,6 +1,31 @@
 <?php
 session_start();
-?>
+
+include '../Modèle/style_theme.php' ?>
+
+<?php
+
+ if ($theme==0) {?>
+<style>
+    body {
+        color: black;
+    }
+</style>
+<?php } ?>
+
+<?php if ($theme==1) {?>
+<style>
+
+    body {
+    background-color: #1E1E1E;
+    color: white;
+    }
+
+    footer, header {
+    background-color: rgb(17, 17, 17);
+    }
+</style>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +50,7 @@ session_start();
 
   <header>
     <nav>    
-            <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
+    <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
                 <a href="accueil.php">Accueil</a>
                 <a href="cinema.php">Le Cinéma</a>
@@ -52,18 +77,25 @@ session_start();
                 // Sélectionnez le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
-                    $identifiant = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php">' . $identifiant . '</a>';
+                    $identif = $_SESSION['identifiant'];
+                    $boutonConnexion .= '<a href="profil.php"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
+                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - 
+                    https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> '
+                      . $identif . ' </a>';
+                    $boutonConnexion .= '<div class="menu-deroulant">';
+                    $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
+                    $boutonConnexion .= '</div>';
                 } else {
                     // Si non connecté, affichez le bouton de connexion normal
-                    $boutonConnexion .= '<a href="connexion.php">Connexion </a>';
+                    $boutonConnexion .= '<a href="connexion.php">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
                 // Affichez le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
-
+                
             </div>
         </nav>
   </header>
