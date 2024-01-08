@@ -1,6 +1,6 @@
 .connexion {
   background-color: white;
-  height: 700px;
+  height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@
 
 .inscription {
   width: 600px;
-  height: 600px;
+  height: 700px;
   padding: 20px;
   background-color: #1E1E1E;
   border-radius: 10px;
@@ -84,4 +84,9 @@ form button:hover {
 
 .co-bouton a {
   color:#f7728d;
+}
+
+.g-recaptcha {
+  display: flex;
+  justify-content: center;
 }

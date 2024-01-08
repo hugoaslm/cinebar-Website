@@ -1,36 +1,6 @@
 <?php
-// A utiliser avec une méthode post et mettre dans le code html : 
-// method="POST" action="register.php" dans votre formulaire 
-// Vérification si la méthode POST est utilisée pour envoyer des données
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupération des informations du formulaire
-    $email = $_POST["mail"];
-    $password = $_POST["mdp"];
-    $pseudo = $_POST["pseudo"];
 
-    include '../Modèle/bdd.php';
-
-        // Vérification si l'utilisateur existe déjà
-        $check_user_query = $connexion->prepare("SELECT * FROM `utilisateur` WHERE `mail` = :email");
-        $check_user_query->bindParam(':email', $email);
-        $check_user_query->execute();
-        
-        if ($check_user_query->rowCount() > 0) {
-            // L'utilisateur existe déjà
-            echo "L'utilisateur existe déjà. Veuillez vous connecter.";
-        } else {
-            // Insertion des données de l'utilisateur dans la base de données
-            $insert_user_query = $connexion->prepare("INSERT INTO `utilisateur` (`pseudo`, `mail`, `MotDePasse`) VALUES (:pseudo, :email, :password)");
-            $insert_user_query->bindParam(':pseudo', $pseudo);
-            $insert_user_query->bindParam(':email', $email);
-            $insert_user_query->bindParam(':password', $password);
-            $insert_user_query->execute();
-
-            header("Location: connexion.php");
-            echo "Inscription réussie. Vous pouvez maintenant vous connecter.";
-            exit();
-        }
-}
+session_start();
 
 include '../Modèle/style_theme.php' ?>
 
@@ -68,6 +38,8 @@ include '../Modèle/style_theme.php' ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -96,8 +68,6 @@ include '../Modèle/style_theme.php' ?>
                 </div>
 
                 <?php
-
-                session_start();
 
                 // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
@@ -130,7 +100,7 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main class='connexion'>
-        <form action="inscription.php" method="post" class="inscription">
+        <form action="../Modèle/insc_process.php" method="post" class="inscription">
             <div class="form-text" id="sugg">
                 <p>
                     <label for="mail">Pseudonyme :</label>
@@ -149,6 +119,9 @@ include '../Modèle/style_theme.php' ?>
                     <input type="password" id="mdp" name="mdp">
                 </p>
             </div>
+
+            <div class="g-recaptcha" data-sitekey="6LdKIEopAAAAAF3vjIEXYv3hOEr4n8e0hcp4vnwn"></div>
+
             <div class="co-bouton">
                 <button name="send" type="submit">S'inscrire</button>
             </div>

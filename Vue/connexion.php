@@ -3,38 +3,6 @@
 // Démarrer la session
 session_start();
 
-// Vérification si la méthode POST est utilisée pour envoyer des données
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupération des informations du formulaire
-    $identifiant = $_POST["identifiant"];
-    $password = $_POST["mdp"];
-
-    include '../Modèle/../Modèle/bdd.php';
-
-    // Requête pour vérifier si l'utilisateur existe bien
-    $requete = $connexion->prepare("SELECT * FROM `utilisateur` WHERE (`mail` = :identifiant OR `pseudo` = :identifiant) AND `MotDePasse` = :password");
-    $requete->bindParam(':identifiant', $identifiant);
-    $requete->bindParam(':password', $password);
-    $requete->bindParam(':role', $admin);
-    $requete->execute();
-
-    // Vérification si l'utilisateur existe bien 
-    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
-    if ($resultat) {
-        // Stocker des informations dans la session
-        // Après la connexion réussie
-        $_SESSION['identifiant'] = $resultat['pseudo'];
-
-        // Ajoutez des messages de débogage
-        echo "Connexion réussie. Redirection en cours...";
-        header("Location: accueil.php");
-        exit();
-    } else {
-        // Sinon on affiche un message d'erreur
-        echo "Adresse e-mail, pseudo ou mot de passe incorrect.";
-    }
-}
-
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -125,7 +93,7 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main class='connexion'>
-        <form action="connexion.php" method="post" class="co">
+        <form action="../Modèle/co_process.php" method="post" class="co">
             <div class="form-text" id="sugg">
                 <p>
                     <label for="identifiant">E-mail ou pseudonyme :</label>
