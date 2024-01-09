@@ -120,7 +120,7 @@ include '../Modèle/style_theme.php' ?>
                 </p>
             </div>
 
-            <div class="g-recaptcha" data-sitekey="6Lcw--w-AAAAAw-w-w----w-w-www-www--ww-w-"></div>
+            <div class="g-recaptcha" data-sitekey="6LdKIEopAAAAAF3vjIEXYv3hOEr4n8e0hcp4vnwn"></div>
 
             <div class="co-bouton">
                 <button name="send" type="submit">S'inscrire</button>

@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include '../Modèle/bdd.php';
 
     // Vérification du captcha
-    $recaptcha_secret = "6Lcw--w-AAAAAw-w-w----w-w-www-www--ww-w-";
+    $recaptcha_secret = "6LdKIEopAAAAAM34t8K5V5yFEpTuc3-IvZZBLK-C";
     $recaptcha_response = $_POST['g-recaptcha-response'];
     $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
     $recaptcha_data = [
