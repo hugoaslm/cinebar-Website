@@ -14,6 +14,14 @@ include '../Modèle/style_theme.php' ?>
 
 <?php
 
+// Récupérer les données de l'utilisateur à gérer
+
+$userId = $_GET['id'];
+
+include '../Modèle/get_profil.php';
+
+//
+
  if ($theme==0) {?>
 <style>
     body {
@@ -42,8 +50,7 @@ include '../Modèle/style_theme.php' ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dashboard utilisateur">
-    <title>dashboard utilisateur</title>
+    <meta name="description" content="Films à l'affiche">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/user.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,18 +114,25 @@ include '../Modèle/style_theme.php' ?>
 
     <main>
 
-    <h1>Modifier le profil de <span class="mot_cle"><?php echo $identif; ?></span> : </h1>
-        <form action="../Contrôleur/modifier_compte.php" method="post" class="compte">
+    <h1>Modifier le profil de <span class="mot_cle"><?php echo $utilisateurs["pseudo"]; ?></span> : </h1>
+        <form action="../Contrôleur/modifier_profil.php?id=<?php echo $utilisateurs['id_Utilisateur']; ?>" method="post" class="compte">
             <label for="mail">E-mail :</label>
-            <input type="mail" id="mail" name="mail">
+            <input type="mail" id="mail" name="mail" value="<?php echo $utilisateurs['mail']; ?>">
 
             <label for="pseudo">Pseudo :</label>
-            <input type="text" id="pseudo" name="pseudo">
+            <input type="text" id="pseudo" name="pseudo" value="<?php echo $utilisateurs["pseudo"]; ?>">
+
+            <label for="role">Rôle : </label>
+            <select id="role" name="role">
+                <option value="1" <?php echo ($utilisateurs["admin"] == 1) ? 'selected' : ''; ?>>Admin</option>
+                <option value="0" <?php echo ($utilisateurs["admin"] == 0) ? 'selected' : ''; ?>>Utilisateur</option>
+            </select>
+
 
             <div class="theme-container">
                 <span class="theme-label">Thème :</span>
                 <label class="switch">
-                    <input type="checkbox" id="themeToggle" name="themeToggle" onchange="toggleTheme()" value="1">
+                    <input type="checkbox" id="themeToggle" name="themeToggle" value="1">
                     <span class="slider round"></span>
                 </label>
                 <span id="themeText"></span>

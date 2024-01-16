@@ -25,7 +25,9 @@ footer img {
 }
 
 footer{
-  margin-top: 200px;
+  position: relative;
+  bottom: 0; /* Fixe le pied de page en bas de la fenêtre */
+  width: 100%;
   padding: 20px;
   text-align: center;
 }

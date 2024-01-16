@@ -100,6 +100,9 @@ include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Evènements à l'affiche">
+    <title>Evènements</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/desc.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,7 +184,7 @@ include '../Modèle/style_theme.php' ?>
             <?php
 
             // Inclusion de la fonction PHP qui génère le curseur de volume
-            include '../Modèle/note.php';
+            include '../Modèle/donnees_event.php';
 
             ?>
 

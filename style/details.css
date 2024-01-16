@@ -66,7 +66,7 @@ div h3 {
 /* note */
 
 .note-cursor {
-    width: 800px;
+    max-width: 800px;
     height: auto;
     margin: auto;
     padding: 50px;
@@ -100,6 +100,7 @@ div h3 {
     text-align: center;
     color: white;
     margin-top: 100px;
+    margin-bottom: 200px;
 }
 
 .projections {
@@ -127,4 +128,17 @@ div h3 {
 .proj a {
     text-decoration: none;
     color: white;
+}
+
+@media screen and (max-width: 1180px) {
+  .note-cursor {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .note-cursor h2 {
+    margin-bottom: 30px;
+  }
 }

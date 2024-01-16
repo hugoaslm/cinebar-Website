@@ -34,10 +34,11 @@ main img {
 }
 
 .vignette-film h1 {
-  margin-bottom: 20px;
+  font-size: 64px;
   color: #89404F;
-  font-size: 48px;
-  font-weight: 900;
+  font-family: 'Cinzel', serif;
+  font-family: 'Paytone One', sans-serif;
+  font-weight: 100;
 }
 
 .vignette-film svg {
@@ -47,6 +48,7 @@ main img {
 .vignette-film p {
   line-height: 1.6; /* Espacement des lignes pour une meilleure lisibilité */
   margin-bottom: 10px;
+  max-width: 600px;
 }
 
 /* */
@@ -67,7 +69,7 @@ main img {
   position: absolute;
   float: left;
   top: 50%;
-  left: 15%;
+  left: 25%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -89,11 +91,36 @@ main img {
   text-align: left;
 }
 
+.accueil-cine img {
+  margin-right: 100px;
+}
+
 .acc-cine {
   flex: 1;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
   position: relative;
+}
+
+.acc-bar {
+  flex: 1;
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative;
+}
+
+.acc-cine p {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.acc-bar p {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.acc-cine h1 {
+  font-size: 2.5em;
 }
 
 .img-container {
@@ -101,9 +128,19 @@ main img {
   margin: 10px;
 }
 
+.img-bar {
+  max-width: 45%;
+}
+
 .accueil-cine img {
   width: 500px;
   height: 600px;
+}
+
+.accueil-bar img {
+  width: 600px;
+  height: 600px;
+  margin-left: 100px;
 }
 
 .accueil-bar {
@@ -114,19 +151,25 @@ main img {
   position: relative;
 }
 
-.acc-bar {
-  margin-left: 10px;
+.acc-bar h1 {
+  font-size: 2.5em;
 }
 
-.img-bar {
-  max-width: 40%;
+.accueil-cine,
+.accueil-bar {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUp 1s ease-in-out forwards;
 }
 
-.accueil-bar img {
-  margin: 10px;
-  width: 600px;
-  height: 600px;
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
+/* */
 
 .boite3 {
   display: flex;
@@ -240,3 +283,30 @@ main img {
 .arrow-prev-second {
   left: 40px;
 }
+
+@media screen and (max-width: 1180px) {
+  .vignette-film {
+    display: none;
+  }
+
+  .img-container, .img-bar img {
+    display: none;
+  }
+
+  .acc-cine, .acc-bar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .boite3 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .titre-boite3 {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

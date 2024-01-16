@@ -175,3 +175,13 @@ h1 {
   text-decoration: none;
 }
 
+
+@media screen and (max-width: 768px) {
+  .vedette {
+    display: none;
+  }
+
+  .h1_moment {
+    display: none;
+  }
+}

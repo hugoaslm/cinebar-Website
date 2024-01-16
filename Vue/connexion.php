@@ -35,6 +35,9 @@ include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connexion">
+    <title>Connexion</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/connexion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,6 +96,7 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main class='connexion'>
+        <img src="../images/oppenheimer_large.jpg" alt="films_large" class="back_image">
         <form action="../Modèle/co_process.php" method="post" class="co">
             <div class="form-text" id="sugg">
                 <p>

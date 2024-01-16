@@ -107,6 +107,27 @@ form h3 {
   grid-column: span 2;
 }
 
+/* tableau utilisateurs */
+
+#table-utilisateurs {
+  border-collapse: collapse;
+  width: 80%; /* Ajustez la largeur du tableau selon vos besoins */
+  margin: 20px auto; /* Centre le tableau horizontalement et ajoute de l'espace autour */
+}
+
+#table-utilisateurs th,
+#table-utilisateurs td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-container {
+  margin-top: 20px; /* Ajoute de l'espace au-dessus du tableau */
+}
+
+/*                      */
+
 button {
   background-color: #89404F;
   padding: 10px;
@@ -118,6 +139,14 @@ button {
 
 button:hover {
   background-color: #4c232b;
+}
+
+table a {
+  background-color: #89404F;
+  padding: 3px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
 }
 
 .reserv {

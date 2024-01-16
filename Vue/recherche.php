@@ -46,6 +46,9 @@ include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="recherche">
+    <title>Recherche</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/films_events.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

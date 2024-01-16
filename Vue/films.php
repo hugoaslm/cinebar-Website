@@ -58,6 +58,9 @@ include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Films à l'affiche">
+    <title>Films</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/films_events.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,7 +148,7 @@ include '../Modèle/style_theme.php' ?>
                 $film = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 // Afficher les détails du film
-                echo '<h1>FILM DU MOMENT</h1>';
+                echo '<h1 class="h1_moment">FILM DU MOMENT</h1>';
                 echo '<section class="vedette">';
                 echo '<div class="film-vedette">';
                 echo '<div class="illu">';

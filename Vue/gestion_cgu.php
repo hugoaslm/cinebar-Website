@@ -1,39 +1,36 @@
 <?php
 session_start();
 
-$estConnecte = isset($_SESSION['identifiant']);
+include '../Modèle/estAdmin.php';
 
-if (!$estConnecte) {
+if (!$estAdmin) {
     header("Location: accueil.php");
     exit();
 }
 
-include '../Modèle/themeClair.php';
-
 include '../Modèle/style_theme.php' ?>
 
 <?php
-
- if ($theme==0) {?>
-<style>
-    body {
-        color: black;
-    }
-</style>
+if ($theme == 0) { ?>
+    <style>
+        body {
+            color: black;
+        }
+    </style>
 <?php } ?>
 
-<?php if ($theme==1) {?>
-<style>
+<?php if ($theme == 1) { ?>
+    <style>
+        body {
+            background-color: #1E1E1E;
+            color: white;
+        }
 
-    body {
-    background-color: #1E1E1E;
-    color: white;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-</style>
+        footer,
+        header {
+            background-color: rgb(17, 17, 17);
+        }
+    </style>
 <?php } ?>
 
 <!DOCTYPE html>
@@ -42,13 +39,14 @@ include '../Modèle/style_theme.php' ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dashboard utilisateur">
-    <title>dashboard utilisateur</title>
+    <meta name="description" content="Films à l'affiche">
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/user.css">
+    <link rel="stylesheet" href="../style/pro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -87,7 +85,7 @@ include '../Modèle/style_theme.php' ?>
                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - 
                     https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> '
-                      . $identif . ' </a>';
+                        . $identif . ' </a>';
                     $boutonConnexion .= '<div class="menu-deroulant">';
                     $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
@@ -106,57 +104,22 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main>
+        <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films,
+            événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations.
+            Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
-    <h1>Modifier le profil de <span class="mot_cle"><?php echo $identif; ?></span> : </h1>
-        <form action="../Contrôleur/modifier_compte.php" method="post" class="compte">
-            <label for="mail">E-mail :</label>
-            <input type="mail" id="mail" name="mail">
+        <section class="admin-section">
+            <h1>Gestion des CGU</h1>
+            <form action="../Contrôleur/ajouter_cgu.php" method="post" class="form-container">
+                <label for="cgu">Modifier les CGU :</label>
+                <textarea name="cgu" id="cgu" cols="30" rows="10"></textarea>
 
-            <label for="pseudo">Pseudo :</label>
-            <input type="text" id="pseudo" name="pseudo">
-
-            <div class="theme-container">
-                <span class="theme-label">Thème :</span>
-                <label class="switch">
-                    <input type="checkbox" id="themeToggle" name="themeToggle" onchange="toggleTheme()" value="1">
-                    <span class="slider round"></span>
-                </label>
-                <span id="themeText"></span>
-            </div>
-
-
-            <button type="submit">Sauvegarder les modifications</button>
-        </form>
-
-        <script>
-            // Ajoutez cette fonction pour changer le thème en fonction de l'état du toggle
-            function toggleTheme() {
-                var themeToggle = document.getElementById("themeToggle");
-                var themeText = document.getElementById("themeText");
-                var body = document.body;
-
-                if (themeToggle.checked) {
-                    themeToggle.value = 1;
-                    // Thème sombre
-                    body.classList.add("dark-mode");
-                    body.classList.remove("light-mode");
-                    themeText.textContent = "sombre";
-                } else {
-                    themeToggle.value = 0;
-                    // Thème clair
-                    body.classList.remove("dark-mode");
-                    body.classList.add("light-mode");
-                    themeText.textContent = "clair";
-                }
-            }
-
-            // Chargez le mode précédemment sélectionné lors du rechargement de la page
-            const storedDarkMode = localStorage.getItem('darkMode');
-            if (storedDarkMode === 'true') {
-                document.getElementById("themeToggle").checked = true;
-                toggleTheme();
-            }
-        </script>
+                <div class="ajouter">
+                    <button type="submit">Sauvegarder les modifications</button>
+                </div>
+            </form>
+        </section>
+        
     </main>
 
     <footer>
@@ -174,7 +137,6 @@ include '../Modèle/style_theme.php' ?>
             <a href="faq.php">FAQ</a>
         </div>
     </footer>
-
 </body>
 
 </html>

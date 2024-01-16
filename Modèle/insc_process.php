@@ -28,9 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $recaptcha_result = file_get_contents($recaptcha_url, false, $recaptcha_context);
     $recaptcha_data = json_decode($recaptcha_result);
 
-    // Si le captcha n'est pas valide, affichez un message d'erreur
     if (!$recaptcha_data->success) {
-        // header("Location: ../Vue/inscription.php");
         echo "Veuillez remplir correctement le captcha.";
         exit();
     }

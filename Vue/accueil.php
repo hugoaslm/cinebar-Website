@@ -26,10 +26,13 @@ include "../Contrôleur/film_moment_default.php"
 <html lang="en">
 
 
-<?php include '../Modèle/style_theme.php' ?>
+<?php include '../Modèle/style_theme.php';
+?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Films à l'affiche">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/accueil.css">
     <link rel="stylesheet" href="../style/style.css">
@@ -37,6 +40,10 @@ include "../Contrôleur/film_moment_default.php"
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-bi+2BIvPHs5peU+5wDTrAYu9fEF+j4uANCBF8bXaSv1ap4SC1vY+gJEAY6npa9vm4tft9NxLXR+rWn5eknjOXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Paytone+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -125,6 +132,7 @@ include "../Contrôleur/film_moment_default.php"
                     <p><?= htmlspecialchars($film['description'], ENT_QUOTES, 'UTF-8'); ?></p>
 
                     <h2>Note du public :</h2>
+
                     <div class="rating">
                         <input type="radio" id="star5" name="rating" value="5">
                         <label for="star5"></label>
@@ -137,6 +145,7 @@ include "../Contrôleur/film_moment_default.php"
                         <input type="radio" id="star1" name="rating" value="1">
                         <label for="star1"></label>
                     </div>
+
                 </div>
                 <img src="<?= htmlspecialchars($film['affiche_large'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($film['nom'], ENT_QUOTES, 'UTF-8'); ?>">
             </div>
@@ -152,7 +161,6 @@ include "../Contrôleur/film_moment_default.php"
                 <img src="../images/pexels-linda-gschwentner-11718584.jpg" alt="cinema">
             </div>
         </section>
-
 
         <section class='accueil-bar'>
             <div class="img-bar">

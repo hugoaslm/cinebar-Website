@@ -39,6 +39,9 @@ include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard admin">
+    <title>dashboard admin</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,6 +135,24 @@ include '../Modèle/style_theme.php' ?>
                 </svg>
                 Gestion des projections
             </a>
+            <a href="gestion_cgu.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion des CGU
+            </a>
+            <a href="gestion_faq.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion de la FAQ
+            </a>
+            <a href="gestion_users.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-6H8V9h6v7h2V9h4v9h-6v-4z"/>
+                </svg>
+                Gestion des utilisateurs
+            </a>
         </div>
     </main>
 
@@ -150,6 +171,5 @@ include '../Modèle/style_theme.php' ?>
             <a href="faq.php">FAQ</a>
         </div>  
     </footer>
-
 </body>
 </html>

@@ -65,7 +65,7 @@ div h3 {
 /* note */
 
 .note-cursor {
-    width: 800px;
+    max-width: 800px;
     height: auto;
     margin: auto;
     padding: 50px;
@@ -142,10 +142,11 @@ div h3 {
 
 .form_billet {
     margin-top: 50px;
+    margin-bottom: 200px;
 }
 
 .form_billet form {
-    width: 800px;
+    max-width: 800px;
     height: 750px;
     display: grid;
     gap: 40px;
@@ -183,3 +184,16 @@ div h3 {
 .form_billet button:hover {
     background-color: #69313c;
 }
+
+@media screen and (max-width: 1180px) {
+    .note-cursor {
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .note-cursor h2 {
+      margin-bottom: 30px;
+    }
+  }

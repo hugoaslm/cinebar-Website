@@ -66,6 +66,9 @@ include '../Modèle/style_theme.php' ?>
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Evènements à l'affiche">
+    <title>Evènements</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/films_events.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,7 +135,7 @@ include '../Modèle/style_theme.php' ?>
 
     <main>
 
-        <h1>ÉVÈNEMENT DU MOMENT</h1>
+        <h1 class="h1_moment">ÉVÈNEMENT DU MOMENT</h1>
         <section class='vedette-section'>
             <?php
             // Récupérer l'ID de l'événement du moment depuis la table event_moment

@@ -103,6 +103,9 @@ include '../Modèle/style_theme.php' ?>
     
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Films à l'affiche">
+    <title>Cafétéria</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/cinema.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -227,7 +230,7 @@ include '../Modèle/style_theme.php' ?>
 
         <section class='menu-bar'>
             <div class="illu">
-                    <img src="../images/cafet.jpg">
+                    <img src="../images/cafet.jpg" alt="illustration de la cafet">
             </div>
 
             <div class="menu">

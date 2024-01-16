@@ -53,6 +53,11 @@ button.supprimer {
     margin: 0 auto;
     color: black;
     margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.compte select {
+    margin-bottom: 20px;
 }
 
 .bouton-deco {
@@ -85,6 +90,17 @@ li {
     margin-bottom: 10px;
 }
 
+.profil-link {
+    white-space: normal;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
 .profil h1 {
     margin-bottom: 100px;
 }
@@ -97,7 +113,7 @@ li {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    width: 700px;
+    max-width: 700px;
     height: auto;
     margin: auto;
     margin-bottom: 300px;

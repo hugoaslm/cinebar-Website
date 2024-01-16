@@ -7,9 +7,13 @@ main.choix {
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  flex-wrap: wrap;
+  max-height: 300px;
 }
 
 .admin-buttons a {
+  text-align: center;
+  width: 340px;
   background-color: #89404F;
   color: white;
   padding: 20px 40px;
@@ -19,40 +23,23 @@ main.choix {
   font-size: 20px;
   transition: background-color 0.3s ease-in-out;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  flex:1;
 }
 
 .admin-buttons a:hover {
   background-color: #ad5164;
 }
 
-.admin-buttons a:last-child {
-  margin-bottom: 0;
-}
-
-/* Animation pour les boutons */
-.admin-buttons a {
-  position: relative;
-  overflow: hidden;
-}
-
-.admin-buttons a::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 100%;
-  height: 100%;
-  background-color: #ad5164;
-  border-radius: 8px;
-  transition: transform 0.3s ease-in-out;
-  z-index: -1;
-}
-
-.admin-buttons a:hover::before {
-  transform: translate(-50%, -50%) scale(1);
-}
-
 svg {
   fill: white;
+}
+
+/* Media queries pour les écrans de taille moyenne */
+@media screen and (max-width: 768px) {
+  .admin-buttons {
+    max-height: 1500px;
+    width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

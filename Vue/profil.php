@@ -52,6 +52,8 @@ include '../Modèle/style_theme.php' ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Films à l'affiche">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/user.css">
@@ -119,7 +121,7 @@ include '../Modèle/style_theme.php' ?>
         <section class="profil-options">
             <h2>Options d'administration :</h2>
             <p>Choisissez une option :</p>
-            <ul>
+            <ul class="list">
                 <li><a class="profil-link" href="dashboard_user.php">Gestion du Compte</a></li>
                 <li><a class="profil-link" href="dashboard_admin.php">Interface d'Administration</a></li>
             </ul>
