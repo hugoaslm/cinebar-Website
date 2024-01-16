@@ -36,6 +36,7 @@ include '../Modèle/style_theme.php' ?>
 
     body {
     background-color: #1E1E1E;
+    color: white;
     }
 
     footer, header {
