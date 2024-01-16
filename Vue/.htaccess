@@ -1,0 +1,10 @@
+# Activer le module de réécriture
+RewriteEngine On
+
+# Réécrire l'URL pour les détails des films
+RewriteRule ^film/([0-9]+)$ details.php?id_F=$1 [L]
+
+# Rediriger les requêtes vers details.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^details\.php$ /film/$1 [L,R=301]
