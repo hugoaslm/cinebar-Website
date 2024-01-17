@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST["desc_event"];
     $date = $_POST["date_event"];
     $organisateur = $_POST["orga_event"];
-    $affiche = "../images/" . basename($_POST["affiche_event"]);
+    $affiche = "images/" . basename($_POST["affiche_event"]);
     $salle = $_POST["salle_event"];
 
     include '../Modèle/bdd.php';
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Exécution de la requête
     $stmt_salle_event->execute();
 
-    header("Location: ../Vue/events.php");
+    header("Location: ../events");
     exit();
 
     // Fermer la connexion

@@ -46,7 +46,7 @@ $result = $stmt->execute();
 
 // Vérifiez si la mise à jour a réussi
 if ($result) {
-    header("Location: ../Vue/accueil.php");
+    header("Location: ../accueil");
     exit();
 } else {
     echo "Erreur lors de la mise à jour.";

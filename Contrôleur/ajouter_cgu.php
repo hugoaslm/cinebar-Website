@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Exécuter la requête
     $stmt->execute();
 
-    header("Location: ../Vue/cgu.php");
+    header("Location: ../cgu");
     exit();
 
     // Fermer la connexion

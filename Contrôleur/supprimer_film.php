@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_insert->bindParam(":film_id", $film_id);
     $stmt_insert->execute();
 
-    header("Location: ../Vue/films.php");
+    header("Location: ../films");
     exit();
 }
 ?>

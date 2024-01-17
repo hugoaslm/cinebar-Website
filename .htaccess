@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Exclure les fichiers existants avec l'extension .php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Règle spécifique pour les détails des films
+RewriteRule ^film/(\d+)$ Vue/details.php?id_F=$1 [L]
+
+# Règle spécifique pour les détails des events
+RewriteRule ^event/(\d+)$ Vue/desc.php?id_E=$1 [L]
+
+# Réécrire les URL sans extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ Vue/$1.php [NC,L]

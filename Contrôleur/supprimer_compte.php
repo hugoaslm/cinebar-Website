@@ -10,7 +10,7 @@ $stmt_insert = $connexion->prepare($sql_insert);
 $stmt_insert->bindParam(":id_user", $id_user);
 $stmt_insert->execute();
 
-header("Location: ../Vue/gestion_users.php");
+header("Location: ../gestion_users");
 exit();
 
 ?>

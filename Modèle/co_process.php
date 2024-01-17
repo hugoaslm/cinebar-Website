@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         // Ajoutez des messages de débogage
         echo "Connexion réussie. Redirection en cours...";
-        header("Location: ../Vue/accueil.php");
+        header("Location: ../accueil");
         exit();
     } else {
         // Sinon on affiche un message d'erreur

@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     mail($email, $subject, $body, $headers);
 
-    header("Location: ../Vue/billet-confirm.php");
+    header("Location: ../billet-confirm");
     exit();
 
     // Fermer la connexion

@@ -37,7 +37,7 @@ $stmt->bindParam(':Salle_id_Salle', $Salle_id_Salle, PDO::PARAM_INT);
 
 // Exécution de la requête
 if ($stmt->execute()) {
-    header("Location: ../Vue/billet-confirm.php");
+    header("Location: ../billet-confirm");
     exit();
 } else {
     echo "Erreur lors de l'ajout de la réservation : " . $stmt->errorInfo()[2];

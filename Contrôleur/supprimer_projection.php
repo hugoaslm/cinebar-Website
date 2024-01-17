@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_delete->bindParam(":proj_id", $proj_id);
     $stmt_delete->execute();
 
-    header("Location: ../Vue/films.php");
+    header("Location: ../films");
     exit();
 }
 ?>

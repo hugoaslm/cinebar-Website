@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Exécuter la requête
     $stmt->execute();
 
-    header("Location: ../Vue/faq.php");
+    header("Location: ../faq");
     exit();
 
     // Fermer la connexion

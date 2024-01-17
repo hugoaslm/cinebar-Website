@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $DateDeSortie = $_POST["date_film"];
     $duree = $_POST["duree_film"];
     $realisateur = $_POST["realisateur_film"];
-    $affiche = "../images/" . basename($_POST["affiche_film"]);
+    $affiche = "images/" . basename($_POST["affiche_film"]);
 
     // Traitement du champ "Genres"
     $genres = isset($_POST["genre_film"]) ? $_POST["genre_film"] : [];
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Exécution de la requête
     $stmt->execute();
 
-    header("Location: ../Vue/films.php");
+    header("Location: ../films");
     exit();
 
     // Fermer la connexion

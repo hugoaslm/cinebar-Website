@@ -5,7 +5,7 @@ session_start();
 $estConnecte = isset($_SESSION['identifiant']);
 
 if (!$estConnecte) {
-    header("Location: ../Vue/accueil.php");
+    header("Location: ../accueil");
     exit();
 }
 
@@ -53,7 +53,7 @@ if ($result) {
         $_SESSION['identifiant'] = $pseudo;
     }
 
-    header("Location: ../Vue/accueil.php");
+    header("Location: ../accueil");
     exit();
 } else {
     echo "Erreur lors de la mise à jour.";

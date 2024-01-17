@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_insert->bindParam(":event_id", $event_id);
     $stmt_insert->execute();
 
-    header("Location: ../Vue/events.php");
+    header("Location: ../events");
     exit();
 }
 ?>

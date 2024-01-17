@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     // Redirection vers la page des films après l'ajout
-    header("Location: ../Vue/films.php");
+    header("Location: ../films");
     exit();
 }
 ?>

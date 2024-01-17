@@ -116,21 +116,21 @@ include '../Modèle/style_theme.php' ?>
     <nav>
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar">
             <div class="pages">
-                <a href="accueil.php">Accueil</a>
-                <a href="cinema.php">Le Cinéma</a>
-                <a href="cafet.php">La Cafétéria</a>
-                <a href="films.php">Films</a>
-                <a href="events.php">Évènements</a>
-                <a href="forum.php">Forum</a>
+                <a href="../accueil">Accueil</a>
+                <a href="../cinema">Le Cinéma</a>
+                <a href="../cafet">La Cafétéria</a>
+                <a href="../films">Films</a>
+                <a href="../events">Évènements</a>
+                <a href="../forum">Forum</a>
             </div>
             <div class="bouton-access">
-                <form class="container" action="recherche.php" method="POST">
+                <form class="container" action="../recherche" method="POST">
                     <input type="text" placeholder="Rechercher..." name="recherche">
                     <div class="search"></div>
                 </form>
 
                 <div class="bouton-pro">
-                    <a href="pro.php">Réservation de salles</a>
+                    <a href="../pro">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -142,7 +142,7 @@ include '../Modèle/style_theme.php' ?>
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
+                    $boutonConnexion .= '<a href="../profil"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - 
                     https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> '
@@ -152,7 +152,7 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '</div>';
                 } else {
                     // Si non connecté, affichez le bouton de connexion normal
-                    $boutonConnexion .= '<a href="connexion.php">Connexion</a>';
+                    $boutonConnexion .= '<a href="../connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
@@ -168,7 +168,7 @@ include '../Modèle/style_theme.php' ?>
                 
         <section>
             <div class="container-films">
-                <img src="<?= htmlspecialchars($event_details['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($event_details['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
+                <img src="../<?= htmlspecialchars($event_details['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($event_details['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
                 <div class="info">
                     <h1><?= htmlspecialchars($event_details['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
                     <div class="real"><h3>De :</h3> <?= htmlspecialchars($event_details['organisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
@@ -249,9 +249,9 @@ include '../Modèle/style_theme.php' ?>
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.php">Gestion des cookies</a> - 
-            <a href="cgu.php">CGU</a> - 
-            <a href="faq.php">FAQ</a>
+            <a href="cookies">Gestion des cookies</a> - 
+            <a href="cgu">CGU</a> - 
+            <a href="faq">FAQ</a>
         </div>  
     </footer>
 

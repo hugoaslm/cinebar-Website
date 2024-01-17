@@ -33,7 +33,7 @@ include '../Modèle/style_theme.php' ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Films à l'affiche">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="style/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum de Questions-Réponses</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-bi+2BIvPHs5peU+5wDTrAYu9fEF+j4uANCBF8bXaSv1ap4SC1vY+gJEAY6npa9vm4tft9NxLXR+rWn5eknjOXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -130,21 +130,21 @@ include '../Modèle/style_theme.php' ?>
             
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
-                <a href="accueil.php">Accueil</a>
-                <a href="cinema.php">Le Cinéma</a>
-                <a href="cafet.php">La Cafétéria</a>
-                <a href="films.php">Films</a>
-                <a href="events.php">Évènements</a>
-                <a href="forum.php">Forum</a>
+                <a href="accueil">Accueil</a>
+                <a href="cinema">Le Cinéma</a>
+                <a href="cafet">La Cafétéria</a>
+                <a href="films">Films</a>
+                <a href="events">Évènements</a>
+                <a href="forum">Forum</a>
             </div>
             <div class="bouton-access">
-                <form class="container" action="recherche.php" method="POST">
+                <form class="container" action="recherche" method="POST">
                     <input type="text" placeholder="Rechercher..." name="recherche">
                     <div class="search"></div>
                 </form>
 
                 <div class="bouton-pro">
-                    <a href="pro.php">Réservation de salles</a>
+                    <a href="pro">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -156,7 +156,7 @@ include '../Modèle/style_theme.php' ?>
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identifiant = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php">' . $identifiant . ' <i class="fas fa-user"></i></a>';
+                    $boutonConnexion .= '<a href="profil">' . $identifiant . ' <i class="fas fa-user"></i></a>';
                 } else {
                     // Si non connecté, affichez le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
@@ -271,9 +271,9 @@ include '../Modèle/style_theme.php' ?>
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.php">Gestion des cookies</a> - 
-            <a href="cgu.php">CGU</a> - 
-            <a href="faq.php">FAQ</a>
+            <a href="cookies">Gestion des cookies</a> - 
+            <a href="cgu">CGU</a> - 
+            <a href="faq">FAQ</a>
         </div>  
     </footer>
 

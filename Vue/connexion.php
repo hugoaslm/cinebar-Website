@@ -38,8 +38,8 @@ include '../Modèle/style_theme.php' ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Connexion">
     <title>Connexion</title>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/connexion.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/connexion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
@@ -51,23 +51,23 @@ include '../Modèle/style_theme.php' ?>
         
         <nav>
             
-            <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
-                <a href="accueil.php">Accueil</a>
-                <a href="cinema.php">Le Cinéma</a>
-                <a href="cafet.php">La Cafétéria</a>
-                <a href="films.php">Films</a>
-                <a href="events.php">Évènements</a>
-                <a href="forum.php">Forum</a>
+                <a href="accueil">Accueil</a>
+                <a href="cinema">Le Cinéma</a>
+                <a href="cafet">La Cafétéria</a>
+                <a href="films">Films</a>
+                <a href="events">Évènements</a>
+                <a href="forum">Forum</a>
             </div>
             <div class="bouton-access">
-                <form class="container" action="recherche.php" method="POST">
+                <form class="container" action="recherche" method="POST">
                     <input type="text" placeholder="Rechercher..." name="recherche">
                     <div class="search"></div>
                 </form>
 
                 <div class="bouton-pro">
-                    <a href="pro.php">Réservation de salles</a>
+                    <a href="pro">Réservation de salles</a>
                 </div>
 
                 <?php
@@ -79,7 +79,7 @@ include '../Modèle/style_theme.php' ?>
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php">' . $identif . ' <i class="fas fa-user"></i></a>';
+                    $boutonConnexion .= '<a href="profil">' . $identif . ' <i class="fas fa-user"></i></a>';
                 } else {
                     // Si non connecté, affichez le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion.php">Connexion <i class="fas fa-user"></i></a>';
@@ -96,8 +96,8 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main class='connexion'>
-        <img src="../images/oppenheimer_large.jpg" alt="films_large" class="back_image">
-        <form action="../Modèle/co_process.php" method="post" class="co">
+        <img src="images/oppenheimer_large.jpg" alt="films_large" class="back_image">
+        <form action="Modèle/co_process.php" method="post" class="co">
             <div class="form-text" id="sugg">
                 <p>
                     <label for="identifiant">E-mail ou pseudonyme :</label>
@@ -117,7 +117,7 @@ include '../Modèle/style_theme.php' ?>
 
     <footer>
         <section class='logo-adresse'>
-            <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
                 <p>8 Prom. Coeur de Ville</p>
@@ -125,9 +125,9 @@ include '../Modèle/style_theme.php' ?>
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.php">Gestion des cookies</a> - 
-            <a href="cgu.php">CGU</a> - 
-            <a href="faq.php">FAQ</a>
+            <a href="cookies">Gestion des cookies</a> - 
+            <a href="cgu">CGU</a> - 
+            <a href="faq">FAQ</a>
         </div>        
     </footer>
 
