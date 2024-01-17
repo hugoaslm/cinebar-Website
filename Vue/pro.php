@@ -17,6 +17,11 @@ include '../Modèle/style_theme.php' ?>
     .salles ul li {
         color: white;
     }
+
+    h2 {
+		color:white;
+	}
+
 </style>
 <?php } ?>
 
