@@ -8,6 +8,10 @@ if (!$estAdmin) {
     exit();
 }
 
+include '../Modèle/bdd.php';
+
+require '../Modèle/filmData.php';
+
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -151,18 +155,11 @@ include '../Modèle/style_theme.php' ?>
             <h2>Supprimer un film :</h2>
             <form action="Contrôleur/supprimer_film.php" method="post" class="form-container">
                 <select name="film_id" id="film_id">
-                    <?php
 
-                    include '../Modèle/bdd.php';
+                    <?php foreach (idAllFilms($connexion) as $film): ?>
+                        <option value="<?= $film['id_F']; ?>"><?= $film['nom']; ?></option>
+                    <?php endforeach; ?>
 
-                    $sql = "SELECT id_F, nom FROM films";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($film = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Supprimer</button>
             </form>
@@ -170,21 +167,15 @@ include '../Modèle/style_theme.php' ?>
             <h2>Sélection du film du moment :</h2>
             <form action="Contrôleur/film_moment_admin.php" method="post" class="form-container">
                 <select name="film_id" id="film_id">
-                    <?php
 
-                    include '../Modèle/bdd.php';
+                    <?php foreach (idAllFilms($connexion) as $film): ?>
+                        <option value="<?= $film['id_F']; ?>"><?= $film['nom']; ?></option>
+                    <?php endforeach; ?>
 
-                    $sql = "SELECT id_F, nom FROM films";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($film = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Sélectionner</button>
             </form>
+
         </section>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

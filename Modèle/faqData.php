@@ -21,4 +21,28 @@ function supprimerFAQ($connexion, $faqId) {
     $stmt->execute();
 }
 
+function getAllFAQ($db) {
+
+    $sql = "SELECT * FROM faq";
+    $stmt = $db->query($sql);
+
+    if ($stmt) {
+
+        $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $faqs;
+    }
+}
+
+function FAQOptions($connexion) {
+
+    $stmt = $connexion->prepare("SELECT id_FAQ, question FROM faq");
+    
+    $stmt->execute();
+
+    $faq = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $faq;
+
+}
+
 ?>

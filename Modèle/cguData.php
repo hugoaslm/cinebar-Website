@@ -11,4 +11,16 @@ function mettreAJourCGU($connexion, $nouveauContenu) {
     $stmt->execute();
 }
 
+function getCGU($connexion) {
+
+    $sql = "SELECT * FROM cgu ORDER BY date DESC LIMIT 1";
+    $stmt = $connexion->query($sql);
+
+    if ($stmt) {
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } else {
+        return false;
+    }
+}
+
 ?>

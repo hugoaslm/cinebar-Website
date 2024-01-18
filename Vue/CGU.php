@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+include '../Modèle/bdd.php';
+
+require '../Modèle/cguData.php';
+
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -102,28 +106,17 @@ include '../Modèle/style_theme.php' ?>
 
 
     <?php
-        // Inclure le fichier de connexion à la base de données
-        include '../Modèle/bdd.php';
+        $cgu = getCGU($connexion);
 
-        // Requête SQL pour récupérer les CGU les plus récentes
-        $sql = "SELECT * FROM cgu ORDER BY date DESC LIMIT 1";
-        $stmt = $connexion->query($sql);
-
-        // Vérifier si la requête a réussi
-        if ($stmt) {
-            // Récupérer les données de la dernière CGU
-            $cgu = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Afficher les CGU
+        if ($cgu) {
             echo "<main class='cookies'>";
             echo "<div class='cgu'>";
-            echo "<p><span style='color: black;'>Bienvenue sur Cinébar, votre destination cinéma en ligne ! En accédant et en utilisant ce site, vous accepter les conditions générales d'utilisation suivantes :</span></p><br/>";
+            echo "<p><span style='color: black;'>Bienvenue sur Cinébar, votre destination cinéma en ligne ! En accédant et en utilisant ce site, vous acceptez les conditions générales d'utilisation suivantes :</span></p><br/>";
             echo "<p><span style='color: black;'>" . nl2br($cgu['contenu']) . "</span></p><br/>";
             echo "<p><span style='color: black;'><strong>Ces conditions générales d'utilisation sont sujettes à modification. Nous vous encourageons à les consulter régulièrement pour rester informé des mises à jour.</strong></span></p><br/>";
             echo "</div>";
             echo "</main>";
         } else {
-            // En cas d'erreur lors de l'exécution de la requête
             echo "Erreur lors de la récupération des CGU.";
         }
 

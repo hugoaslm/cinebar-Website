@@ -10,7 +10,8 @@ if (!$estAdmin) {
 
 include '../Modèle/bdd.php';
 
-require_once '../Modèle/salleData.php';
+require '../Modèle/salleData.php';
+require '../Modèle/filmData.php';
 
 include '../Modèle/style_theme.php' ?>
 
@@ -129,16 +130,11 @@ include '../Modèle/style_theme.php' ?>
 
                 <label for="film_proj">Film :</label>
                 <select name="film_proj" id="film_proj">
-                    <?php
 
-                    $sql_film = "SELECT id_F, nom FROM films";
-                    $resultat_film = $connexion->query($sql_film);
+                    <?php foreach (idAllFilms($connexion) as $film): ?>
+                        <option value="<?= $film['id_F']; ?>"><?= $film['nom']; ?></option>
+                    <?php endforeach; ?>
 
-                    // Générer les options de la liste déroulante
-                    while ($film = $resultat_film->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $film['id_F'] . '">' . $film['nom'] . '</option>';
-                    }
-                    ?>
                 </select>
 
                 <label for="horaire">Horaire de la séance :</label>
@@ -155,16 +151,14 @@ include '../Modèle/style_theme.php' ?>
             <h2>Supprimer une projection :</h2>
             <form action="Contrôleur/supprimer_projection.php" method="post" class="form-container">
                 <select name="id_proj" id="id_proj">
-                    <?php
+                    
+                <?php foreach (getAllProjections($connexion) as $proj): ?>
+                    <option value="<?= $proj['id_Projection'] ?>">
+                        Salle : <?= $proj['films_salle_salle_id_Salle'] ?> le <?= $proj['date'] ?> à <?= $proj['heure'] ?>
+                    </option>
+                <?php endforeach; ?>
 
-                    $sql = "SELECT * FROM projection";
-                    $resultat = $connexion->query($sql);
 
-                    // Générer les options de la liste déroulante
-                    while ($proj = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $proj['id_Projection'] . '">Salle : ' . $proj['films_salle_salle_id_Salle'] . ' le ' . $proj['date'] . ' à ' . $proj['heure'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Supprimer</button>
             </form>

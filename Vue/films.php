@@ -5,6 +5,8 @@ session_start();
 include '../Modèle/bdd.php';
 include '../Modèle/themeClair.php';
 
+require '../Modèle/filmData.php';
+
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -130,48 +132,33 @@ include '../Modèle/style_theme.php' ?>
 
         <?php
 
-        // Récupérer l'ID du film sélectionné depuis la table film_moment
-        $sql = "SELECT film_id_F FROM film_moment";
-        $stmt = $connexion->query($sql);
+        $filmIdMoment = getFilmMomentId($connexion);
 
-        if ($stmt->rowCount() > 0) {
-            $film_id = $stmt->fetch(PDO::FETCH_ASSOC)['film_id_F'];
+        $filmDetails = getFilmDetailsById($connexion, $filmIdMoment);
 
-            // Récupérer les détails du film associé à l'ID
-            $sql = "SELECT * FROM films WHERE id_F = :film_id";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(":film_id", $film_id);
-            $stmt->execute();
+        if (!empty($filmDetails)) {
 
-            // Vérifier s'il y a des résultats
-            if ($stmt->rowCount() > 0) {
-                $film = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                // Afficher les détails du film
-                echo '<h1 class="h1_moment">FILM DU MOMENT</h1>';
-                echo '<section class="vedette">';
-                echo '<div class="film-vedette">';
-                echo '<div class="illu">';
-                echo '<img src="' . $film['affiche_large'] . '" alt="' . $film['nom'] . '">';
-                echo '</div>';
-                echo '<div class="details">';
-                echo '<h2>' . $film['nom'] . '</h2>';
-                echo '<h4>' . $film['genre'] . '</h4>';
-                echo '<p>' . $film['description'] . '</p>';
-                echo '<div>Date de sortie: ' . $film['DateDeSortie'] . '</div>';
-                echo '<div>Durée: ' . $film['duree'] . ' minutes</div>';
-                echo '</div>';
-                echo '<div class="cast">';
-                echo '<p>Réalisateur: ' . $film['realisateur'] . '</p>';
-                echo '<p>Acteurs: ' . $film['acteurs'] . '</p>';
-                echo '</div>';
-                echo '</div>';
-                echo '</section>';
-            } else {
-                echo 'Film du moment non trouvé.';
-            }
+            echo '<h1 class="h1_moment">FILM DU MOMENT</h1>';
+            echo '<section class="vedette">';
+            echo '<div class="film-vedette">';
+            echo '<div class="illu">';
+            echo '<img src="' . $filmDetails['affiche_large'] . '" alt="' . $filmDetails['nom'] . '">';
+            echo '</div>';
+            echo '<div class="details">';
+            echo '<h2>' . $filmDetails['nom'] . '</h2>';
+            echo '<h4>' . $filmDetails['genre'] . '</h4>';
+            echo '<p>' . $filmDetails['description'] . '</p>';
+            echo '<div>Date de sortie: ' . $filmDetails['DateDeSortie'] . '</div>';
+            echo '<div>Durée: ' . $filmDetails['duree'] . ' minutes</div>';
+            echo '</div>';
+            echo '<div class="cast">';
+            echo '<p>Réalisateur: ' . $filmDetails['realisateur'] . '</p>';
+            echo '<p>Acteurs: ' . $filmDetails['acteurs'] . '</p>';
+            echo '</div>';
+            echo '</div>';
+            echo '</section>';
         } else {
-            echo 'Film du moment non trouvé dans film_moment.';
+            echo 'Film du moment non trouvé.';
         }
         ?>
 
@@ -183,18 +170,7 @@ include '../Modèle/style_theme.php' ?>
             <div class="films-container">
 
                 <?php
-                try {
-                    // Préparer la requête SQL
-                    $stmt = $connexion->prepare("SELECT * FROM films");
-                    
-                    // Exécuter la requête
-                    $stmt->execute();
-                
-                    // Récupérer toutes les lignes résultantes
-                    $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                } catch (PDOException $e) {
-                    echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
-                }
+                $films = getAllFilms($connexion);
                 ?>
 
                 <?php

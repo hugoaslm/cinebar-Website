@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+include '../Modèle/bdd.php';
+
+require '../Modèle/faqData.php';
+
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -105,45 +109,34 @@ include '../Modèle/style_theme.php' ?>
 
   <main>
     <?php
-      // Inclure le fichier de connexion à la base de données
-      include '../Modèle/bdd.php';
 
-      // Requête SQL pour récupérer les questions et réponses de la FAQ
-      $sql = "SELECT * FROM faq";
-      $stmt = $connexion->query($sql);
+        $faqs = getAllFAQ($connexion);
 
-      // Vérifier si la requête a réussi
-      if ($stmt) {
-          // Récupérer toutes les questions et réponses de la FAQ
-          $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($faqs) {
+            echo "<div class='wrapper'>";
+            echo "<h1>Foire Aux Questions</h1>";
 
-          // Afficher chaque question et réponse dans la structure HTML
-          echo "<div class='wrapper'>";
-          echo "<h1>Foire Aux Questions</h1>";
+            foreach ($faqs as $faq) {
+                echo "<div class='faq'>";
+                echo "<button class='accordion'>";
+                echo $faq['question'];
+                echo "<i class='fa-solid fa-chevron-down'></i>";
+                echo "</button>";
+                echo "<div class='pannel'>";
+                echo "<p>";
+                echo $faq['reponse'];
+                echo "</p>";
+                echo "</div>";
+                echo "</div>";
+            }
 
-          foreach ($faqs as $faq) {
-              echo "<div class='faq'>";
-              echo "<button class='accordion'>";
-              echo $faq['question'];
-              echo "<i class='fa-solid fa-chevron-down'></i>";
-              echo "</button>";
-              echo "<div class='pannel'>";
-              echo "<p>";
-              echo $faq['reponse'];
-              echo "</p>";
-              echo "</div>";
-              echo "</div>";
-          }
+            echo "</div>";
+        } else {
+            echo "Erreur lors de la récupération des questions et réponses de la FAQ.";
+        }
 
-          echo "</div>";
-      } else {
-          // En cas d'erreur lors de l'exécution de la requête
-          echo "Erreur lors de la récupération des questions et réponses de la FAQ.";
-      }
-
-      // Fermer la connexion à la base de données
-      $connexion = null;
-      ?>
+        $connexion = null;
+    ?>
         
         <script>
             var acc = document.getElementsByClassName("accordion");

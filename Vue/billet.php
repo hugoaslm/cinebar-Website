@@ -3,49 +3,10 @@ session_start();
 
 include "../Modèle/bdd.php";
 require "../Modèle/userData.php";
+require "../Modèle/filmData.php";
 
 // Vérifier si l'utilisateur est connecté
 $estConnecte = isset($_SESSION['identifiant']);
-
-// Récupération de l'ID de la projection à partir de l'URL
-$projection_id = isset($_GET['id_Projection']) ? $_GET['id_Projection'] : null;
-
-// Initialisation les valeurs par défaut
-$nom = '';
-$prenom = '';
-$email = '';
-$film = '';
-$places = '';
-$date = '';
-$horaire = '';
-
-// Vérifier si l'ID de la projection est défini
-if ($projection_id !== null) {
-    $stmt_projection = $connexion->prepare("SELECT films_salle_films_id_F, date, heure FROM projection WHERE id_Projection = :id_Projection");
-    $stmt_projection->bindParam(':id_Projection', $projection_id);
-    $stmt_projection->execute();
-    $projection_details = $stmt_projection->fetch(PDO::FETCH_ASSOC);
-
-    $film = $projection_details['films_salle_films_id_F'];
-
-    $stmt_film = $connexion->prepare("SELECT nom FROM films WHERE id_F = :id_Film");
-    $stmt_film->bindParam(':id_Film', $film);
-    $stmt_film->execute();
-    $nom_film = $stmt_film->fetchColumn();
-
-    // Si la projection est trouvée, metter à jour les valeurs par défaut
-    if ($projection_details) {
-        $date = $projection_details['date'];
-        $horaire = $projection_details['heure'];
-    }
-}
-
-// Si l'utilisateur est connecté, récupérer son email
-if ($estConnecte) {
-    $infoUtilisateur = info_userConnected($connexion);
-
-    $email = $infoUtilisateur['mail'];
-}
 
 include '../Modèle/style_theme.php' ?>
 
@@ -148,6 +109,28 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main class="billet">
+        <?php
+        // Récupération de l'ID de la projection à partir de l'URL
+        $projection_id = isset($_GET['id_Projection']) ? $_GET['id_Projection'] : null;
+
+        $defaultValues = getReservationChamps($connexion, $projection_id);
+
+        $nom = '';
+        $prenom = $defaultValues['prenom'];
+        $email = $defaultValues['email'];
+        $nom_film = $defaultValues['nom'];
+        $places = $defaultValues['places'];
+        $date = $defaultValues['date'];
+        $horaire = $defaultValues['horaire'];
+
+        // Si l'utilisateur est connecté, récupérer son email
+        if ($estConnecte) {
+            $infoUtilisateur = info_userConnected($connexion);
+
+            $email = $infoUtilisateur['mail'];
+        }
+        ?>
+
         <section class='form_billet'>
             <h1>Réservation :</h1>
             <form action="Contrôleur/traitement_billet_films.php" method="post" class="reserv-billet">

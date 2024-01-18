@@ -8,6 +8,10 @@ if (!$estAdmin) {
     exit();
 }
 
+include '../Modèle/bdd.php';
+
+require '../Modèle/faqData.php';
+
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -125,18 +129,11 @@ if ($theme == 0) { ?>
             <h2>Supprimer une question et sa réponse :</h2>
             <form action="Contrôleur/supprimer_faq.php" method="post" class="form-container">
                 <select name="faq_id" id="faq_id">
-                    <?php
+                    
+                    <?php foreach (FAQOptions($connexion) as $faq): ?>
+                        <option value="<?= $faq['id_FAQ']; ?>"><?= $faq['question']; ?></option>
+                    <?php endforeach; ?>
 
-                    include '../Modèle/bdd.php';
-
-                    $sql = "SELECT id_FAQ, question FROM faq";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($faq = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $faq['id_FAQ'] . '">' . $faq['question'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Supprimer</button>
             </form>

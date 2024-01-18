@@ -181,4 +181,62 @@ function getAllFilms($db) {
     return $films;
 }
 
+function getAllProjections($db) {
+
+    $stmt = $db->prepare("SELECT * FROM projection");
+        
+    $stmt->execute();
+
+    $proj = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $proj;
+}
+
+function getReservationChamps($db, $projectionId) {
+    $defaultValues = [
+        'nom' => '',
+        'prenom' => '',
+        'email' => '',
+        'film' => '',
+        'places' => '',
+        'date' => '',
+        'horaire' => ''
+    ];
+
+    // Vérifier si l'ID de la projection est défini
+    if ($projectionId !== null) {
+        $stmtProjection = $db->prepare("SELECT films_salle_films_id_F, date, heure FROM projection WHERE id_Projection = :id_Projection");
+        $stmtProjection->bindParam(':id_Projection', $projectionId);
+        $stmtProjection->execute();
+        $projectionDetails = $stmtProjection->fetch(PDO::FETCH_ASSOC);
+
+        // Si la projection est trouvée, mettre à jour les valeurs par défaut
+        if ($projectionDetails) {
+            $defaultValues['film'] = $projectionDetails['films_salle_films_id_F'];
+
+            $stmtFilm = $db->prepare("SELECT nom FROM films WHERE id_F = :id_Film");
+            $stmtFilm->bindParam(':id_Film', $defaultValues['film']);
+            $stmtFilm->execute();
+            $defaultValues['nom'] = $stmtFilm->fetchColumn();
+
+            $defaultValues['date'] = $projectionDetails['date'];
+            $defaultValues['horaire'] = $projectionDetails['heure'];
+        }
+    }
+
+    return $defaultValues;
+}
+
+function idAllFilms($connexion) {
+
+    $stmt = $connexion->prepare("SELECT id_F, nom FROM films");
+    
+    $stmt->execute();
+
+    $film = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $film;
+
+}
+
 ?>
