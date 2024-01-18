@@ -6,9 +6,9 @@
 }
 
 .salles div {
-  flex: 0 0 auto; /* Ajustez la propriété flex en fonction de vos besoins */
-  width: 250px; /* Ajustez la largeur en fonction de vos besoins */
-  margin: 10px; /* Ajustez la marge entre les éléments en fonction de vos besoins */
+  flex: 0 0 auto; /* Ajuster la propriété flex en fonction de vos besoins */
+  width: 250px; /* Ajuster la largeur en fonction de vos besoins */
+  margin: 10px; /* Ajuster la marge entre les éléments en fonction de vos besoins */
   padding: 100px 30px;
   border-radius: 24px;
   border: 1px solid #FFF;
@@ -111,7 +111,7 @@ form h3 {
 
 #table-utilisateurs {
   border-collapse: collapse;
-  width: 80%; /* Ajustez la largeur du tableau selon vos besoins */
+  width: 80%; /* Ajuster la largeur du tableau selon vos besoins */
   margin: 20px auto; /* Centre le tableau horizontalement et ajoute de l'espace autour */
 }
 

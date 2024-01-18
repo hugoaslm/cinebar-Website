@@ -2,8 +2,9 @@
 session_start();
 
 include "../Modèle/bdd.php";
+require "../Modèle/userData.php";
 
-// Vérifiez si l'utilisateur est connecté
+// Vérifier si l'utilisateur est connecté
 $estConnecte = isset($_SESSION['identifiant']);
 
 // Récupération de l'ID de la projection à partir de l'URL
@@ -18,7 +19,7 @@ $places = '';
 $date = '';
 $horaire = '';
 
-// Vérifiez si l'ID de la projection est défini
+// Vérifier si l'ID de la projection est défini
 if ($projection_id !== null) {
     $stmt_projection = $connexion->prepare("SELECT films_salle_films_id_F, date, heure FROM projection WHERE id_Projection = :id_Projection");
     $stmt_projection->bindParam(':id_Projection', $projection_id);
@@ -32,18 +33,18 @@ if ($projection_id !== null) {
     $stmt_film->execute();
     $nom_film = $stmt_film->fetchColumn();
 
-    // Si la projection est trouvée, mettez à jour les valeurs par défaut
+    // Si la projection est trouvée, metter à jour les valeurs par défaut
     if ($projection_details) {
         $date = $projection_details['date'];
         $horaire = $projection_details['heure'];
     }
 }
 
-include "../Modèle/infos_utilisateur.php";
-
-// Si l'utilisateur est connecté, récupérez son email
+// Si l'utilisateur est connecté, récupérer son email
 if ($estConnecte) {
-    $email = $resultat['mail'];
+    $infoUtilisateur = info_userConnected($connexion);
+
+    $email = $infoUtilisateur['mail'];
 }
 
 include '../Modèle/style_theme.php' ?>
@@ -116,10 +117,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -132,12 +133,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
                 

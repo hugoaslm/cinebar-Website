@@ -4,9 +4,15 @@ session_start();
 include '../Modèle/estAdmin.php';
 
 if (!$estAdmin) {
-    header("Location: accueil.php");
+    header("Location: accueil");
     exit();
 }
+
+require_once '../Modèle/salleData.php';
+
+require_once '../Modèle/eventData.php';
+
+include '../Modèle/bdd.php';
 
 include '../Modèle/style_theme.php' ?>
 
@@ -73,10 +79,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -89,12 +95,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -104,8 +110,8 @@ include '../Modèle/style_theme.php' ?>
 
     <main>
     <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films, 
-        événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
-        Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
+        événements et salles du cinéma. Utiliser les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
+        Assurer-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
             <h1>Gestion des Événements</h1>
@@ -119,23 +125,19 @@ include '../Modèle/style_theme.php' ?>
                 <label for="date_event">Date :</label>
                 <input type="date" id="date_event" name="date_event" required>
 
+                <label for="hor_event">Horaires :</label>
+                <input type="text" id="hor_event" name="hor_event" required>
+
                 <label for="orga_event">Organisateur :</label>
                 <input type="text" id="orga_event" name="orga_event" required>
 
                 <label for="salle_event">Salle :</label>
                 <select name="salle_event" id="salle_event">
-                    <?php
+                    
+                    <?php foreach (getSalles($connexion) as $salle): ?>
+                        <option value="<?= $salle['id_Salle']; ?>"><?= $salle['nom_salle']; ?></option>
+                    <?php endforeach; ?>
 
-                    include '../Modèle/bdd.php';
-
-                    $sql = "SELECT id_Salle, nom_salle FROM salle";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($salle = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $salle['id_Salle'] . '">' . $salle['nom_salle'] . '</option>';
-                    }
-                    ?>
                 </select>
 
                 <label for="affiche_event">Chemin vers l'affiche :</label>
@@ -152,18 +154,11 @@ include '../Modèle/style_theme.php' ?>
             <h2>Supprimer un évènement :</h2>
             <form action="Contrôleur/supprimer_event.php" method="post" class="form-container">
                 <select name="event_id" id="event_id">
-                    <?php
 
-                    include '../Modèle/bdd.php';
+                    <?php foreach (getAllEvents($connexion) as $event): ?>
+                        <option value="<?= $event['id_E']; ?>"><?= $event['nom']; ?></option>
+                    <?php endforeach; ?>
 
-                    $sql = "SELECT id_E, nom FROM events";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($event = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $event['id_E'] . '">' . $event['nom'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Supprimer</button>
             </form>
@@ -173,7 +168,7 @@ include '../Modèle/style_theme.php' ?>
                 <select name="event_id" id="event_id">
                     <?php
 
-                    include '../Modèle/bdd.php';
+                    
 
                     $sql = "SELECT id_E, nom FROM events";
                     $resultat = $connexion->query($sql);

@@ -4,7 +4,7 @@ session_start();
 $estConnecte = isset($_SESSION['identifiant']);
 
 if (!$estConnecte) {
-    header("Location: accueil.php");
+    header("Location: accueil");
     exit();
 }
 
@@ -76,10 +76,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -92,12 +92,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -108,7 +108,7 @@ include '../Modèle/style_theme.php' ?>
     <main>
 
     <h1>Modifier le profil de <span class="mot_cle"><?php echo $identif; ?></span> : </h1>
-        <form action="Contrôleur/modifier_compte.php" method="post" class="compte">
+        <form action="Contrôleur/modifier_profil.php" method="post" class="compte">
             <label for="mail">E-mail :</label>
             <input type="mail" id="mail" name="mail">
 
@@ -129,7 +129,7 @@ include '../Modèle/style_theme.php' ?>
         </form>
 
         <script>
-            // Ajoutez cette fonction pour changer le thème en fonction de l'état du toggle
+            // Ajouter cette fonction pour changer le thème en fonction de l'état du toggle
             function toggleTheme() {
                 var themeToggle = document.getElementById("themeToggle");
                 var themeText = document.getElementById("themeText");
@@ -150,7 +150,7 @@ include '../Modèle/style_theme.php' ?>
                 }
             }
 
-            // Chargez le mode précédemment sélectionné lors du rechargement de la page
+            // Charger le mode précédemment sélectionné lors du rechargement de la page
             const storedDarkMode = localStorage.getItem('darkMode');
             if (storedDarkMode === 'true') {
                 document.getElementById("themeToggle").checked = true;

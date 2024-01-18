@@ -4,41 +4,29 @@ session_start();
 
 include '../Modèle/bdd.php';
 include '../Modèle/themeClair.php';
+require '../Modèle/eventData.php';
 
-// Vérifiez si l'utilisateur est connecté
 $estConnecte = isset($_SESSION['identifiant']);
 
 $event_id = isset($_GET['id_E']) ? $_GET['id_E'] : null;
 
-// Initialisation les valeurs par défaut
+$event_details = getEventDetailsById($connexion, $event_id);
+
+// Initialisation des valeurs par défaut
 $nom = '';
 $prenom = '';
 $email = '';
-$event = '';
 $places = '';
-$date = '';
-$horaires = '';
 
-// Vérifiez si l'ID de l'event est défini
-if ($event_id !== null) {
-    $stmt_event = $connexion->prepare("SELECT * FROM events WHERE id_E = :event_id");
-    $stmt_event->bindParam(':event_id', $event_id);
-    $stmt_event->execute();
-    $event_details = $stmt_event->fetch(PDO::FETCH_ASSOC);
+// Recupérer les infos utilisateurs
 
-    // Si l'event est trouvé, mettez à jour les valeurs par défaut
-    if ($event_details) {
-        $date = $event_details['date'];
-        $horaires = $event_details['horaires'];
-        $event = $event_details['nom'];
-    }
-}
+require "../Modèle/userData.php";
 
-include "../Modèle/infos_utilisateur.php";
-
-// Si l'utilisateur est connecté, récupérez son email
+// Si l'utilisateur est connecté, récupérer son email
 if ($estConnecte) {
-    $email = $resultat['mail'];
+    $infoUtilisateur = info_userConnected($connexion);
+
+    $email = $infoUtilisateur['mail'];
 }
 
 include '../Modèle/style_theme.php' ?>
@@ -135,10 +123,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -151,12 +139,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="../connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -183,15 +171,14 @@ include '../Modèle/style_theme.php' ?>
 
             <?php
 
-            // Inclusion de la fonction PHP qui génère le curseur de volume
-            include '../Modèle/donnees_event.php';
+                $capteurData = getAverageDecibelAndNote($connexion, $event_id);
 
             ?>
 
             <div class="note-cursor">
-                <h2><?php echo $note; ?>/5</h2>
-                <span class="valeur-volume"><?php echo $valeurEnDB; ?> dB</span>
-                <input type="range" min="0" max="100" value="<?php echo $valeurCurseur; ?>" class="curseur-volume" disabled>
+                <h2><?php echo $capteurData["note"]; ?>/5</h2>
+                <span class="valeur-volume"><?php echo $capteurData["valeurEnDB"]; ?> dB</span>
+                <input type="range" min="0" max="100" value="<?php echo $capteurData["valeurCurseur"]; ?>" class="curseur-volume" disabled>
             </div>
 
         </section>
@@ -212,15 +199,15 @@ include '../Modèle/style_theme.php' ?>
                     <input type="mail" id="mail" name="mail" value="<?php echo $email; ?>" readonly>
                     <label> Évènement :</label>
                     <select id="movie" name="event" readonly>
-                        <option value="<?php echo $event; ?>"><?php echo $event; ?></option>
+                        <option value="<?php echo $event_details['nom']; ?>"><?php echo $event_details['nom']; ?></option>
                     </select>
                     <label for="places">Nombre de places :</label>
                     <input type="places" id="places" name="places" value="<?php echo $places; ?>">
                     <label for="date">Date :</label>
-                    <input type="date" id="date" name="date" value="<?php echo $date; ?>" readonly>
+                    <input type="date" id="date" name="date" value="<?php echo $event_details['date']; ?>" readonly>
                     <label for="horaire">Horaire :</label>
                     <select id="horaire" name="horaires" readonly>
-                        <option value="<?php echo $horaires; ?>"><?php echo $horaires; ?></option>
+                        <option value="<?php echo $event_details['horaires']; ?>"><?php echo $event_details['horaires']; ?></option>
                     </select>
                     <p>
                         <button name="send" type="submit">Réserver</button>
@@ -233,7 +220,7 @@ include '../Modèle/style_theme.php' ?>
         <?php
             }
             else {
-                echo "<div style='text-align: center;'>Veuillez vous connecter ou vous inscrire si vous n'avez pas de compte</div>";
+                echo "<div style='text-align: center;'>Veuiller vous connecter ou vous inscrire si vous n'aver pas de compte</div>";
             }
         ?>
 

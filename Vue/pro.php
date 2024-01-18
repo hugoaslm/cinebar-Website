@@ -4,7 +4,13 @@ session_start();
 
 include '../Modèle/themeClair.php';
 
-include '../Modèle/style_theme.php' ?>
+include '../Modèle/style_theme.php';
+
+include '../Modèle/bdd.php';
+
+require_once '../Modèle/salleData.php';
+
+?>
 
 <?php
 
@@ -83,10 +89,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -99,12 +105,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
                 
@@ -119,16 +125,7 @@ include '../Modèle/style_theme.php' ?>
         </div>
         <?php
         
-        include '../Modèle/bdd.php';
-
-        // Préparer la requête SQL
-        $stmt = $connexion->prepare("SELECT * FROM salle WHERE nom_salle != 'cafet'");
-            
-        // Exécuter la requête
-        $stmt->execute();
-
-        // Récupérer toutes les lignes résultantes
-        $salles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $salles = getSallesExceptCafet($connexion);
 
         ?>
 

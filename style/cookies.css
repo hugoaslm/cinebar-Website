@@ -41,7 +41,7 @@ label, input, select{
     .mui-switch:checked:before {
       left: 21px; }
   .mui-switch.mui-switch-anim {
-    transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s; }
+    transition: border cubic-berier(0, 0, 0, 1) 0.4s, box-shadow cubic-berier(0, 0, 0, 1) 0.4s; }
     .mui-switch.mui-switch-anim:before {
       transition: left 0.3s; }
     .mui-switch.mui-switch-anim:checked {

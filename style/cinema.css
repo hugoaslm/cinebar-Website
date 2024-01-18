@@ -156,9 +156,9 @@ ul {
 
 .aside-droite {
   display: block;
-  float: right; /* Ajoutez la propriété float: right; */
-  width: 30%; /* Définissez la largeur souhaitée */
-  margin-left: 20px; /* Ajoutez une marge à gauche pour l'espacement */
+  float: right; /* Ajouter la propriété float: right; */
+  width: 30%; /* Définisser la largeur souhaitée */
+  margin-left: 20px; /* Ajouter une marge à gauche pour l'espacement */
 }
 
 .aside-list {

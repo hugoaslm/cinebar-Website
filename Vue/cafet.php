@@ -5,8 +5,6 @@
 session_start();
 include '../Modèle/themeClair.php'; 
 
-include '../Modèle/bdd_cafet.php'; 
-
 include "../Modèle/donnees_cafet.php";
 
 include '../Modèle/style_theme.php' ?>
@@ -140,10 +138,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -156,12 +154,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
                 
@@ -219,7 +217,9 @@ include '../Modèle/style_theme.php' ?>
 
         </aside>
 
-        
+        <?php require("../Modèle/salleData.php");
+        $cafet = getSalleData($connexion, 'cafet');
+        ?>
 
         <section class="description-bar-cine">
             <h1>L'Atmosphère de notre cafétéria</h1>
@@ -265,7 +265,7 @@ include '../Modèle/style_theme.php' ?>
         </section>
 
         <section class='sav-plus'>
-            <h2>Si vous souhaitez en apprendre plus sur la solution :</h2>
+            <h2>Si vous souhaiter en apprendre plus sur la solution :</h2>
             <div class="bouton-cinebar">
                 <a href="cinebar">Cinébar</a>
             </div>

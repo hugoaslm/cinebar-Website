@@ -4,6 +4,8 @@ session_start();
 
 include '../Modèle/bdd.php';
 
+require "../Contrôleur/traitement_recherche.php";
+
 include '../Modèle/style_theme.php' ?>
 
 <?php
@@ -84,10 +86,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -100,12 +102,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
                 
@@ -118,15 +120,13 @@ include '../Modèle/style_theme.php' ?>
         
         <?php
 
-        include "../Contrôleur/traitement_recherche.php";
-
         echo '<h1>Résultat de votre recherche :</h1>';
         echo '<div class="films-container">';
 
         // Afficher les résultats des films
-        while ($row = $stmt_films->fetch(PDO::FETCH_ASSOC)) {
+        foreach ($films as $row) {
             echo '<div class="film">';
-            echo '<a href="details.php?id_F=' . $row['id_F'] . '">';
+            echo '<a href="film/' . $row['id_F'] . '">';
             echo '<img src="' . $row['affiche'] . '" alt="' . $row['nom'] . '">';
             echo '<p class="film-info">';
             echo '<span>' . $row['nom'] . '</span><br>';
@@ -141,10 +141,11 @@ include '../Modèle/style_theme.php' ?>
         echo '<div class="events-container">';
 
         // Afficher les résultats des événements
-        while ($row = $stmt_events->fetch(PDO::FETCH_ASSOC)) {
+        foreach ($events as $row) {
             echo '<div class="event">';
-            echo '<a href="desc.php?id_E=' . $row['id_E'] . '" class="ev">';
+            echo '<a href="event/' . $row['id_E'] . '" class="ev">';
             echo '<img src="' . $row['affiche'] . '" alt="' . $row['nom'] . '">';
+            echo '<p>' . $row['nom'] . '</p>';
             echo '<p>' . $row['organisateur'] . '</p>';
             echo '</a>';
             echo '</div>';

@@ -4,9 +4,13 @@ session_start();
 include '../Modèle/estAdmin.php';
 
 if (!$estAdmin) {
-    header("Location: accueil.php");
+    header("Location: accueil");
     exit();
 }
+
+include '../Modèle/bdd.php';
+
+require_once '../Modèle/salleData.php';
 
 include '../Modèle/style_theme.php' ?>
 
@@ -76,10 +80,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -92,12 +96,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -107,8 +111,8 @@ include '../Modèle/style_theme.php' ?>
 
     <main>
     <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films, 
-        événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
-        Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
+        événements et salles du cinéma. Utiliser les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
+        Assurer-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
             <h1>Gestion des projections</h1>
@@ -116,25 +120,16 @@ include '../Modèle/style_theme.php' ?>
             <form action="Contrôleur/ajouter_projection.php" method="post" class="form-container">
                 <label for="salle_proj">Salle :</label>
                 <select name="salle_proj" id="salle_proj">
-                    <?php
+                    
+                    <?php foreach (getSalles($connexion) as $salle): ?>
+                        <option value="<?= $salle['id_Salle']; ?>"><?= $salle['nom_salle']; ?></option>
+                    <?php endforeach; ?>
 
-                    include '../Modèle/bdd.php';
-
-                    $sql_salle = "SELECT id_Salle, nom_salle FROM salle";
-                    $resultat_salle = $connexion->query($sql_salle);
-
-                    // Générer les options de la liste déroulante
-                    while ($salle = $resultat_salle->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $salle['id_Salle'] . '">' . $salle['nom_salle'] . '</option>';
-                    }
-                    ?>
                 </select>
 
                 <label for="film_proj">Film :</label>
                 <select name="film_proj" id="film_proj">
                     <?php
-
-                    include '../Modèle/bdd.php';
 
                     $sql_film = "SELECT id_F, nom FROM films";
                     $resultat_film = $connexion->query($sql_film);
@@ -162,8 +157,6 @@ include '../Modèle/style_theme.php' ?>
                 <select name="id_proj" id="id_proj">
                     <?php
 
-                    include '../Modèle/bdd.php';
-
                     $sql = "SELECT * FROM projection";
                     $resultat = $connexion->query($sql);
 
@@ -189,7 +182,7 @@ include '../Modèle/style_theme.php' ?>
                 $('#genre_film').select2({
                     tags: true,
                     tokenSeparators: [',', ' '],
-                    placeholder: 'Sélectionnez des genres',
+                    placeholder: 'Sélectionner des genres',
                     ajax: {
                         url: 'genres.json', // Chemin vers votre fichier JSON
                         dataType: 'json',

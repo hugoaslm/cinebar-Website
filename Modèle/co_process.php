@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
     if (password_verify($password, $resultat['MotDePasse'])) {
-        // Mot de passe correct, connectez l'utilisateur
+        // Mot de passe correct, connecter l'utilisateur
         session_start();
         $_SESSION['identifiant'] = $resultat['pseudo'];
     
-        // Ajoutez des messages de débogage
+        // Ajouter des messages de débogage
         echo "Connexion réussie. Redirection en cours...";
         header("Location: ../accueil");
         exit();

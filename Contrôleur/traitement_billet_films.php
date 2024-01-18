@@ -2,6 +2,9 @@
 
 session_start();
 
+require "../Modèle/userData.php";
+include "../Modèle/bdd.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $nom = $_POST["nom"];
@@ -12,9 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $horaire = $_POST["horaire"];
     $date = $_POST['date'];
 
-    include "../Modèle/infos_utilisateur.php";
-    include "../Modèle/bdd.php";
-
     // Récupération de l'id de projection
 
     $stmt_projection = $connexion->prepare("SELECT id_Projection FROM projection WHERE date = :date AND heure = :horaire");
@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_projection->execute();
     $projection_id = $stmt_projection->fetchColumn();
 
-    $utilisateur_id = $resultat['id_Utilisateur'];
+    $user_co = info_userConnected($connexion);
+    $utilisateur_id = $user_co['id_Utilisateur'];
 
     if ($projection_id !== null) {
         // Insertion des données dans la table reservation_film

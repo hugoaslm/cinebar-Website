@@ -112,10 +112,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -128,12 +128,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
                 
@@ -191,27 +191,27 @@ include '../Modèle/style_theme.php' ?>
         </aside>
 
         <section class='description-bar-cine'>
-            <h1>Découvrez notre cinéma !</h1>
+            <h1>Découvrer notre cinéma !</h1>
             <div class="desc-bar-cine">
                 <p>
-                    Plongez dans l'univers captivant du cinéma, où chaque film est une invitation à l'aventure, à l'émotion et à la réflexion. Notre sélection soigneusement élaborée offre une variété de genres pour satisfaire tous les goûts cinéphiles.
+                    Plonger dans l'univers captivant du cinéma, où chaque film est une invitation à l'aventure, à l'émotion et à la réflexion. Notre sélection soigneusement élaborée offre une variété de genres pour satisfaire tous les goûts cinéphiles.
                 </p>
 
                 <p>
-                    Explorez les dernières sorties, des chefs-d'œuvre du cinéma indépendant aux blockbusters époustouflants. Chaque projection est une expérience immersive, transportant les spectateurs vers des mondes extraordinaires, des histoires poignantes et des voyages inoubliables.
+                    Explorer les dernières sorties, des chefs-d'œuvre du cinéma indépendant aux blockbusters époustouflants. Chaque projection est une expérience immersive, transportant les spectateurs vers des mondes extraordinaires, des histoires poignantes et des voyages inoubliables.
                 </p>
 
                 <p>
-                    Que vous soyez amateur de drames intenses, de comédies légères, de thrillers palpitants ou de documentaires captivants, Cinébar vous propose une programmation diversifiée pour nourrir votre passion pour le septième art.
+                    Que vous soyer amateur de drames intenses, de comédies légères, de thrillers palpitants ou de documentaires captivants, Cinébar vous propose une programmation diversifiée pour nourrir votre passion pour le septième art.
                 </p>
 
                 <p>
-                    Notre engagement envers la qualité visuelle et sonore garantit que chaque séance est une célébration du cinéma dans toute sa splendeur. Venez découvrir des histoires qui vous transportent, des performances exceptionnelles et des réalisations cinématographiques qui restent gravées dans la mémoire.
+                    Notre engagement envers la qualité visuelle et sonore garantit que chaque séance est une célébration du cinéma dans toute sa splendeur. Vener découvrir des histoires qui vous transportent, des performances exceptionnelles et des réalisations cinématographiques qui restent gravées dans la mémoire.
                 </p>
             </div>
 
         <section class='sav-plus'>
-            <h2>Si vous souhaitez en apprendre plus sur la solution :</h2>
+            <h2>Si vous souhaiter en apprendre plus sur la solution :</h2>
             <div class="bouton-cinebar">
                 <a href="cinebar">Cinébar</a>
             </div>

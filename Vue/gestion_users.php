@@ -4,9 +4,11 @@ session_start();
 include '../Modèle/estAdmin.php';
 
 if (!$estAdmin) {
-    header("Location: accueil.php");
+    header("Location: accueil");
     exit();
 }
+
+include '../Modèle/bdd.php';
 
 include '../Modèle/style_theme.php' ?>
 
@@ -74,10 +76,10 @@ if ($theme == 0) { ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -90,12 +92,12 @@ if ($theme == 0) { ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -105,13 +107,17 @@ if ($theme == 0) { ?>
 
     <main>
         <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films,
-            événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations.
-            Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
+            événements et salles du cinéma. Utiliser les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations.
+            Assurer-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
             <h1>Gestion des utilisateurs</h1>
 
-            <?php include '../Modèle/get_util.php'; ?>
+            <?php require '../Modèle/userData.php'; 
+
+            $utilisateurs = getAllUtilisateurs($connexion)
+
+            ?>
 
             <table id="table-utilisateurs">
                 <thead>
@@ -129,7 +135,7 @@ if ($theme == 0) { ?>
                         echo '<td>' . $utilisateur['id_Utilisateur'] . '</td>';
                         echo '<td>' . $utilisateur['pseudo'] . '</td>';
                         echo '<td id="role-' . $utilisateur['id_Utilisateur'] . '">' . $utilisateur['admin'] . '</td>';
-                        echo '<td><a href="modifier_profil.php?id=' . $utilisateur['id_Utilisateur'] . '">Modifier</a>  <a href="#" onclick="confirmerSuppression(' . $utilisateur['id_Utilisateur'] . ');">Supprimer</a></td>';
+                        echo '<td><a href="utilisateur/' . $utilisateur['id_Utilisateur'] . '">Modifier</a>  <a href="#" onclick="confirmerSuppression(' . $utilisateur['id_Utilisateur'] . ');">Supprimer</a></td>';
                         echo '</tr>';
                     }
                     ?>

@@ -4,7 +4,7 @@ session_start();
 include '../Modèle/estAdmin.php';
 
 if (!$estAdmin) {
-    header("Location: accueil.php");
+    header("Location: accueil");
     exit();
 }
 
@@ -77,10 +77,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -93,12 +93,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -108,8 +108,8 @@ include '../Modèle/style_theme.php' ?>
 
     <main>
     <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films, 
-        événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
-        Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
+        événements et salles du cinéma. Utiliser les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations. 
+        Assurer-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
             <h1>Gestion des Films</h1>
@@ -213,7 +213,7 @@ include '../Modèle/style_theme.php' ?>
                 $('#genre_film').select2({
                     tags: true,
                     tokenSeparators: [',', ' '],
-                    placeholder: 'Sélectionnez des genres',
+                    placeholder: 'Sélectionner des genres',
                     data: genres.map(function(genre) {
                         return { id: genre, text: genre };
                     }),

@@ -4,9 +4,13 @@ session_start();
 include '../Modèle/estAdmin.php';
 
 if (!$estAdmin) {
-    header("Location: accueil.php");
+    header("Location: accueil");
     exit();
 }
+
+include '../Modèle/bdd.php';
+
+require_once '../Modèle/salleData.php';
 
 include '../Modèle/style_theme.php' ?>
 
@@ -74,10 +78,10 @@ if ($theme == 0) { ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -90,12 +94,12 @@ if ($theme == 0) { ?>
                     $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -105,8 +109,8 @@ if ($theme == 0) { ?>
 
     <main>
         <p class="intro-text">Bienvenue sur la page d'administration du site Cinébar ! <br> Cette section vous permet de gérer les films,
-            événements et salles du cinéma. Utilisez les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations.
-            Assurez-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
+            événements et salles du cinéma. Utiliser les formulaires ci-dessous pour ajouter, modifier ou supprimer des informations.
+            Assurer-vous de saisir correctement les détails pour maintenir la précision de la base de données.</p>
 
         <section class="admin-section">
             <h1>Gestion des Salles</h1>
@@ -132,18 +136,11 @@ if ($theme == 0) { ?>
             <h2>Supprimer une salle :</h2>
             <form action="Contrôleur/supprimer_salle.php" method="post" class="form-container">
                 <select name="salle_id" id="salle_id">
-                    <?php
 
-                    include '../Modèle/bdd.php';
+                    <?php foreach (getSalles($connexion) as $salle): ?>
+                        <option value="<?= $salle['id_Salle']; ?>"><?= $salle['nom_salle']; ?></option>
+                    <?php endforeach; ?>
 
-                    $sql = "SELECT id_Salle, nom_salle FROM salle";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($salles = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $salles['id_Salle'] . '">' . $salles['nom_salle'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Supprimer</button>
             </form>
@@ -164,7 +161,7 @@ if ($theme == 0) { ?>
                 $('#type_salle').select2({
                     tags: true,
                     tokenSeparators: [',', ' '],
-                    placeholder: 'Sélectionnez des types',
+                    placeholder: 'Sélectionner des types',
                     data: type.map(function (type) {
                         return { id: type, text: type };
                     }),

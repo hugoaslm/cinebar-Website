@@ -5,15 +5,15 @@ session_start();
 include '../Modèle/bdd.php';
 include '../Modèle/themeClair.php';
 
-// Récupérez l'ID du film depuis l'URL
+// Récupérer l'ID du film depuis l'URL
 $film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
 
-// Vérifiez si l'ID du film est défini
+// Vérifier si l'ID du film est défini
 if ($film_id !== null) {
-    // Échappez l'ID pour éviter les attaques par injection SQL
+    // Échapper l'ID pour éviter les attaques par injection SQL
     $film_id = $connexion->quote($film_id);
 
-    // Récupérez les détails du film de la base de données
+    // Récupérer les détails du film de la base de données
     $result = $connexion->query("SELECT * FROM films WHERE id_F = $film_id");
     $row = $result->fetch(PDO::FETCH_ASSOC);
 } else {
@@ -105,10 +105,10 @@ include '../Modèle/style_theme.php' ?>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
@@ -121,12 +121,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
+                    // Si non connecté, afficher le bouton de connexion normal
                     $boutonConnexion .= '<a href="../connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
