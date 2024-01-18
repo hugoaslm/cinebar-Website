@@ -166,18 +166,11 @@ include '../Modèle/style_theme.php' ?>
             <h2>Sélection de l'évènement du moment :</h2>
             <form action="Contrôleur/event_moment.php" method="post" class="form-container">
                 <select name="event_id" id="event_id">
-                    <?php
 
+                    <?php foreach (getAllEvents($connexion) as $event): ?>
+                        <option value="<?= $event['id_E']; ?>"><?= $event['nom']; ?></option>
+                    <?php endforeach; ?>
                     
-
-                    $sql = "SELECT id_E, nom FROM events";
-                    $resultat = $connexion->query($sql);
-
-                    // Générer les options de la liste déroulante
-                    while ($event = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value="' . $event['id_E'] . '">' . $event['nom'] . '</option>';
-                    }
-                    ?>
                 </select>
                 <button class="sele-moment" type="submit">Sélectionner</button>
             </form>

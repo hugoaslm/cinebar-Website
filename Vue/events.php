@@ -3,6 +3,9 @@
 session_start();
 
 include '../Modèle/bdd.php';
+
+include '../Modèle/eventData.php';
+
 include '../Modèle/themeClair.php';
 
 include '../Modèle/style_theme.php' ?>
@@ -138,36 +141,30 @@ include '../Modèle/style_theme.php' ?>
         <h1 class="h1_moment">ÉVÈNEMENT DU MOMENT</h1>
         <section class='vedette-section'>
             <?php
-            // Récupérer l'ID de l'événement du moment depuis la table event_moment
-            $sql = "SELECT event_id_E FROM event_moment";
-            $stmt = $connexion->query($sql);
+            
+            $stmt = getEventMoment($connexion);
 
             if ($stmt->rowCount() > 0) {
                 $event_id = $stmt->fetch(PDO::FETCH_ASSOC)['event_id_E'];
 
-                // Récupérer les détails de l'événement associé à l'ID
-                $sql = "SELECT * FROM events WHERE id_E = :event_id";
-                $stmt = $connexion->prepare($sql);
-                $stmt->bindParam(":event_id", $event_id);
-                $stmt->execute();
+                $event_details = getEventDetailsById($connexion, $event_id);
 
                 // Vérifier s'il y a des résultats
-                if ($stmt->rowCount() > 0) {
-                    $event = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($event_details) {
 
                     // Afficher les détails de l'événement
                     echo '<section class="vedette-section">';
                     echo '<div class="vedette">';
                     echo '<div class="illu">';
-                    echo '<img src="' . $event['affiche'] . '" alt="' . $event['nom'] . '">';
+                    echo '<img src="' . $event_details['affiche'] . '" alt="' . $event_details['nom'] . '">';
                     echo '</div>';
                     echo '<div class="details">';
-                    echo '<h2>' . $event['nom'] . '</h2>';
-                    echo '<p>' . $event['description'] . '</p>';
-                    echo '<div>Date de l\'événement: ' . $event['date'] . '</div>';
+                    echo '<h2>' . $event_details['nom'] . '</h2>';
+                    echo '<p>' . $event_details['description'] . '</p>';
+                    echo '<div>Date de l\'événement: ' . $event_details['date'] . '</div>';
                     echo '</div>';
                     echo '<div class="cast">';
-                    echo '<p>Organisateur: ' . $event['organisateur'] . '</p>';
+                    echo '<p>Organisateur: ' . $event_details['organisateur'] . '</p>';
                     echo '</div>';
                     echo '</div>';
                     echo '</section>';
@@ -186,22 +183,7 @@ include '../Modèle/style_theme.php' ?>
             </div>
             <div class="events-container">
 
-                <?php
-                try {
-                    // Préparer la requête SQL
-                    $stmt = $connexion->prepare("SELECT * FROM events");
-
-                    // Exécuter la requête
-                    $stmt->execute();
-
-                    // Récupérer toutes les lignes résultantes
-                    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                } catch (PDOException $e) {
-                    echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
-                }
-                ?>
-
-                <?php foreach ($events as $event) : ?>
+                <?php foreach (getEvents($connexion) as $event) : ?>
                     <div class="event">
                         <a href="event/<?= $event['id_E'] ?>" class="ev">
                             <img src="<?= $event['affiche'] ?>" alt="<?= $event['nom'] ?>">

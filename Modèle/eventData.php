@@ -2,6 +2,22 @@
 
 include 'bdd.php';
 
+function getEvents($connexion) {
+    $stmt = $connexion->prepare("SELECT * FROM events");
+
+    $stmt->execute();
+
+    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $events;
+}
+
+function getEventMoment($connexion) {
+    $sql = "SELECT event_id_E FROM event_moment";
+    $stmt = $connexion->query($sql);
+    return $stmt;
+}
+
 function getEventDetailsById($connexion, $event_id) {
 
     // Vérifier si l'ID de l'événement est défini
