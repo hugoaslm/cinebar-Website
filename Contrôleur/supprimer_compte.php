@@ -3,12 +3,9 @@
 $id_user = $_GET['id'];
 
 include '../Modèle/bdd.php';
+require_once '../Modèle/userData.php';
 
-// Insérer le nouveau film du moment
-$sql_insert = "DELETE FROM utilisateur WHERE id_Utilisateur = :id_user";
-$stmt_insert = $connexion->prepare($sql_insert);
-$stmt_insert->bindParam(":id_user", $id_user);
-$stmt_insert->execute();
+$delete = deleteUser($connexion, $id_user);
 
 header("Location: ../gestion_users");
 exit();

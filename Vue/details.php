@@ -3,23 +3,15 @@
 session_start();
 
 include '../Modèle/bdd.php';
+
+require '../Modèle/filmData.php';
+
 include '../Modèle/themeClair.php';
 
 // Récupérer l'ID du film depuis l'URL
 $film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
 
-// Vérifier si l'ID du film est défini
-if ($film_id !== null) {
-    // Échapper l'ID pour éviter les attaques par injection SQL
-    $film_id = $connexion->quote($film_id);
-
-    // Récupérer les détails du film de la base de données
-    $result = $connexion->query("SELECT * FROM films WHERE id_F = $film_id");
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-} else {
-        echo "ID du film non spécifié.";
-        exit;
-}
+$film_details = getFilmDetailsById($connexion, $film_id);
 
 include '../Modèle/style_theme.php' ?>
 
@@ -138,11 +130,11 @@ include '../Modèle/style_theme.php' ?>
 
         <section>
             <div class="container-films">
-                <img src="../<?= htmlspecialchars($row['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
+                <img src="../<?= htmlspecialchars($film_details['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($film_details['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
                 <div class="info">
-                    <h1><?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                    <h1><?= htmlspecialchars($film_details['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
 
-                    <p><?= htmlspecialchars($row['genre'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?= htmlspecialchars($film_details['genre'], ENT_QUOTES, 'UTF-8'); ?></p>
                     <p>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-bottom: 4px;">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -150,7 +142,7 @@ include '../Modèle/style_theme.php' ?>
                             <line x1="8" y1="2" x2="8" y2="6"/>
                             <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
-                        <?= htmlspecialchars($row['DateDeSortie'], ENT_QUOTES, 'UTF-8'); ?>,
+                        <?= htmlspecialchars($film_details['DateDeSortie'], ENT_QUOTES, 'UTF-8'); ?>,
                         
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-bottom: 3px;">
                             <circle cx="12" cy="12" r="10"/>
@@ -158,12 +150,12 @@ include '../Modèle/style_theme.php' ?>
                             <line x1="12" y1="12" x2="16" y2="16"/>
                             <line x1="12" y1="12" x2="8" y2="16"/>
                         </svg>
-                        <?= htmlspecialchars($row['duree'], ENT_QUOTES, 'UTF-8'); ?> minutes
+                        <?= htmlspecialchars($film_details['duree'], ENT_QUOTES, 'UTF-8'); ?> minutes
                     </p>
-                    <p><?= htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?= htmlspecialchars($film_details['description'], ENT_QUOTES, 'UTF-8'); ?></p>
                 
-                    <div class="real"><h3>De :</h3> <?= htmlspecialchars($row['realisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
-                    <div class="act"><h3>Avec :</h3> <?= htmlspecialchars($row['acteurs'], ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="real"><h3>De :</h3> <?= htmlspecialchars($film_details['realisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="act"><h3>Avec :</h3> <?= htmlspecialchars($film_details['acteurs'], ENT_QUOTES, 'UTF-8'); ?></div>
                 </div>
             </div>
         </section>

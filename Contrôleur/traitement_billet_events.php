@@ -15,6 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST['date'];
 
     reserverEvent($connexion, $nom, $prenom, $email, $event, $nb, $horaires, $date);
+
+    header("Location: ../billet-confirm");
+    exit();
+
+    // Fermer la connexion
+    $connexion = null;
 }
 
 ?>

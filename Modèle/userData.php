@@ -97,4 +97,12 @@ function info_userConnected($connexion) {
     return null;
 }
 
+function deleteUser($connexion, $id_user) {
+
+    $sql_insert = "DELETE FROM utilisateur WHERE id_Utilisateur = :id_user";
+    $stmt_insert = $connexion->prepare($sql_insert);
+    $stmt_insert->bindParam(":id_user", $id_user);
+    $stmt_insert->execute();
+}
+
 ?>

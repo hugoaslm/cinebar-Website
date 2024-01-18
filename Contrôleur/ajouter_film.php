@@ -1,5 +1,9 @@
 <?php
 
+include '../Modèle/bdd.php';
+require_once '../Modèle/filmData.php';
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $nom = $_POST["titre_film"];
@@ -14,24 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genres = isset($_POST["genre_film"]) ? $_POST["genre_film"] : [];
     $genre_str = implode(", ", $genres);
 
-    include '../Modèle/bdd.php';
-
-    // Préparer la requête SQL
-    $sql = "INSERT INTO films (nom, genre, acteurs, description, DateDeSortie, duree, realisateur, affiche) VALUES (:nom, :genre, :acteurs, :description, :DateDeSortie, :duree, :realisateur, :affiche)";
-    $stmt = $connexion->prepare($sql);
-
-    // Liaison des paramètres
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':genre', $genre_str); // Utilisation de la chaîne au lieu du tableau
-    $stmt->bindParam(':acteurs', $acteurs);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':DateDeSortie', $DateDeSortie);
-    $stmt->bindParam(':duree', $duree);
-    $stmt->bindParam(':realisateur', $realisateur);
-    $stmt->bindParam(':affiche', $affiche);
-
-    // Exécution de la requête
-    $stmt->execute();
+    $addFilmSuccess = addFilm($connexion, $nom, $acteurs, $description, $DateDeSortie, $duree, $realisateur, $affiche, $genres);
 
     header("Location: ../films");
     exit();

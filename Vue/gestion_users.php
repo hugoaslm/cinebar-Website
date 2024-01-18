@@ -147,7 +147,7 @@ if ($theme == 0) { ?>
             function confirmerSuppression(id) {
                 var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce compte ?");
                 if (confirmation) {
-                    window.location.href = "../Contrôleur/supprimer_compte.php?id=" + id;
+                    window.location.href = "Contrôleur/supprimer_compte.php?id=" + id;
                 }
             }
         </script>
