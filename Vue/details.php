@@ -3,67 +3,18 @@
 session_start();
 
 include '../Modèle/bdd.php';
+
+require '../Modèle/filmData.php';
+
 include '../Modèle/themeClair.php';
 
-// Récupérez l'ID du film depuis l'URL
+// Récupérer l'ID du film depuis l'URL
 $film_id = isset($_GET['id_F']) ? $_GET['id_F'] : null;
 
-// Vérifiez si l'ID du film est défini
-if ($film_id !== null) {
-    // Échappez l'ID pour éviter les attaques par injection SQL
-    $film_id = $connexion->quote($film_id);
-
-    // Récupérez les détails du film de la base de données
-    $result = $connexion->query("SELECT * FROM films WHERE id_F = $film_id");
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-} else {
-        echo "ID du film non spécifié.";
-        exit;
-}
+$film_details = getFilmDetailsById($connexion, $film_id);
 
 include '../Modèle/style_theme.php' ?>
 
-<?php
-
- if ($theme==0) {?>
-<style>
-    .container-films {
-    color: black;
-    }
-
-    body {
-        color: black;
-    }
-
-    .note h1, .reservation h1 {
-        color: black;
-    }
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-    body {
-    background-color: #1E1E1E;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-
-    .container-films {
-    color: white;
-    }
-
-    body {
-        color: white;
-    }
-
-    .note h1, .reservation h1 {
-        color: white;
-    }
-</style>
-<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,33 +37,33 @@ include '../Modèle/style_theme.php' ?>
     <nav>
             <img src="../images/logo-cinebar.png" alt="Logo Cinébar">
             <div class="pages">
-                <a href="accueil.php">Accueil</a>
-                <a href="cinema.php">Le Cinéma</a>
-                <a href="cafet.php">La Cafétéria</a>
-                <a href="films.php">Films</a>
-                <a href="events.php">Évènements</a>
-                <a href="forum.php">Forum</a>
+                <a href="../accueil">Accueil</a>
+                <a href="../cinema">Le Cinéma</a>
+                <a href="../cafet">La Cafétéria</a>
+                <a href="../films">Films</a>
+                <a href="../events">Évènements</a>
+                <a href="../forum">Forum</a>
             </div>
             <div class="bouton-access">
-                <form class="container" action="recherche.php" method="POST">
+                <form class="container" action="../recherche" method="POST">
                     <input type="text" placeholder="Rechercher..." name="recherche">
                     <div class="search"></div>
                 </form>
 
                 <div class="bouton-pro">
-                    <a href="pro.php">Réservation de salles</a>
+                    <a href="../pro">Réservation de salles</a>
                 </div>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
+                    $boutonConnexion .= '<a href="../profil"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - 
                     https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> '
@@ -121,12 +72,12 @@ include '../Modèle/style_theme.php' ?>
                     $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
-                    $boutonConnexion .= '<a href="connexion.php">Connexion</a>';
+                    // Si non connecté, afficher le bouton de connexion normal
+                    $boutonConnexion .= '<a href="../connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
 
@@ -138,11 +89,11 @@ include '../Modèle/style_theme.php' ?>
 
         <section>
             <div class="container-films">
-                <img src="<?= htmlspecialchars($row['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
+                <img src="../<?= htmlspecialchars($film_details['affiche'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars($film_details['nom'], ENT_QUOTES, 'UTF-8'); ?>" width="200" height="300">
                 <div class="info">
-                    <h1><?= htmlspecialchars($row['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                    <h1><?= htmlspecialchars($film_details['nom'], ENT_QUOTES, 'UTF-8'); ?></h1>
 
-                    <p><?= htmlspecialchars($row['genre'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?= htmlspecialchars($film_details['genre'], ENT_QUOTES, 'UTF-8'); ?></p>
                     <p>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-bottom: 4px;">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -150,7 +101,7 @@ include '../Modèle/style_theme.php' ?>
                             <line x1="8" y1="2" x2="8" y2="6"/>
                             <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
-                        <?= htmlspecialchars($row['DateDeSortie'], ENT_QUOTES, 'UTF-8'); ?>,
+                        <?= htmlspecialchars($film_details['DateDeSortie'], ENT_QUOTES, 'UTF-8'); ?>,
                         
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-bottom: 3px;">
                             <circle cx="12" cy="12" r="10"/>
@@ -158,12 +109,12 @@ include '../Modèle/style_theme.php' ?>
                             <line x1="12" y1="12" x2="16" y2="16"/>
                             <line x1="12" y1="12" x2="8" y2="16"/>
                         </svg>
-                        <?= htmlspecialchars($row['duree'], ENT_QUOTES, 'UTF-8'); ?> minutes
+                        <?= htmlspecialchars($film_details['duree'], ENT_QUOTES, 'UTF-8'); ?> minutes
                     </p>
-                    <p><?= htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?= htmlspecialchars($film_details['description'], ENT_QUOTES, 'UTF-8'); ?></p>
                 
-                    <div class="real"><h3>De :</h3> <?= htmlspecialchars($row['realisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
-                    <div class="act"><h3>Avec :</h3> <?= htmlspecialchars($row['acteurs'], ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="real"><h3>De :</h3> <?= htmlspecialchars($film_details['realisateur'], ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="act"><h3>Avec :</h3> <?= htmlspecialchars($film_details['acteurs'], ENT_QUOTES, 'UTF-8'); ?></div>
                 </div>
             </div>
         </section>
@@ -213,9 +164,9 @@ include '../Modèle/style_theme.php' ?>
                 
                     echo '<div class="proj">';
                     if ($estConnecte) {
-                    echo "<a href='billet.php?id_Projection=$projection_id'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
+                    echo "<a href='../billet?id_Projection=$projection_id'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
                     } else {
-                        echo "<a href='connexion.php'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
+                        echo "<a href='../connexion'><h3>$formatted_date :</h3><br><br><h2>$horaire</h2></a>";
                     }
                     echo '</div>';
                 }
@@ -235,9 +186,9 @@ include '../Modèle/style_theme.php' ?>
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.php">Gestion des cookies</a> - 
-            <a href="cgu.php">CGU</a> - 
-            <a href="faq.php">FAQ</a>
+            <a href="cookies">Gestion des cookies</a> - 
+            <a href="cgu">CGU</a> - 
+            <a href="faq">FAQ</a>
         </div>  
     </footer>
 

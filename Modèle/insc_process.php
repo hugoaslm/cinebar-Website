@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $recaptcha_data = json_decode($recaptcha_result);
 
     if (!$recaptcha_data->success) {
-        echo "Veuillez remplir correctement le captcha.";
+        echo "Veuiller remplir correctement le captcha.";
         exit();
     }
 
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($check_user_query->rowCount() > 0) {
         // L'utilisateur existe déjà
-        echo "L'utilisateur existe déjà. Veuillez vous connecter.";
+        echo "L'utilisateur existe déjà. Veuiller vous connecter.";
     } else {
         // Hachage du mot de passe
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_user_query->execute();
 
         header("Location: ../Vue/connexion.php");
-        echo "Inscription réussie. Vous pouvez maintenant vous connecter.";
+        echo "Inscription réussie. Vous pouver maintenant vous connecter.";
         exit();
     }
 }

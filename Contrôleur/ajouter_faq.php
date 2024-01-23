@@ -1,24 +1,17 @@
 <?php
 
+include '../Modèle/bdd.php';
+
+require_once '../Modèle/faqData.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $question = $_POST["question"];
-    $reponse = $_POST["reponse"];
 
-    include '../Modèle/bdd.php';
+    $nouvelleQuestionFAQ = $_POST["question"];
+    $nouvelleReponseFAQ = $_POST["reponse"];
 
-    // Préparer la requête SQL
-    $sql = "INSERT INTO faq (question, reponse) VALUES (:quest, :resp)";
-    $stmt = $connexion->prepare($sql);
+    ajouterFAQ($connexion, $nouvelleQuestionFAQ, $nouvelleReponseFAQ);
 
-    // Binder les valeurs
-    $stmt->bindParam(':resp', $reponse);
-    $stmt->bindParam(':quest', $question);
-
-    // Exécuter la requête
-    $stmt->execute();
-
-    header("Location: ../Vue/faq.php");
+    header("Location: ../faq");
     exit();
 
     // Fermer la connexion

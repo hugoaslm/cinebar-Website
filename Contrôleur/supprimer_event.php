@@ -1,18 +1,14 @@
 <?php
+include '../Modèle/bdd.php';
+require_once '../Modèle/eventData.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     $event_id = $_POST["event_id"];
 
-    include '../Modèle/bdd.php';
+    deleteEvent($connexion, $event_id);
 
-    // Insérer le nouveau film du moment
-    $sql_insert = "DELETE FROM events WHERE id_E = :event_id";
-    $stmt_insert = $connexion->prepare($sql_insert);
-    $stmt_insert->bindParam(":event_id", $event_id);
-    $stmt_insert->execute();
-
-    header("Location: ../Vue/events.php");
+    header("Location: ../events");
     exit();
 }
 ?>

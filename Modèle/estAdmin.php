@@ -3,7 +3,7 @@
 include '../Modèle/bdd.php';
 
 // Vérifier le statut administrateur de l'utilisateur en interrogeant la base de données
-$estAdmin = false; // Initialisez à false par défaut
+$estAdmin = false; // Initialiser à false par défaut
 
 if (isset($_SESSION['identifiant'])) {
     $identifiant = $_SESSION['identifiant'];

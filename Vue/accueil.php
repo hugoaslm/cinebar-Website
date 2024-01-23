@@ -3,22 +3,14 @@
 session_start();
 
 include '../Modèle/bdd.php';
+require '../Modèle/filmData.php';
 include '../Modèle/themeClair.php';
 
-$sql = "SELECT film_id_F FROM film_moment";
-$stmt = $connexion->query($sql);
+$filmIdMoment = getFilmMomentId($connexion);
 
-$film_id = $stmt->fetch(PDO::FETCH_ASSOC)['film_id_F'];
+$film = getFilmDetailsById($connexion, $filmIdMoment);
 
-// Récupérer les détails du film associé à l'ID
-$sql = "SELECT * FROM films WHERE id_F = :film_id";
-$stmt = $connexion->prepare($sql);
-$stmt->bindParam(":film_id", $film_id);
-$stmt->execute();
-
-$film = $stmt->fetch(PDO::FETCH_ASSOC);
-
-include "../Contrôleur/film_moment_default.php"
+include "../Modèle/film_moment_default.php"
 
 ?>
 
@@ -34,8 +26,8 @@ include "../Contrôleur/film_moment_default.php"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Films à l'affiche">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/accueil.css">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="style/accueil.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-bi+2BIvPHs5peU+5wDTrAYu9fEF+j4uANCBF8bXaSv1ap4SC1vY+gJEAY6npa9vm4tft9NxLXR+rWn5eknjOXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -52,49 +44,49 @@ include "../Contrôleur/film_moment_default.php"
         
         <nav>
             
-            <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div class="pages">
-                <a href="accueil.php">Accueil</a>
-                <a href="cinema.php">Le Cinéma</a>
-                <a href="cafet.php">La Cafétéria</a>
-                <a href="films.php">Films</a>
-                <a href="events.php">Évènements</a>
-                <a href="forum.php">Forum</a>
+                <a href="accueil">Accueil</a>
+                <a href="cinema">Le Cinéma</a>
+                <a href="cafet">La Cafétéria</a>
+                <a href="films">Films</a>
+                <a href="events">Évènements</a>
+                <a href="forum">Forum</a>
             </div>
             <div class="bouton-access">
-                <form class="container" action="recherche.php" method="POST">
+                <form class="container" action="recherche" method="POST">
                     <input type="text" placeholder="Rechercher..." name="recherche">
                     <div class="search"></div>
                 </form>
 
                 <div class="bouton-pro">
-                    <a href="pro.php">Réservation de salles</a>
+                    <a href="pro">Réservation de salles</a>
                 </div>
 
                 <?php
 
-                // Vérifiez si l'utilisateur est connecté en vérifiant la présence de la variable de session
+                // Vérifier si l'utilisateur est connecté en vérifiant la présence de la variable de session
                 $estConnecte = isset($_SESSION['identifiant']);
 
-                // Sélectionnez le bouton de connexion en PHP
+                // Sélectionner le bouton de connexion en PHP
                 $boutonConnexion = '<div class="bouton-co">';
                 if ($estConnecte) {
                     $identif = $_SESSION['identifiant'];
-                    $boutonConnexion .= '<a href="profil.php"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
+                    $boutonConnexion .= '<a href="profil"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" 
                     viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - 
                     https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> '
                       . $identif . ' </a>';
                     $boutonConnexion .= '<div class="menu-deroulant">';
-                    $boutonConnexion .= '<a href="../Contrôleur/deconnexion.php">Se déconnecter</a>';
+                    $boutonConnexion .= '<a href="Contrôleur/deconnexion.php">Se déconnecter</a>';
                     $boutonConnexion .= '</div>';
                 } else {
-                    // Si non connecté, affichez le bouton de connexion normal
-                    $boutonConnexion .= '<a href="connexion.php">Connexion</a>';
+                    // Si non connecté, afficher le bouton de connexion normal
+                    $boutonConnexion .= '<a href="connexion">Connexion</a>';
                 }
                 $boutonConnexion .= '</div>';
 
-                // Affichez le bouton de connexion généré
+                // Afficher le bouton de connexion généré
                 echo $boutonConnexion;
                 ?>
                 
@@ -154,17 +146,17 @@ include "../Contrôleur/film_moment_default.php"
             <div class="acc-cine">
                 <h1>Une Expérience Unique </h1>
                 <p>
-                    Vivez une expérience cinématographique immersive où vos émotions façonnent l'expérience. Les réactions du public sont instantanément partagées sur le site du film, créant une connexion unique entre l'histoire à l'écran et le public en salle.
+                    Viver une expérience cinématographique immersive où vos émotions façonnent l'expérience. Les réactions du public sont instantanément partagées sur le site du film, créant une connexion unique entre l'histoire à l'écran et le public en salle.
                 </p>
             </div>
             <div class="img-container">
-                <img src="../images/pexels-linda-gschwentner-11718584.jpg" alt="cinema">
+                <img src="images/pexels-linda-gschwentner-11718584.jpg" alt="cinema">
             </div>
         </section>
 
         <section class='accueil-bar'>
             <div class="img-bar">
-                <img src="../images/pexels-cottonbro-studio-8261819.png" alt="bar">
+                <img src="images/pexels-cottonbro-studio-8261819.png" alt="bar">
             </div>
             <div class="acc-bar">
                 <h1>La cafétéria</h1>
@@ -181,58 +173,37 @@ include "../Contrôleur/film_moment_default.php"
         <section class="boite3">
 
             <?php
-            // Récupérer l'ID du film du moment depuis la table film_moment
-            $sql_select = "SELECT film_id_F FROM film_moment";
-            $stmt_select = $connexion->query($sql_select);
-
-            if ($stmt_select->rowCount() > 0) {
-                $film_id = $stmt_select->fetchColumn();
-
-                // Récupérer les détails du film du moment depuis la table films
-                $sql_details = "SELECT affiche FROM films WHERE id_F = :film_id";
-                $stmt_details = $connexion->prepare($sql_details);
-                $stmt_details->bindParam(":film_id", $film_id);
-                $stmt_details->execute();
-
-                if ($stmt_details->rowCount() > 0) {
-                    $affiche = $stmt_details->fetchColumn();
-
-                    // Afficher l'image du film du moment
-                    echo '<div class="titre-boite3">';
-                    echo '<h1>Le film du moment</h1>';
-                    echo '<img src="' . $affiche . '" alt="new_film">';
-                    echo '<a href="films.php">Aller voir</a>';
-                    echo '</div>';
-                } else {
-                    echo 'Détails du film du moment non trouvés.';
-                }
+            if ($film !== null) {
+                $affiche = $film['affiche'];
+            
+                // Afficher l'image du film du moment
+                echo '<div class="titre-boite3">';
+                echo '<h1>Le film du moment</h1>';
+                echo '<img src="' . $affiche . '" alt="new_film">';
+                echo '<a href="films">Aller voir</a>';
+                echo '</div>';
             } else {
-                echo 'Film du moment non trouvée.';
+                echo 'Détails du film du moment non trouvés.';
             }
             ?>
 
             <?php
-            // Récupérer l'ID du film avec la date de sortie la plus récente
-            $sql_select_order = "SELECT id_F FROM films ORDER BY DateDeSortie DESC LIMIT 1";
-            $stmt_select_order = $connexion->query($sql_select_order);
+            $latestReleaseId = getLatestReleaseId($connexion);
 
-            if ($stmt_select_order->rowCount() > 0) {
-                $film_id = $stmt_select_order->fetchColumn();
-
-                // Récupérer les détails du film avec la date de sortie la plus récente
-                $sql_details_order = "SELECT affiche FROM films WHERE id_F = :film_id";
-                $stmt_details_order = $connexion->prepare($sql_details_order);
-                $stmt_details_order->bindParam(":film_id", $film_id);
-                $stmt_details_order->execute();
-
-                if ($stmt_details_order->rowCount() > 0) {
-                    $affiche_order = $stmt_details_order->fetchColumn();
-
+            // Vérifier si l'ID du dernier film sorti a été récupéré avec succès
+            if ($latestReleaseId !== null) {
+                // Appeler la fonction pour récupérer les détails du film associé à l'ID
+                $latestReleaseDetails = getFilmDetailsById($connexion, $latestReleaseId);
+            
+                // Vérifier si les détails du dernier film sorti ont été récupérés avec succès
+                if ($latestReleaseDetails !== null) {
+                    $afficheLatestRelease = $latestReleaseDetails['affiche'];
+            
                     // Afficher l'image du dernier film sorti
                     echo '<div class="titre-boite3">';
                     echo '<h1>La dernière sortie</h1>';
-                    echo '<img src="' . $affiche_order . '" alt="new_film">';
-                    echo '<a href="films.php">Aller voir</a>';
+                    echo '<img src="' . $afficheLatestRelease . '" alt="new_film">';
+                    echo '<a href="films">Aller voir</a>';
                     echo '</div>';
                 } else {
                     echo 'Détails de la dernière sortie non trouvés.';
@@ -247,20 +218,7 @@ include "../Contrôleur/film_moment_default.php"
         
         <section class="carrousel">
             
-            <?php
-            try {
-                // Préparer la requête SQL
-                $stmt = $connexion->prepare("SELECT * FROM films");
-                    
-                // Exécuter la requête
-                $stmt->execute();
-                
-                // Récupérer toutes les lignes résultantes
-                $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
-            }
-            ?>
+            <?php $films = getAllFilms($connexion); ?>
 
             <<div class="carousel-container">
                 <h1>À l'affiche au cinéma :</h1>
@@ -281,10 +239,11 @@ include "../Contrôleur/film_moment_default.php"
 
     </main>
 
-    
+    <script src="js/script.js"></script>
+
     <footer>
         <section class='logo-adresse'>
-            <img src="../images/logo-cinebar.png" alt="Logo Cinébar" >
+            <img src="images/logo-cinebar.png" alt="Logo Cinébar" >
             <div>
                 <h3>Adresse :</h3>
                 <p>8 Prom. Coeur de Ville</p>
@@ -292,13 +251,13 @@ include "../Contrôleur/film_moment_default.php"
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies.php">Gestion des cookies</a> - 
-            <a href="cgu.php">CGU</a> - 
-            <a href="faq.php">FAQ</a>
+            <a href="cookies">Gestion des cookies</a> - 
+            <a href="cgu">CGU</a> - 
+            <a href="faq">FAQ</a>
         </div>        
     </footer>
     
-    <script src="js/carousel.js"></script>
+    <script src="Vue/js/carousel.js"></script>
 
 </body>
 </html>

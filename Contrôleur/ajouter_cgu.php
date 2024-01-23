@@ -1,22 +1,17 @@
 <?php
 
+include '../Modèle/bdd.php';
+
+require_once '../Modèle/cguData.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
     // Récupérer les données du formulaire
-    $cgu = $_POST["cgu"];
+    $nouveauContenuCGU = $_POST["cgu"];
 
-    include '../Modèle/bdd.php';
+    mettreAJourCGU($connexion, $nouveauContenuCGU);
 
-    // Préparer la requête SQL
-    $sql = "UPDATE cgu SET contenu = :content";
-    $stmt = $connexion->prepare($sql);
-
-    // Binder les valeurs
-    $stmt->bindParam(':content', $cgu);
-
-    // Exécuter la requête
-    $stmt->execute();
-
-    header("Location: ../Vue/cgu.php");
+    header("Location: ../cgu");
     exit();
 
     // Fermer la connexion
