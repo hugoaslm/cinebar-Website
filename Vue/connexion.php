@@ -110,7 +110,7 @@ include '../Modèle/style_theme.php' ?>
             </div>
             <div class="co-bouton">
                 <button name="send" type="submit">Se connecter</button>
-				<p>Vous n'aver pas de compte ? <a href="inscription.php">S'inscrire</a></p>
+				<p>Vous n'aver pas de compte ? <a href="inscription">S'inscrire</a></p>
             </div>
         </form>
     </main>

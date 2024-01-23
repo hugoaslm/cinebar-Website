@@ -103,8 +103,8 @@ include '../Modèle/style_theme.php' ?>
     </header>
 
     <main class='connexion'>
-        <img src="../images/oppenheimer_large.jpg" alt="films_large" class="back_image">
-        <form action="../Modèle/insc_process.php" method="post" class="inscription">
+        <img src="images/oppenheimer_large.jpg" alt="films_large" class="back_image">
+        <form action="Modèle/insc_process.php" method="post" class="inscription">
             <div class="form-text" id="sugg">
                 <p>
                     <label for="mail">Pseudonyme :</label>

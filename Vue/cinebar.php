@@ -145,11 +145,11 @@ include '../Modèle/style_theme.php' ?>
 				Alors, <b>prêt à entrer dans le futur de la notation cinématographique ?</b> <span class="mot_cle">CinéBar</span> vous promet une <b>expérience comme nulle part ailleurs !</b>
             </div>
 			<div class="sep">
-				<img src="../images/separateur.jpg">
+				<img src="images/separateur.jpg">
 			</div>
 			
 			<div class="illu">
-                <img src="../images/bar.jpg">
+                <img src="images/bar.jpg">
 			</div>
 			<div class="text">
 				De plus, <span class="mot_cle">un oasis de sérénité vous attend</span>. 
