@@ -12,7 +12,14 @@ include '../Modèle/bdd.php';
 include '../Modèle/themeClair.php';
 include '../Modèle/estAdmin.php';
 
-include '../Modèle/style_theme.php' ?>
+include '../Modèle/style_theme.php';
+
+if (!$estAdmin) {
+    header("Location: dashboard_user");
+    exit();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,23 +90,14 @@ include '../Modèle/style_theme.php' ?>
 
     <h1>Bienvenue <span class="mot_cle"><?php echo $identifiant; ?> </span> !</h1>
 
-    <?php
-    if ($estAdmin) :
-    ?>
-        <section class="profil-options">
-            <h2>Options d'administration :</h2>
-            <p>Choisisser une option :</p>
-            <ul class="list">
-                <li><a class="profil-link" href="dashboard_user">Gestion du Compte</a></li>
-                <li><a class="profil-link" href="dashboard_admin">Interface d'Administration</a></li>
-            </ul>
-        </section>
-    <?php
-    else:
-        header("Location: dashboard_user");
-        exit;
-    endif;
-    ?>
+    <section class="profil-options">
+        <h2>Options d'administration :</h2>
+        <p>Choisisser une option :</p>
+        <ul class="list">
+            <li><a class="profil-link" href="dashboard_user">Gestion du Compte</a></li>
+            <li><a class="profil-link" href="dashboard_admin">Interface d'Administration</a></li>
+        </ul>
+    </section>
 
 </main>
 

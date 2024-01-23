@@ -105,4 +105,12 @@ function deleteUser($connexion, $id_user) {
     $stmt_insert->execute();
 }
 
+function deleteSelfUser($connexion, $pseudo) {
+
+    $sql_insert = "DELETE FROM utilisateur WHERE pseudo = :pseudo";
+    $stmt_insert = $connexion->prepare($sql_insert);
+    $stmt_insert->bindParam(":pseudo", $pseudo);
+    $stmt_insert->execute();
+}
+
 ?>

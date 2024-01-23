@@ -101,7 +101,12 @@ include '../Modèle/style_theme.php' ?>
             </div>
 
 
-            <button type="submit">Sauvegarder les modifications</button>
+            <button class="save_modif" type="submit">Sauvegarder les modifications</button>
+
+            <div class="supp">
+                <label for="suppr">Je souhaite supprimer mon compte :</label>
+                <button type="button" id="supprimerCompte" onclick="demanderConfirmation()">Supprimer</button>
+            </div>
         </form>
 
         <script>
@@ -131,6 +136,15 @@ include '../Modèle/style_theme.php' ?>
             if (storedDarkMode === 'true') {
                 document.getElementById("themeToggle").checked = true;
                 toggleTheme();
+            }
+        </script>
+        <script>
+            function demanderConfirmation() {
+                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
+
+                if (confirmation) {
+                    window.location.href = "Contrôleur/supprimer_compte_self.php";
+                }
             }
         </script>
     </main>

@@ -223,3 +223,16 @@ body.light-mode {
 .light-mode .profil-options {
     border: 1px solid black;
 }
+
+.save_modif {
+    margin-bottom: 50px;
+}
+
+#supprimerCompte {
+    background-color: #89404F;
+    margin-top: 10px;
+}
+
+.supp label {
+    text-decoration: underline;
+}

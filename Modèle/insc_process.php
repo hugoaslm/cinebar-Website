@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_user_query->bindParam(':hashed_password', $hashed_password);
         $insert_user_query->execute();
 
-        header("Location: ../Vue/connexion.php");
+        header("Location: ../connexion");
         echo "Inscription réussie. Vous pouver maintenant vous connecter.";
         exit();
     }
