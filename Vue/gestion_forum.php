@@ -115,7 +115,7 @@ include '../Modèle/style_theme.php' ?>
                 $messages = getMessagesForQuestion($connexion, $question_id);
 
                 echo '<h2 class="msg_quest">Messages liés à la question : ' . $question['donnees_question'] . '</h2>';
-                echo '<form action="Controleur/supprimer_messages.php" method="post" class="form-container">';
+                echo '<form action="Contrôleur/supprimer_msg_forum.php" method="post" class="form-container">';
                 echo '<select name="messages_id" id="messages_id">';
                 
                 foreach ($messages as $message) {
