@@ -251,9 +251,9 @@ include "../Modèle/film_moment_default.php"
             </div>
         </section>
         <div class="donnees">
-            <a href="cookies">Gestion des cookies</a> - 
-            <a href="cgu">CGU</a> - 
-            <a href="faq">FAQ</a>
+            
+        <a href="cgu">CGU</a> -
+        <a href="faq">FAQ</a>
         </div>        
     </footer>
     

@@ -111,7 +111,6 @@ if (!$estAdmin) {
         </div>
     </section>
     <div class="donnees">
-        <a href="cookies">Gestion des cookies</a> -
         <a href="cgu">CGU</a> -
         <a href="faq">FAQ</a>
     </div>
