@@ -31,58 +31,6 @@ if ($estConnecte) {
 
 include '../Modèle/style_theme.php' ?>
 
-<?php
-
- if ($theme==0) {?>
-<style>
-    .container-films {
-    color: black;
-    }
-
-    body {
-        color: black;
-    }
-
-    .note h1, .reservation h1 {
-        color: black;
-    }
-
-    .reserv-billet select,
-    .reserv-billet input {
-    border: solid 2px black;
-    }
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-    .reserv-billet select,
-    .reserv-billet input {
-    border: none;
-    }
-
-    body {
-    background-color: #1E1E1E;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-
-    .container-films {
-    color: white;
-    }
-
-    body {
-        color: white;
-    }
-
-    .note h1, .reservation h1 {
-        color: white;
-    }
-</style>
-<?php } ?>
-
 <!DOCTYPE html>
 <html lang="en">
     

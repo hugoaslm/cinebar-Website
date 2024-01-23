@@ -5,54 +5,6 @@ session_start();
 include "../Modèle/bdd.php";
 include '../Modèle/style_theme.php' ?>
 
-<?php
-
- if ($theme==0) {?>
-<style>
-    body {
-        color: black;
-    }
-
-    .contenant {
-        color: black;
-    }
-
-    .sep {
-        display: none;
-    }
-
-    .illu, .text {
-        margin-bottom: 50px;
-    }
-
-    .titre {
-        color: black;
-    }
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-
-    body {
-    background-color: #1E1E1E;
-    color: white;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-
-    .sep {
-        display: flex;
-    }
-
-    .titre {
-        color: white;
-    }
-</style>
-<?php } ?>
-
 <!DOCTYPE html>
 <html lang="en">
     

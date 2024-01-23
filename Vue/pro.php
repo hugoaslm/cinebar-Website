@@ -12,42 +12,7 @@ require_once '../Modèle/salleData.php';
 
 ?>
 
-<?php
 
- if ($theme==0) {?>
-<style>
-    body {
-        color: black;
-    }
-
-    .salles ul li {
-        color: white;
-    }
-
-    h2 {
-		color:white;
-	}
-
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-
-    body {
-    background-color: #1E1E1E;
-    color: white;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-
-    main a {
-        color: white;
-    }
-</style>
-<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +96,7 @@ require_once '../Modèle/salleData.php';
 
         <section class='salles'>
             <?php foreach ($salles as $salle) : ?>
-                <div>
+                <div class="salle_disp">
                     <h2><?php echo htmlspecialchars($salle['nom_salle']); ?></h2>
                     <ul>
                         <li><?php echo htmlspecialchars($salle['capacite_salle']); ?> places</li>

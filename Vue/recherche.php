@@ -8,41 +8,6 @@ require "../Contrôleur/traitement_recherche.php";
 
 include '../Modèle/style_theme.php' ?>
 
-<?php
-
- if ($theme==0) {?>
-<style>
-    body {
-        color: black;
-    }
-
-    main a {
-        color: white;
-    }
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-
-    body {
-    background-color: #1E1E1E;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-
-    main a {
-        color: white;
-    }
-
-    main h1 {
-        color: white;
-    }
-</style>
-<?php } ?>
-
 <!DOCTYPE html>
 <html lang="en">
     

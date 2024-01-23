@@ -10,60 +10,6 @@ include '../Modèle/themeClair.php';
 
 include '../Modèle/style_theme.php' ?>
 
-<?php
-
- if ($theme==0) {?>
-<style>
-    .details h2, h4, .details p {
-    color: white;
-    }
-
-    .event a {
-        color: white;
-    }
-
-    .vedette {
-        color: white;
-    }
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-    body {
-    background-color: #1E1E1E;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-
-    .details h2, h4, .details p {
-    color: white;
-    }
-
-    .details {
-        color: white;
-    }
-
-    .cast p {
-        color: white;
-    }
-
-    .event a {
-        color: white;
-    }
-
-    .film-vedette {
-        color: white;
-    }
-
-    main h1 {
-        color: white;
-    }
-</style>
-<?php } ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

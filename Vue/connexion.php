@@ -5,31 +5,6 @@ session_start();
 
 include '../Modèle/style_theme.php' ?>
 
-<?php
-
- if ($theme==0) {?>
-<style>
-    body {
-        color: black;
-    }
-</style>
-<?php } ?>
-
-<?php if ($theme==1) {?>
-<style>
-
-    body {
-    background-color: white;
-    color: white;
-    }
-
-    footer, header {
-    background-color: rgb(17, 17, 17);
-    }
-</style>
-<?php } ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     

@@ -239,7 +239,8 @@ include "../Modèle/film_moment_default.php"
 
     </main>
 
-    
+    <script src="js/script.js"></script>
+
     <footer>
         <section class='logo-adresse'>
             <img src="images/logo-cinebar.png" alt="Logo Cinébar" >

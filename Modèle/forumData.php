@@ -58,7 +58,51 @@ function RepQuestForum($connexion) {
     return $result;
 }
 
-// Récupération des questions et réponses
+function ForumOptions($connexion) {
+
+    $stmt = $connexion->prepare("SELECT id_Forum_question, donnees_question FROM forum_question");
+    
+    $stmt->execute();
+
+    $question = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $question;
+
+}
+
+function supprimerForum($connexion, $id_question) {
+
+    $sql = "DELETE FROM forum_question WHERE id_Forum_question = :id_quest";
+    $stmt = $connexion->prepare($sql);
+
+    $stmt->bindParam(":id_quest", $id_question);
+
+    $stmt->execute();
+}
+
+function supprimerMsgForum($connexion, $messageId) {
+
+    $sql = "DELETE FROM forum_reponse WHERE id_Forum_reponse = :id_rep";
+    $stmt = $connexion->prepare($sql);
+
+    $stmt->bindParam(":id_rep", $messageId);
+
+    $stmt->execute();
+}
+
+function getMessagesForQuestion($connexion, $question_id) {
+
+    $query = "SELECT * FROM forum_reponse WHERE Forum_question_id_Forum_question = :question_id";
+    $stmt = $connexion->prepare($query);
+    $stmt->bindParam(':question_id', $question_id, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $messages;
+    } else {
+        return false;
+    }
+}
 
 
 ?>
